@@ -5,3 +5,5 @@ import * as db from '../db/fruits.ts'
 const router = Router()
 
 // Routes for stuff reviews go here
+
+export default router
