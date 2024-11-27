@@ -1,6 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700&display=swap');
 
-html, 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global dark theme styles */
+html,
 body {
+  @apply bg-base03 text-base0;
   font-family: 'Montserrat', sans-serif;
 }
