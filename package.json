@@ -18,7 +18,9 @@
     "build:client": "vite build",
     "build:server": "esbuild --packages=external --platform=node --format=esm --outfile=dist/server.js --bundle server/index.ts",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
-    "knex": "knex --knexfile ./server/db/knexfile.js"
+    "knex": "knex --knexfile ./server/db/knexfile.js",
+    "build:css": "postcss ./client/styles/index.css -o ./client/styles/output.css",
+    "watch:css": "postcss ./client/styles/index.css -o ./client/styles/output.css --watch"
   },
   "eslintConfig": {
     "extends": "@devacademy/eslint-config/react",
@@ -44,6 +46,7 @@
     "@types/superagent": "^8.1.1",
     "@types/supertest": "^6.0.2",
     "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.20",
     "esbuild": "^0.18.19",
     "eslint": "^8.56.0",
     "eslint-plugin-import": "^2.29.1",
@@ -55,11 +58,13 @@
     "eslint-plugin-react-hooks": "^4.6.2",
     "jsdom": "^22.1.0",
     "npm-run-all": "^4.1.5",
+    "postcss": "^8.4.49",
+    "postcss-cli": "^11.0.0",
     "react": "^18.0.2",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.11.2",
-    "sass": "^1.50.1",
     "supertest": "^6.3.4",
+    "tailwindcss": "^3.4.15",
     "tsx": "^3.12.7",
     "typescript": "^5.3.3",
     "vite": "^5.0.0",
