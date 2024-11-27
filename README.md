@@ -12,7 +12,7 @@ This repo includes:
 * an API client module (`client/apis/fruits.js`)
 * configuration for Vitest and testing library
 * configuration for server-side debugging in VS Code
-* configuration for preprocessing Sass
+* configuration for ~~preprocessing Sass~~ [Tailwind](https://tailwindui.com/)
 
 ### Installation
 
