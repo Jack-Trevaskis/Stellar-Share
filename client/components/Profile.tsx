@@ -25,7 +25,11 @@ export function Profile() {
             <p>Email: {user?.email}</p>
           </li>
           <li className="items-center">
-            <img src={user?.picture} alt={user?.nickname} />
+            <img
+              src={user?.picture}
+              alt={user?.nickname}
+              className="rounded w-24 h-24 aspect-square object-cover"
+            />
           </li>
         </ul>
       </div>
