@@ -15,9 +15,9 @@ export function Profile() {
 
   return (
     <div>
-      <h2 className="text-xl font-bold text-center my-4">
+      <h1 className="text-xl font-bold text-center my-4">
         User Profile Details
-      </h2>
+      </h1>
       <div className="">
         <ul className="flex justify-evenly items-center">
           <li className="items-center">
