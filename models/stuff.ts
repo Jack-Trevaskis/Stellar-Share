@@ -2,7 +2,7 @@ export interface StuffData {
   title: string
   name: string
   description: string
-  ownerId: number
+  ownerId: string
   price: number
   imageURL?: string
   bond?: number

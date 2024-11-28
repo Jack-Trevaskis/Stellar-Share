@@ -1,6 +1,6 @@
 export interface UserReviewsData {
-  reviewerId: number
-  userId: number
+  reviewerId: string
+  userId: string
   description: string
   reviewScore: string
 }
