@@ -7,6 +7,47 @@
 /* Global dark theme styles */
 html,
 body {
-  @apply bg-base03 text-base0;
+  @apply bg-base03 text-base1;
   font-family: 'Montserrat', sans-serif;
+}
+
+/* Custom text shadow utilities */
+@layer utilities {
+  .text-shadow-glow-yellow {
+    text-shadow: 0 0 10px rgba(181, 137, 0, 0.7);
+  }
+  .text-shadow-glow-orange {
+    text-shadow: 0 0 10px rgba(203, 75, 22, 0.7);
+  }
+}
+
+/* Header styles */
+h1,
+h2,
+h3 {
+  @apply transition duration-300; /* Smooth transition */
+}
+
+h1:hover,
+h2:hover,
+h3:hover {
+  @apply text-yellow text-shadow-glow-yellow;
+}
+
+/* Link styles */
+a {
+  @apply text-blue transition duration-300;
+}
+
+a:hover {
+  @apply text-orange text-shadow-glow-orange;
+}
+
+/* Button styles */
+.button {
+  @apply bg-blue text-base03 px-2 py-1 rounded transition duration-300;
+}
+
+.button:hover {
+  @apply bg-orange text-base03 shadow-glow-orange;
 }

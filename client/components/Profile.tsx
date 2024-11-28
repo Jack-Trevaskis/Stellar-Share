@@ -15,7 +15,7 @@ export function Profile() {
 
   return (
     <div>
-      <h2>Profile</h2>
+      <h2 className="text-2xl font-bold text-center my-4">Profile</h2>
       <p>Welcome, {user?.name}!</p>
       <p>Email: {user?.email}</p>
     </div>

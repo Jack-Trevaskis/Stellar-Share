@@ -1,7 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
-    './client/**/*.{js,jsx,ts,tsx}'
+    './client/**/*.{html,js,jsx,ts,tsx}', // Include client folder
+    './src/**/*.{html,js,jsx,ts,tsx}', // Include src folder if applicable
   ],
   theme: {
     extend: {
@@ -23,6 +24,10 @@ export default {
         blue: '#268bd2',
         cyan: '#2aa198',
         green: '#859900',
+      },
+      boxShadow: {
+        'glow-yellow': '0 0 10px rgba(181, 137, 0, 0.7)', // yellow glow
+        'glow-orange': '0 0 10px rgba(203, 75, 22, 0.7)', // orange glow
       },
     },
   },
