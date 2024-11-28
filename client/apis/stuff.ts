@@ -16,7 +16,6 @@ import { StuffWithOwnerName, Stuff, StuffData } from '../../models/stuff'
 export async function addStuff(stuffData: StuffData): Promise<Stuff> {
   const res = await request.patch(rootUrl + '/stuff').send(stuffData)
   return res.body as Stuff
-
 }
 
 export async function getStuffById(stuffId: number): Promise<StuffWithOwnerName> {

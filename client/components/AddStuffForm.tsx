@@ -1,8 +1,19 @@
-import { User } from "../../models/user"
 import { addStuff } from "../apis/stuff"
-import { ChangeEvent, FormEvent, useState } from "react"
+import { ChangeEvent, FormEvent, useEffect, useState } from "react"
+import { useAuth0 } from "@auth0/auth0-react"
+import { useNavigate } from "react-router-dom"
 
 function AddStuffForm() {
+
+  const { user, isAuthenticated } = useAuth0()
+
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if(!isAuthenticated){
+      navigate('/')
+    }
+  })
 
   const [formState, setFormState] = useState({
     name: '',
@@ -14,15 +25,6 @@ function AddStuffForm() {
     condition: ''
   })
 
-  // const { user, isAuthenticated } = useAuth0()
-
-  // PLACE HOLDER USER, REPLACE WITH LINE ABOVE WHEN AUTH IS DONE
-  const user: User = {
-    auth0Sub: 'auth0|neo123456',
-    name: 'NeoByte_42',
-    email: 'neo42@example.com'
-  }
-
   const handleChange = (
     evt: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
@@ -33,7 +35,7 @@ function AddStuffForm() {
     }))
   }
 
-  const handleSubmit = (evt: FormEvent) => {
+  const handleSubmit = async (evt: FormEvent) => {
     evt.preventDefault()
     if(isNaN(Number(formState.price))){
       alert('Price must be a number')
@@ -43,15 +45,19 @@ function AddStuffForm() {
       alert('Bond must be a number')
       return
     }
-    addStuff({
+    const newStuff = await addStuff({
       name: formState.name, 
       description: formState.description, 
-      ownerAuth0Sub: user.auth0Sub, 
+      ownerAuth0Sub: user?.auth0Sub, 
       price: formState.price, 
       imageURL: formState.imageURL, 
       bond: formState.bond, 
       condition: formState.condition
     })
+    
+    alert('Added a new stuff thing!')
+
+    navigate('/stuff/' + newStuff.id)
   }
 
   return (

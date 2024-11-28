@@ -2,7 +2,6 @@ import Header from "./Header"
 import Footer from "./Footer"
 
 // import Home from "./Home"
-import AddStuffForm from "./AddStuffForm"
 import { Outlet } from "react-router-dom"
 
 

@@ -10,7 +10,7 @@ import { StuffWithOwnerName, Stuff, StuffData } from '../../models/stuff.ts'
 
 
 export async function addStuff(stuffData: StuffData): Promise<Stuff> {
-  return await connection('stuff').insert(
+  const res =  await connection('stuff').insert(
     {
       "name": stuffData.name,
       "description": stuffData.description, 
@@ -20,7 +20,9 @@ export async function addStuff(stuffData: StuffData): Promise<Stuff> {
       "bond": stuffData.bond, 
       "condition": stuffData.condition
     }, ['*']
-  ) as Stuff
+  )
+
+  return res[0] as Stuff
 }
 
 export async function getStuffById(stuffId: number): Promise<StuffWithOwnerName> {
