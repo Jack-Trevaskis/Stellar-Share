@@ -1,6 +1,7 @@
-import Header from './Header'
-import Footer from './Footer'
-import Home from './Home'
+import Header from "./Header"
+import Footer from "./Footer"
+import Home from "./Home"
+import { Outlet } from "react-router-dom"
 
 function App() {
   return (
@@ -9,7 +10,7 @@ function App() {
         <Header />
 
         <Home />
-        
+        <Outlet />
         <Footer />
       </div>
     </>

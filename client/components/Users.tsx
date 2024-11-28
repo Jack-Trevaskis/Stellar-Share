@@ -8,14 +8,14 @@ function Users() {
     queryKey: ['users'],
     queryFn: async () => {
       const users = await getUsers()
-      console.log("Fetched users:", users)
+      // console.log("Fetched users:", users)
       return users
     }
   })
 
   const navigate = useNavigate()
 
-  const handleEventClick = (id: number) => {
+  const handleEventClick = (id: string) => {
     navigate(`/users/${id}`)}
 
   if (isPending) {
@@ -26,7 +26,7 @@ function Users() {
     return <p>No users!</p>
   }
 
-   console.log("Rendering users:", data)
+  //  console.log("Rendering users:", data)
 
 
   return (
