@@ -12,7 +12,7 @@ export function up(knex) {
   })
   .createTable('stuff', (table) => {
     table.integer('id').primary()
-    table.string('title')
+    table.string('name')
     table.string('description')
     table.string('owner_auth0_sub')
     table.float('price')

@@ -1,5 +1,5 @@
 export interface StuffData {
-  title: string
+  name: string
   description: string
   ownerAuth0Sub: string
   price: number
