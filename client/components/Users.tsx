@@ -26,8 +26,8 @@ function Users() {
     <>
     <ul>
       {data.map((user) => (
-        <li key={user.id}>
-          <button onClick={() => handleEventClick(user.id)}></button>
+        <li key={user.auth0Sub}>
+          <button onClick={() => handleEventClick(user.auth0Sub)}></button>
         </li>
       ))}
     </ul>
