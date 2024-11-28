@@ -11,3 +11,7 @@ export interface StuffData {
 export interface Stuff extends StuffData{
   id: number
 }
+
+export interface StuffWithOwnerName extends Stuff {
+  ownerName: string
+}
