@@ -1,8 +1,8 @@
-import connection from './connection.ts'
-import { User } from '../../models/user.ts'
+import db from './connection.ts'
+import { Users } from '../../models/users.ts'
 
 // All user DB functions go here
 
-// export async function getAllFruits(db = connection): Promise<Fruit[]> {
-//   return db('fruit').select()
-// }
+export async function getAllUsers(): Promise<Users[]> {
+  return await db('users').select()
+}
