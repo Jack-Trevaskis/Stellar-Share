@@ -1,15 +1,13 @@
-import { Users } from "../../models/users"
-import { useAuth0 } from "@auth0/auth0-react"
+import { User } from "../../models/user"
 import { addStuff } from "../apis/stuff"
 import { ChangeEvent, FormEvent, useState } from "react"
 
 function AddStuffForm() {
 
   const [formState, setFormState] = useState({
-    title: '',
     name: '',
     description: '',
-    ownerId: '',
+    ownerAuth0Sub: '',
     price: 0,
     imageURL: '',
     bond: 0,
@@ -17,11 +15,12 @@ function AddStuffForm() {
   })
 
   // const { user, isAuthenticated } = useAuth0()
-  const user: Users = {
-    id: 0,
-    auth0Sub: 'placeholder_sub',
-    name: 'placeholder_name',
-    email: 'placeholder@gmail.com'
+
+  // PLACE HOLDER USER, REPLACE WITH LINE ABOVE WHEN AUTH IS DONE
+  const user: User = {
+    auth0Sub: 'auth0|neo123456',
+    name: 'NeoByte_42',
+    email: 'neo42@example.com'
   }
 
   const handleChange = (
@@ -45,10 +44,9 @@ function AddStuffForm() {
       return
     }
     addStuff({
-      title: formState.title,
       name: formState.name, 
       description: formState.description, 
-      ownerId: user.auth0Sub, 
+      ownerAuth0Sub: user.auth0Sub, 
       price: formState.price, 
       imageURL: formState.imageURL, 
       bond: formState.bond, 
@@ -59,8 +57,6 @@ function AddStuffForm() {
   return (
     <div className="add-stuff-form">
       <form onSubmit={handleSubmit}>
-        Title: <input id="title" name="title" value={formState.title} onChange={handleChange} />
-        <br />
         Name: <input id="name" name="name" value={formState.name} onChange={handleChange} />
         <br />
         Description: <input id="description" name="description" value={formState.description} onChange={handleChange} />
