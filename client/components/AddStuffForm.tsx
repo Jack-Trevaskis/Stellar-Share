@@ -7,6 +7,8 @@ function AddStuffForm() {
 
   const { user, isAuthenticated } = useAuth0()
 
+  console.log(user)
+
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -45,10 +47,19 @@ function AddStuffForm() {
       alert('Bond must be a number')
       return
     }
+
+    // These will always exist at this point, just doing this so typescript is happy
+    if(!user){
+      return
+    }
+    if(!user.sub){
+      return
+    }
+
     const newStuff = await addStuff({
       name: formState.name, 
       description: formState.description, 
-      ownerAuth0Sub: user?.auth0Sub, 
+      ownerAuth0Sub: user.sub, 
       price: formState.price, 
       imageURL: formState.imageURL, 
       bond: formState.bond, 
