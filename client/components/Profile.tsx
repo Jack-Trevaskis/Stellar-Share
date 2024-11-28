@@ -28,7 +28,7 @@ export function Profile() {
             <img
               src={user?.picture}
               alt={user?.nickname}
-              className="rounded w-24 h-24 aspect-square object-cover"
+              className="rounded-full w-24 h-24 aspect-square object-cover"
             />
           </li>
         </ul>
