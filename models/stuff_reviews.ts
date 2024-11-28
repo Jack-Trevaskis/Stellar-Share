@@ -1,8 +1,8 @@
 export interface StuffReviewsData {
-  reviewerId: string
+  reviewerAuth0Sub: string
   stuffId: number
   description: string
-  reviewScore: number
+  rating: number
 }
 
 export interface StuffReviews extends StuffReviewsData {

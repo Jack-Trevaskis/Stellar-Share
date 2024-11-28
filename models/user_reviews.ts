@@ -1,8 +1,8 @@
 export interface UserReviewsData {
-  reviewerId: string
-  userId: string
+  reviewerAuth0Sub: string
+  userAuth0Sub: string
   description: string
-  reviewScore: string
+  rating: number
 }
 
 export interface UserReviews extends UserReviewsData{
