@@ -1,5 +1,5 @@
 import request from 'superagent'
-import { Users } from '../../models/users'
+import { User } from '../../models/users'
 
 const rootUrl = '/api/v1'
 
@@ -7,5 +7,5 @@ const rootUrl = '/api/v1'
 
 export async function getUsers(){
 const result = await request.get('/api/v1/users')
-return result.body as Users[]
+return result.body as User[]
 }
