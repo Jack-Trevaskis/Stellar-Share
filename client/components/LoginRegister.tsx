@@ -1,9 +1,5 @@
 function LoginRegister() {
-
-  return (
-    <>
-    </>
-  )
+  return <></>
 }
 
-export default LoginRegister
+// export default LoginRegister

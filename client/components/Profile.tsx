@@ -1,4 +1,3 @@
-import React from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
 
 export function Profile() {
@@ -17,8 +16,8 @@ export function Profile() {
   return (
     <div>
       <h2>Profile</h2>
-      <p>Welcome, {user.name}!</p>
-      <p>Email: {user.email}</p>
+      <p>Welcome, {user?.name}!</p>
+      <p>Email: {user?.email}</p>
     </div>
   )
 }

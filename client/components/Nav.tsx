@@ -3,6 +3,8 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { useEffect } from 'react'
 import { LoginButton } from './LoginButton'
 import { LogoutButton } from './LogoutButton'
+import { Profile } from './Profile'
+import { Link } from 'react-router-dom'
 
 export function Nav() {
   const { user, logout, loginWithRedirect, isAuthenticated, isLoading } =
@@ -12,7 +14,7 @@ export function Nav() {
     if (!isLoading) {
       // If the user is authenticated, we want to redirect them to the home page
       if (isAuthenticated) {
-        console.log('Logged in as:', user, user?.email)
+        console.log('Logged in as:', user)
       }
     }
   }, [isAuthenticated, isLoading])
@@ -22,7 +24,7 @@ export function Nav() {
       <IfAuthenticated>
         <ul>
           <li>
-            <a href="/profile">Profile</a>
+            <Link to="/profile">Profile</Link>
           </li>
           <li>
             <LogoutButton />
@@ -36,7 +38,6 @@ export function Nav() {
           </li>
         </ul>
       </IfNotAuthenticated>
-      <h1>Community Sharing App</h1>
     </nav>
   )
 }
