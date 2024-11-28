@@ -20,14 +20,24 @@ export function Nav() {
   }, [isAuthenticated, isLoading])
 
   return (
-    <nav>
+    <nav className="w-full bg-base02">
       <IfAuthenticated>
-        <ul>
+        <ul className="flex justify-evenly items-center w-full">
           <li>
-            <Link to="/">Home</Link>
+            <Link
+              to="/"
+              className="text-2xl text-base1 hover:text-yellow transition duration-300"
+            >
+              Home
+            </Link>
           </li>
           <li>
-            <Link to="/profile">Profile</Link>
+            <Link
+              to="/profile"
+              className="text-2xl text-base1 hover:text-yellow transition duration-300"
+            >
+              Profile
+            </Link>
           </li>
           <li>
             <LogoutButton />
@@ -35,9 +45,14 @@ export function Nav() {
         </ul>
       </IfAuthenticated>
       <IfNotAuthenticated>
-        <ul className="">
+        <ul className="flex justify-evenly items-center w-full">
           <li>
-            <Link to="/">Home</Link>
+            <Link
+              to="/"
+              className="text-2xl text-base1 hover:text-yellow transition duration-300"
+            >
+              Home
+            </Link>
           </li>
           <li>
             <LoginButton />

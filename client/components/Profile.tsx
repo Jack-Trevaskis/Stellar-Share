@@ -15,9 +15,20 @@ export function Profile() {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold text-center my-4">Profile</h2>
-      <p>Welcome, {user?.name}!</p>
-      <p>Email: {user?.email}</p>
+      <h2 className="text-xl font-bold text-center my-4">
+        User Profile Details
+      </h2>
+      <div className="">
+        <ul className="flex justify-evenly items-center">
+          <li className="items-center">
+            <p>Welcome, {user?.name}!</p>
+            <p>Email: {user?.email}</p>
+          </li>
+          <li className="items-center">
+            <img src={user?.picture} alt={user?.nickname} />
+          </li>
+        </ul>
+      </div>
     </div>
   )
 }
