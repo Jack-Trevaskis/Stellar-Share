@@ -5,16 +5,18 @@ import {
   Route,
 } from 'react-router-dom'
 import App from './components/App'
+import Home from './components/Home'
+import SingleStuffPage from './components/SingleStuffPage'
 import Users from './components/Users'
 import { Profile } from './components/Profile'
-import Home from './components/Home'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
-      <Route index element={<Home />} />
+      <Route path="/" element={<Home />} />
+      <Route path="/stuff/:stuffId" element={<SingleStuffPage />} />
       <Route path="/users" element={<Users />} />
-      <Route path="profile/" element={<Profile />} />
+      <Route path="/profile" element={<Profile />} />
     </Route>,
   ),
 )
