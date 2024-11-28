@@ -24,6 +24,9 @@ export default {
         blue: '#268bd2',
         cyan: '#2aa198',
         green: '#859900',
+        // Additional colors
+        pink: '#ff69b4',
+        teal: '#008080',
       },
       boxShadow: {
         'glow-yellow': '0 0 10px rgba(181, 137, 0, 0.7)', // yellow glow
