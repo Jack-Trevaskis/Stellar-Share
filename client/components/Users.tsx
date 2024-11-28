@@ -26,9 +26,8 @@ function Users() {
     return <p>No users!</p>
   }
 
-  if (data) {
-    console.log("Rendering users:", data)
-  }
+   console.log("Rendering users:", data)
+
 
   return (
     <>

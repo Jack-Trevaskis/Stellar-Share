@@ -8,6 +8,7 @@ const router = Router()
 router.get('/', async (req, res) => {
   try{
     const users = await db.getAllUsers()
+    console.log("Fetched users from DB:", users);
     res.json(users)
   } catch (error){
     if(error instanceof Error){

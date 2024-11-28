@@ -1,16 +1,9 @@
 import db from './connection.ts'
-import { Users } from '../../models/users.ts'
+import { User } from '../../models/user.ts'
 
 // All user DB functions go here
 
-export async function getAllUsers(): Promise<Users[]> {
- const users = await db('users').select(
-  'id',
-  'username',
-  'auth0sub',
-  'phone',
-  'credits',
-  'picture',
- )
+export async function getAllUsers(): Promise<User[]> {
+ const users = await db('users').select('*')
  return users
 }
