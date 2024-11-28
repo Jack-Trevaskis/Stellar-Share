@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import { IfAuthenticated } from "./Authenticated"
 
 function Home() {
 
@@ -9,6 +10,10 @@ function Home() {
       <div className="flex flex-col items-center space-y-4"> 
         <Link to="/stuff" className="text-blue-500 hover:underline">Find astro equipment here</Link>
         <Link to="/users" className="text-blue-500 hover:underline">See all our good (and not-so-good) space-cadets here</Link>
+        <IfAuthenticated>
+          <Link to="/addStuff" className="text-blue-500 hover:underline">Add your own items here</Link>
+        </IfAuthenticated>
+        
       </div>
     </>
   )

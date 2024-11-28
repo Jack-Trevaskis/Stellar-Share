@@ -1,10 +1,8 @@
 import request from 'superagent'
 
-import { Stuff } from '../../models/stuff'
-
 const rootUrl = '/api/v1'
 
-import { StuffWithOwnerName } from '../../models/stuff'
+import { StuffWithOwnerName, Stuff, StuffData } from '../../models/stuff'
 
 // FRONT END API STUFF FUNCTIONS GO HERE
 
@@ -13,6 +11,12 @@ import { StuffWithOwnerName } from '../../models/stuff'
 //     return res.body.fruits
 //   })
 // }
+
+
+export async function addStuff(stuffData: StuffData): Promise<Stuff> {
+  const res = await request.patch(rootUrl + '/stuff').send(stuffData)
+  return res.body as Stuff
+}
 
 export async function getStuffById(stuffId: number): Promise<StuffWithOwnerName> {
   const res = await request.get(rootUrl + '/stuff/' + stuffId)
