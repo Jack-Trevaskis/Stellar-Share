@@ -7,22 +7,7 @@ export async function getAllStuff() {
   const allStuff = await connection('stuff').select()
   return allStuff as Stuff[]
 }
-export async function getStuffById(id: number) {
-  const result = await connection('stuff')
-    .where('id', id)
-    .select(
-      'name',
-      'description',
-      'owner_auth0_sub as ownerAuth0Sub',
-      'price',
-      'image_url as imageURL',
-      'bond',
-      'condition',
-      'id',
-    )
 
-  return result as Stuff[]
-}
 // delete by id
 export async function deleteStuffById(id: number) {
   const delStuff = await connection('stuff').where('id', id).delete()
