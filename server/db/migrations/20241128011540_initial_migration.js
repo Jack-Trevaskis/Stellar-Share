@@ -30,7 +30,7 @@ export function up(knex) {
   .createTable('stuff_reviews', (table) => {
     table.integer('id').primary()
     table.string('reviewer_auth0_sub')
-    table.number('stuff_id')
+    table.integer('stuff_id')
     table.string('description')
     table.integer('rating')
   })

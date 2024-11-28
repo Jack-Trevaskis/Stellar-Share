@@ -2,8 +2,11 @@
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> } 
  */
-exports.seed = async function(knex) {
+export async function seed(knex) {
   await knex('users').del()
+  await knex('stuff').del()
+  await knex('user_reviews').del()
+  await knex('stuff_reviews').del()
 
   await knex('users').insert([
     {
