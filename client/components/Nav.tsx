@@ -3,7 +3,6 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { useEffect } from 'react'
 import { LoginButton } from './LoginButton'
 import { LogoutButton } from './LogoutButton'
-import { Profile } from './Profile'
 import { Link } from 'react-router-dom'
 
 export function Nav() {
@@ -17,7 +16,7 @@ export function Nav() {
         console.log('Logged in as:', user)
       }
     }
-  }, [isAuthenticated, isLoading])
+  }, [isAuthenticated, isLoading, user])
 
   return (
     <nav className="w-full bg-base02">
