@@ -6,13 +6,17 @@ function Users() {
 
   const { data, isPending, isError } = useQuery({
     queryKey: ['users'],
-    queryFn: () => getUsers(),
+    queryFn: async () => {
+      const users = await getUsers()
+      console.log("Fetched users:", users)
+      return users
+    }
   })
 
   const navigate = useNavigate()
 
   const handleEventClick = (id: number) => {
-    navigate(`/user/${id}`)}
+    navigate(`/users/${id}`)}
 
   if (isPending) {
     return <p>Loading...</p>
@@ -22,12 +26,16 @@ function Users() {
     return <p>No users!</p>
   }
 
+  if (data) {
+    console.log("Rendering users:", data)
+  }
+
   return (
     <>
     <ul>
-      {data.map((user) => (
+      {data?.map((user) => (
         <li key={user.auth0Sub}>
-          <button onClick={() => handleEventClick(user.auth0Sub)}></button>
+          <button onClick={() => handleEventClick(user.auth0Sub)}>{user.name}</button>
         </li>
       ))}
     </ul>

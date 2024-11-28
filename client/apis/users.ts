@@ -1,5 +1,5 @@
 import request from 'superagent'
-import { User } from '../../models/users'
+import { User } from '../../models/user'
 
 const rootUrl = '/api/v1'
 
