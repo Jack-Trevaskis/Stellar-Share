@@ -1,9 +1,7 @@
-function Header() {
+import { Nav } from './Nav'
 
-  return (
-    <>
-    </>
-  )
+function Header() {
+  return <Nav />
 }
 
 export default Header

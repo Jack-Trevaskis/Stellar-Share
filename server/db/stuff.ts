@@ -1,5 +1,5 @@
 import connection from './connection.ts'
-import { StuffWithOwnerName } from '../../models/stuff.ts'
+import { StuffWithOwnerName, Stuff } from '../../models/stuff.ts'
 
 // All stuff DB functions go here
 
@@ -20,4 +20,9 @@ export async function getStuffById(stuffId: number): Promise<StuffWithOwnerName>
     'stuff.condition as condition', 
     'users.name as ownerName'
   ).first()
+}
+
+export async function getAllStuff() {
+  const allStuff = await connection('stuff').select()
+  return allStuff as Stuff[]
 }
