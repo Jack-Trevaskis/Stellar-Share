@@ -12,7 +12,7 @@ export function Nav() {
     if (!isLoading) {
       // If the user is authenticated, we want to redirect them to the home page
       if (isAuthenticated) {
-        window.location.href = '/'
+        console.log('Logged in as:', user, user?.email)
       }
     }
   }, [isAuthenticated, isLoading])
