@@ -511,11 +511,17 @@ video {
 .flex{
   display: flex;
 }
+.aspect-square{
+  aspect-ratio: 1 / 1;
+}
+.h-24{
+  height: 6rem;
+}
+.w-24{
+  width: 6rem;
+}
 .w-full{
   width: 100%;
-}
-.flex-1{
-  flex: 1 1 0%;
 }
 .flex-col{
   flex-direction: column;
@@ -531,9 +537,18 @@ video {
   margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(1rem * var(--tw-space-y-reverse));
 }
+.rounded{
+  border-radius: 0.25rem;
+}
+.rounded-full{
+  border-radius: 9999px;
+}
 .bg-base02{
   --tw-bg-opacity: 1;
   background-color: rgb(7 54 66 / var(--tw-bg-opacity, 1));
+}
+.object-cover{
+  object-fit: cover;
 }
 .text-center{
   text-align: center;
