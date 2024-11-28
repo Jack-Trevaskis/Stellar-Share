@@ -16,11 +16,14 @@ function SingleStuffPage() {
     return <p>Error.. {error.message}</p>
   }
 
+  console.log(SingleStuffPage)
+
   return (
     <div className="single-stuff-page">
       <ul>
         <li>Name: {stuff.name}</li>
         <li>Description: {stuff.description}</li>
+        <li>Price: {stuff.price}</li>
       </ul>
     </div>
   )
