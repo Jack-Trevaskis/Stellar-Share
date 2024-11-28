@@ -1,7 +1,9 @@
-function Header() {
+import { Nav } from './Nav'
 
+function Header() {
   return (
     <>
+      <Nav />
     </>
   )
 }
