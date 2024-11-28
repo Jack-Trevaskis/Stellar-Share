@@ -1,7 +1,7 @@
 import { Router } from 'express'
 
 import * as db from '../db/stuff.ts'
-import { Stuff } from '../../models/stuff.ts'
+import { StuffWithOwnerName } from '../../models/stuff.ts'
 
 const router = Router()
 
@@ -10,7 +10,7 @@ const router = Router()
 router.get('/:stuffId', async (req, res) => {
   try {
     const { stuffId } = req.params
-    const stuff: Stuff = await db.getStuffById(Number(stuffId))
+    const stuff: StuffWithOwnerName = await db.getStuffById(Number(stuffId))
     res.json(stuff)
   } catch (err) {
     console.log(err)
