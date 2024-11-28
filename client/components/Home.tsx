@@ -11,7 +11,7 @@ function Home() {
         <Link to="/stuff" className="text-blue-500 hover:underline">Find astro equipment here</Link>
         <Link to="/users" className="text-blue-500 hover:underline">See all our good (and not-so-good) space-cadets here</Link>
         <IfAuthenticated>
-          <Link to="/addStuff" className="text-blue-500 hover:underline">List your own items here</Link>
+          <Link to="/addStuff" className="text-blue-500 hover:underline">Add your own items here</Link>
         </IfAuthenticated>
         
       </div>
