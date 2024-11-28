@@ -501,6 +501,41 @@ video {
 [hidden]:where(:not([hidden="until-found"])) {
   display: none;
 }
+.my-4{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.mb-6{
+  margin-bottom: 1.5rem;
+}
+.flex{
+  display: flex;
+}
+.flex-col{
+  flex-direction: column;
+}
+.items-center{
+  align-items: center;
+}
+.space-y-4 > :not([hidden]) ~ :not([hidden]){
+  --tw-space-y-reverse: 0;
+  margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1rem * var(--tw-space-y-reverse));
+}
+.text-center{
+  text-align: center;
+}
+.text-3xl{
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+.text-lg{
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+.font-bold{
+  font-weight: 700;
+}
 
 /* Global dark theme styles */
 html,
@@ -510,4 +545,7 @@ body{
   --tw-text-opacity: 1;
   color: rgb(131 148 150 / var(--tw-text-opacity, 1));
   font-family: 'Montserrat', sans-serif;
+}
+.hover\:underline:hover{
+  text-decoration-line: underline;
 }
