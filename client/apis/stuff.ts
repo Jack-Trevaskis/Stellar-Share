@@ -1,11 +1,17 @@
 import request from 'superagent'
 
-const rootUrl = '/api/v1'
+import { Stuff } from '../../models/stuff'
 
-// FRONT END API STUFF FUNCTIONS GO HERE
+export async function getAllStuff() {
+  const response = await request.get('/api/v1/stuff')
 
-// export function getFruits(): Promise<string[]> {
-//   return request.get(rootUrl + '/fruits').then((res) => {
-//     return res.body.fruits
-//   })
-// }
+  return response.body as Stuff[]
+}
+
+export async function getStuffById(id: number) {
+  const result = await request.get(`/api/v1/stuff/${id}`)
+
+  console.log(result)
+
+  return result.body as Stuff
+}
