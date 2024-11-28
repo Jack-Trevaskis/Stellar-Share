@@ -23,3 +23,8 @@ export async function getStuffById(id: number) {
 
   return result as Stuff[]
 }
+// delete by id
+export async function deleteStuffById(id: number) {
+  const delStuff = await connection('stuff').where('id', id).delete()
+  return delStuff as number
+}

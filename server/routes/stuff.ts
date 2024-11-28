@@ -30,5 +30,20 @@ router.get('/:id', async (req, res) => {
     res.sendStatus(500)
   }
 })
+// Delete /api/v1/stuff/:id
+router.delete('/:id', async (req, res) => {
+  try {
+    const { id } = req.params
+    await db.deleteStuffById(Number(id))
+    res.sendStatus(200)
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error.message)
+    } else {
+      console.error('Unknown error')
+    }
+    res.sendStatus(500)
+  }
+})
 
 export default router
