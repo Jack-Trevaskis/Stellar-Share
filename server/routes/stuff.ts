@@ -2,6 +2,8 @@ import express from 'express'
 
 import * as db from '../db/stuff.ts'
 
+import { StuffWithOwnerName } from '../../models/stuff.ts'
+
 const router = express.Router()
 
 // GET /api/v1/stuff
@@ -15,19 +17,15 @@ router.get('/', async (req, res) => {
   }
 })
 
-// GET /api/v1/stuff/:id
-router.get('/:id', async (req, res) => {
+
+router.get('/:stuffId', async (req, res) => {
   try {
-    const id = +req.params.id
-    const result = await db.getStuffById(id)
-    res.json(result)
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error('Error:', error.message)
-    } else {
-      console.error('Unknown error')
-    }
-    res.sendStatus(500)
+    const { stuffId } = req.params
+    const stuff: StuffWithOwnerName = await db.getStuffById(Number(stuffId))
+    res.json(stuff)
+  } catch (err) {
+    console.log(err)
+    res.status(500).json({ message: 'Something went wrong' })
   }
 })
 // Delete /api/v1/stuff/:id
@@ -47,3 +45,4 @@ router.delete('/:id', async (req, res) => {
 })
 
 export default router
+
