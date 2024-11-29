@@ -6,3 +6,7 @@ import { StuffReviews } from '../../models/stuff_reviews.ts'
 // export async function getAllFruits(db = connection): Promise<Fruit[]> {
 //   return db('fruit').select()
 // }
+export async function deleteThingReview(id: number) {
+  const delThing = await connection('stuff_reviews').where('id', id).delete()
+  return delThing as number
+}
