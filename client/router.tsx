@@ -18,11 +18,12 @@ const router = createBrowserRouter(
     <Route path="/" element={<App />}>
       <Route path="/" element={<Home />} />
       <Route path="stuff" element ={<AllStuff />} />
-      <Route path="/stuff/:stuffId" element={<SingleStuffPage />} />
+        <Route path="/stuff/:stuffId" element={<SingleStuffPage />} />
+          <Route path="/stuff/:stuffId/addStuffReview" element={<AddStuffReviewForm />} />
       <Route path="/users" element={<Users />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/addStuff" element={<AddStuffForm />} />
-      <Route path="/addStuffReview/:stuffId" element={<AddStuffReviewForm />} />
+      
 
     </Route>,
   ),
