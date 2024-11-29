@@ -13,6 +13,8 @@ function SingleStuffPage() {
     navigate(`addStuffReview`)
   }
 
+  // hi
+
   if (isPending) {
     return <p>Is loading...</p>;
   }
