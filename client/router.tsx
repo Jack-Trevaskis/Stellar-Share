@@ -10,6 +10,7 @@ import SingleStuffPage from './components/SingleStuffPage'
 import Users from './components/Users'
 import { Profile } from './components/Profile'
 import AddStuffForm from './components/AddStuffForm'
+import Register from './components/Register'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -19,6 +20,7 @@ const router = createBrowserRouter(
       <Route path="/users" element={<Users />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/addStuff" element={<AddStuffForm />} />
+      <Route path="/register" element={<Register />} />
     </Route>,
   ),
 )

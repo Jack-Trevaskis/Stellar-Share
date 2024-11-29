@@ -57,9 +57,10 @@ function Register() {
       console.log('Could not get current auth0 user email')
       return
     }
+    //
 
     userFromHook.add.mutate({ newUser: {'name': form.username, 'email': userAuth0.email, 'picture': userAuth0.picture || ''}, token }, mutationOptions)
-    navigate('/')
+    // navigate('/')
   }
 
   const hideError = () => {
