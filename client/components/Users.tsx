@@ -1,20 +1,8 @@
-import { useQuery } from '@tanstack/react-query'
-import { getUsers } from '../apis/users'
 import { useNavigate } from 'react-router-dom'
+import { useAllUsers } from '../hooks/useUsers'
 
 function Users() {
-  const {
-    data: users,
-    isPending,
-    isError,
-  } = useQuery({
-    queryKey: ['users'],
-    queryFn: async () => {
-      const users = await getUsers()
-      // console.log('Fetched users:', users)
-      return users
-    },
-  })
+  const { data: users, isPending, isError } = useAllUsers()
 
   const navigate = useNavigate()
 

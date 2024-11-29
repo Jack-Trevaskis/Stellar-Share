@@ -32,6 +32,30 @@ export function Nav() {
           </li>
           <li>
             <Link
+              to="/users"
+              className="text-2xl text-base1 hover:text-yellow transition duration-300"
+            >
+              Users
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/addStuff"
+              className="text-2xl text-base1 hover:text-yellow transition duration-300"
+            >
+              Add Stuff
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/stuff"
+              className="text-2xl text-base1 hover:text-yellow transition duration-300"
+            >
+              Stuff
+            </Link>
+          </li>
+          <li>
+            <Link
               to="/profile"
               className="text-2xl text-base1 hover:text-yellow transition duration-300"
             >
@@ -51,6 +75,14 @@ export function Nav() {
               className="text-2xl text-base1 hover:text-yellow transition duration-300"
             >
               Home
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/stuff"
+              className="text-2xl text-base1 hover:text-yellow transition duration-300"
+            >
+              Stuff
             </Link>
           </li>
           <li>
