@@ -11,6 +11,7 @@ import Users from './components/Users'
 import { Profile } from './components/Profile'
 import { AllStuff } from './components/AllStuff'
 import AddStuffForm from './components/AddStuffForm'
+import AddStuffReviewForm from './components/AddStuffReviewForm'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -21,6 +22,8 @@ const router = createBrowserRouter(
       <Route path="/users" element={<Users />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/addStuff" element={<AddStuffForm />} />
+      <Route path="/addStuffReview/:stuffId" element={<AddStuffReviewForm />} />
+
     </Route>,
   ),
 )

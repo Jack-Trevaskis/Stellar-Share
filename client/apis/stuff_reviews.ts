@@ -1,11 +1,18 @@
 import request from 'superagent'
-
-const rootUrl = '/api/v1'
+import { StuffReviewsData } from '../../models/stuff_reviews';
 
 // FRONT END API STUFF REVIEW FUNCTIONS GO HERE
 
-// export function getFruits(): Promise<string[]> {
-//   return request.get(rootUrl + '/fruits').then((res) => {
-//     return res.body.fruits
-//   })
-// }
+export async function createStuffReview(StuffReviewData: StuffReviewsData) {
+
+    try {
+  
+    const response = await request.post('/api/v1/stuff_reviews').send(StuffReviewData)
+    return response.body
+  
+    } catch (error) {
+    
+      console.error('Error creating daily record:');
+      throw error;
+    }
+  }
