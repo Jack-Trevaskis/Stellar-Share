@@ -21,7 +21,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const id = +req.params.id
-    const result: StuffWithOwnerName  = await db.getStuffById(id)
+    const result: StuffWithOwnerName = await db.getStuffById(id)
     res.json(result)
   } catch (error) {
     if (error instanceof Error) {
@@ -34,7 +34,7 @@ router.get('/:id', async (req, res) => {
 })
 
 router.patch('/', async (req, res) => {
-  try{
+  try {
     const stuffData: StuffData = req.body
     const newStuff: Stuff = await db.addStuff(stuffData)
     res.json(newStuff)
@@ -43,5 +43,18 @@ router.patch('/', async (req, res) => {
     res.status(500).send('Something went wrong')
   }
 })
-
+router.delete('/:id', async (req, res) => {
+  try {
+    const { id } = req.params
+    await db.deleteStuffById(Number(id))
+    res.sendStatus(200)
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error.message)
+    } else {
+      console.error('Unknown error')
+    }
+    res.sendStatus(500)
+  }
+})
 export default router
