@@ -10,60 +10,70 @@ export async function seed(knex) {
 
   await knex('users').insert([
     {
+      id: 1,
       auth0_sub: 'auth0|neo123456',
       name: 'NeoByte_42',
       email: 'neo42@example.com',
       picture: 'https://example.com/images/neobyte.png'
     },
     {
+      id: 2,
       auth0_sub: 'auth0|stellar987654',
       name: 'StellarNomad',
       email: 'stellar.nomad@example.com',
       picture: 'https://example.com/images/stellarnomad.png'
     },
     {
+      id: 3,
       auth0_sub: 'auth0|quantum0001',
       name: 'QuantumRanger',
       email: 'quantum.ranger@example.com',
       picture: 'https://example.com/images/quantumranger.png'
     },
     {
+      id: 4,
       auth0_sub: 'auth0|galactic2222',
       name: 'GalacticSurge',
       email: 'galactic.surge@example.com',
       picture: 'https://example.com/images/galacticsurge.png'
     },
     {
+      id: 5,
       auth0_sub: 'auth0|cryo3333',
       name: 'CryoBlaze',
       email: 'cryo.blaze@example.com',
       picture: 'https://example.com/images/cryoblaze.png'
     },
     {
+      id: 6,
       auth0_sub: 'auth0|plasma4444',
       name: 'PlasmaWave',
       email: 'plasma.wave@example.com',
       picture: 'https://example.com/images/plasmawave.png'
     },
     {
+      id: 7,
       auth0_sub: 'auth0|nova5555',
       name: 'NovaDiver',
       email: 'nova.diver@example.com',
       picture: 'https://example.com/images/novadiver.png'
     },
     {
+      id: 8,
       auth0_sub: 'auth0|aether6666',
       name: 'AetherBlade',
       email: 'aether.blade@example.com',
       picture: 'https://example.com/images/aetherblade.png'
     },
     {
+      id: 9,
       auth0_sub: 'auth0|orbit7777',
       name: 'OrbitClasher',
       email: 'orbit.clasher@example.com',
       picture: 'https://example.com/images/orbitclasher.png'
     },
     {
+      id: 10,
       auth0_sub: 'auth0|void8888',
       name: 'VoidVoyager',
       email: 'void.voyager@example.com',

@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router-dom'
 
 import { useAuth0 } from '@auth0/auth0-react'
 import { useUser } from '../hooks/useUser.ts'
-import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
+// import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 
 function Register() {
   const [errorMsg, setErrorMsg] = useState('')
-  const { user: userAuth0, getAccessTokenSilently } = useAuth0()
+  const { user: userAuth0, getAccessTokenSilently, isAuthenticated } = useAuth0()
   const userFromHook = useUser()
 
   const handleMutationSuccess = () => {
@@ -29,7 +29,7 @@ function Register() {
 
   const navigate = useNavigate()
   const [form, setForm] = useState({
-    username: '',
+    name: '',
   })
 
   useEffect(() => {
@@ -59,8 +59,8 @@ function Register() {
     }
     //
 
-    userFromHook.add.mutate({ newUser: {'name': form.username, 'email': userAuth0.email, 'picture': userAuth0.picture || ''}, token }, mutationOptions)
-    // navigate('/')
+    userFromHook.add.mutate({ newUser: {'name': form.name, 'email': userAuth0.email, 'picture': userAuth0.picture || ''}, token }, mutationOptions)
+    navigate('/')
   }
 
   const hideError = () => {
@@ -70,8 +70,9 @@ function Register() {
   return (
     <div>
       <div>
-        <IfAuthenticated>
-          <h1>Enter your details</h1>
+        {isAuthenticated && <div>
+          <h1>You don&apos;t have an account yet!</h1>
+          <h2>Pick a user name to sign up</h2>
           {errorMsg && (
             <div>
               Error: {errorMsg}
@@ -80,23 +81,25 @@ function Register() {
           )}
           <form onSubmit={handleSubmit}>
             <div>
-              <label htmlFor="username">Username: </label>
+              <label htmlFor="name">Name: </label>
               <input
                 type="text"
-                id="username"
-                name="username"
-                value={form.username}
+                id="name"
+                name="name"
+                value={form.name}
                 onChange={handleChange}
               />
             </div>
             <div>
-              <button disabled={!form.username}>Register</button>
+              <button disabled={!form.name}>Register</button>
             </div>
           </form>
-        </IfAuthenticated>
-        <IfNotAuthenticated>
+        </div>}
+
+
+        {!isAuthenticated && <div>
           <h1>Please sign in</h1>
-        </IfNotAuthenticated>
+        </div>}
       </div>
     </div>
   )

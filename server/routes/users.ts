@@ -6,12 +6,24 @@ import { JwtRequest } from '../auth0.js'
 
 const router = Router()
 
-// Routes for users go here
+// PUBLIC ROUTES
+
+router.get('/all', async (req, res) => {
+  try {
+    const users = await db.getAllUserInfo()
+    res.json(users)
+  } catch (err) {
+    console.error(err)
+    res.status(500).send('Something went wrong')
+  }
+})
+
+// PROTECTED ROUTES
 
 router.get('/', checkJwt, async (req: JwtRequest, res) => {
   try {
     const auth0Sub = req.auth?.sub
-    const user = await db.getUserByAuth0Sub(auth0Sub as string)
+    const user = await db.getUserByAuth0Sub(String(auth0Sub))
 
     res.json({ user })
   } catch (error) {

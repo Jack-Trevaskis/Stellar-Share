@@ -5,13 +5,14 @@
 export function up(knex) {
   return knex.schema
   .createTable('users', (table) => {
-    table.string('auth0_sub').primary()
+    table.increments('id').primary()
+    table.string('auth0_sub').unique()
     table.string('name')
     table.string('email')
     table.string('picture')
   })
   .createTable('stuff', (table) => {
-    table.integer('id').primary()
+    table.increments('id').primary()
     table.string('name')
     table.string('description')
     table.string('owner_auth0_sub')
@@ -21,14 +22,14 @@ export function up(knex) {
     table.string('condition').nullable()
   })
   .createTable('user_reviews', (table) => {
-    table.integer('id').primary()
+    table.increments('id').primary()
     table.string('reviewer_auth0_sub')
     table.string('user_auth0_sub')
     table.string('description')
     table.integer('rating')
   })
   .createTable('stuff_reviews', (table) => {
-    table.integer('id').primary()
+    table.increments('id').primary()
     table.string('reviewer_auth0_sub')
     table.integer('stuff_id')
     table.string('description')

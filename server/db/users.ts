@@ -1,7 +1,16 @@
 import { UserData, User } from '../../models/user.ts'
 import connection from './connection.ts'
 
-// All user DB functions go here
+// PUBLIC ROUTES
+
+export async function getAllUserInfo(): Promise<User[]> {
+  return connection('users').select(
+    'id', 
+    'name'
+  )
+}
+
+// PROTECTED ROUTES
 
 export async function getUserByAuth0Sub(auth0Sub: string): Promise<UserData> {
   return connection('users')

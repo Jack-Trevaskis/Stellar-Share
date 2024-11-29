@@ -7,10 +7,10 @@ interface GetUserFunction {
   token: string
 }
 
-// export async function getAllUserNames(): Promise<string[] | null> {
-//   const res =  await request.get(`${rootUrl}/users/all`) 
-//   return res.body as string[]
-// }
+export async function getAllUserInfo(): Promise<User[] | null> {
+  const res =  await request.get(`${rootUrl}/users/all`) 
+  return res.body as User[]
+}
 
 export async function getUser({
   token,
@@ -31,8 +31,6 @@ export async function addUser({
   newUser,
   token,
 }: AddUserFunction): Promise<User> {
-  console.log(newUser)
-  console.log('token: ' + token)
   return request
     .post(`${rootUrl}/users`)
     .set('Authorization', `Bearer ${token}`)
