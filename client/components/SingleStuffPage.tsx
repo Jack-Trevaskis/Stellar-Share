@@ -1,5 +1,6 @@
-import { useParams } from "react-router-dom";
-import { useStuffById } from "../hooks/useStuff";
+import { useParams } from "react-router-dom"
+import { useStuffById } from "../hooks/useStuff"
+import StuffReviews from "./StuffReviews"
 import { useNavigate} from 'react-router-dom'
 
 
@@ -60,6 +61,8 @@ function SingleStuffPage() {
           <strong>Condition:</strong> {stuff.condition}
         </li>
       </ul>
+      <img src={stuff.imageURL} alt="Stuff"></img>
+      <StuffReviews />
       <img
         src={stuff.imageURL}
         alt="Stuff"

@@ -1,7 +1,7 @@
 import request from 'superagent'
 import { User } from '../../models/user'
 
-const rootUrl = '/api/v1'
+// const rootUrl = '/api/v1'
 
 // FRONT END API USER FUNCTIONS GO HERE
 

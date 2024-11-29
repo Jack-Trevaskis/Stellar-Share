@@ -1,21 +1,20 @@
-import express from 'express'
-import knex from 'knex'
+import { Router } from 'express'
 import * as db from '../db/stuff_reviews'
 
-const router = express.Router()
 
+const router = Router()
 
-router.delete('/:id', async (req, res) => {
+// Routes for stuff reviews go here
+
+router.get('/:stuffId/reviews', async (req, res) => {
+
+  const stuffId = Number(req.params.stuffId)
+
   try {
-    const id = +req.params.id
-    await db.deleteThingReview(id)
-    res.sendStatus(200)
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error('Error:', error.message)
-    } else {
-      console.error('Unknown error')
-    }
+    const stuffReviews = await db.getStuffReview(stuffId)
+    res.json(stuffReviews)
+  } catch (err) {
+    console.error('Error fetching reviews:', err)
     res.sendStatus(500)
   }
 })
