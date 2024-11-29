@@ -1,12 +1,13 @@
 import { useParams } from "react-router-dom"
 import { getStuffById } from "../apis/stuff"
 import { useQuery } from "@tanstack/react-query"
+import { useStuffById } from "../hooks/useStuff"
 
 function SingleStuffPage() {
 
   const { stuffId } = useParams()
 
-  const { data: stuff, error, isPending } = useQuery({queryKey: ['stuff'], queryFn: () => getStuffById(Number(stuffId))})
+  const { data: stuff, error, isPending } = useStuffById(Number(stuffId))
 
   if (isPending) {
     return <p>Is loading...</p>

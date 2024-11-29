@@ -9,12 +9,14 @@ import Home from './components/Home'
 import SingleStuffPage from './components/SingleStuffPage'
 import Users from './components/Users'
 import { Profile } from './components/Profile'
+import { AllStuff } from './components/AllStuff'
 import AddStuffForm from './components/AddStuffForm'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route path="/" element={<Home />} />
+      <Route path="stuff" element ={<AllStuff />} />
       <Route path="/stuff/:stuffId" element={<SingleStuffPage />} />
       <Route path="/users" element={<Users />} />
       <Route path="/profile" element={<Profile />} />

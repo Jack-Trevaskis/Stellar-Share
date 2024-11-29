@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import { IfAuthenticated } from "./Authenticated"
 
+
 function Home() {
 
   return (
