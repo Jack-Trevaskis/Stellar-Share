@@ -1,5 +1,5 @@
 import connection from './connection.ts'
-import { UserReviews} from '../../models/user_reviews.ts'
+import { UserReviews, UserReviewsData} from '../../models/user_reviews.ts'
 
 
 export async function getAllUserReviews(): Promise<UserReviews> {
