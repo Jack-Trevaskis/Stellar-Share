@@ -1,6 +1,6 @@
-import request from 'superagent'
+// import request from 'superagent'
 
-const rootUrl = '/api/v1'
+// const rootUrl = '/api/v1'
 
 // FRONT END API STUFF REVIEW FUNCTIONS GO HERE
 

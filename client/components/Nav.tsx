@@ -6,7 +6,7 @@ import { LogoutButton } from './LogoutButton'
 import { Link } from 'react-router-dom'
 
 export function Nav() {
-  const { user, logout, loginWithRedirect, isAuthenticated, isLoading } =
+  const { user, isAuthenticated, isLoading } =
     useAuth0()
 
   useEffect(() => {
@@ -41,6 +41,7 @@ export function Nav() {
           <li>
             <LogoutButton />
           </li>
+          {user && <li>Signed in as: {user.nickname}</li>}
         </ul>
       </IfAuthenticated>
       <IfNotAuthenticated>
