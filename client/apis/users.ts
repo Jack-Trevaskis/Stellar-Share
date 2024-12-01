@@ -3,13 +3,22 @@ import { User, UserData } from '../../models/user'
 
 const rootUrl = '/api/v1'
 
-interface GetUserFunction {
-  token: string
+// PUBLIC 
+
+export async function getAllUserInfo(): Promise<UserData[] | null> {
+  const res =  await request.get(`${rootUrl}/users/all`) 
+  return res.body as UserData[]
 }
 
-export async function getAllUserInfo(): Promise<User[] | null> {
-  const res =  await request.get(`${rootUrl}/users/all`) 
-  return res.body as User[]
+export async function getUserInfoById(id: number): Promise<UserData | null> {
+  const res = await request.get(`${rootUrl}/users/${id}`) 
+  return res.body as UserData
+}
+
+// PROTECTED
+
+interface GetUserFunction {
+  token: string
 }
 
 export async function getUser({
@@ -40,35 +49,30 @@ export async function addUser({
 }
 
 
-// FRONT END API USER FUNCTIONS GO HERE
+// OTHER FUNCTIONS NOT IN USE RIGHT NOW
 
-// export async function getUsers() {
-//   const result = await request.get('/api/v1/users')
-//   return result.body as User[]
+// export async function getUserById(auth0Sub: string): Promise<User> {
+//   const result = await request.get(`/api/v1/users/${auth0Sub}`)
+//   return result.body as User
 // }
 
-export async function getUserById(auth0Sub: string): Promise<User> {
-  const result = await request.get(`/api/v1/users/${auth0Sub}`)
-  return result.body as User
-}
+// export async function getUserByEmail(email: string): Promise<User> {
+//   const result = await request.get(`/api/v1/users/email/${email}`)
+//   return result.body as User
+// }
 
-export async function getUserByEmail(email: string): Promise<User> {
-  const result = await request.get(`/api/v1/users/email/${email}`)
-  return result.body as User
-}
+// export async function updateUser(
+//   id: string,
+//   updatedUser: Partial<User>,
+// ): Promise<User | null> {
+//   const updated = await request.patch(rootUrl + '/users').send(updatedUser)
+//   if (updated) {
+//     return getUserById(id)
+//   }
+//   return null
+// }
 
-export async function updateUser(
-  id: string,
-  updatedUser: Partial<User>,
-): Promise<User | null> {
-  const updated = await request.patch(rootUrl + '/users').send(updatedUser)
-  if (updated) {
-    return getUserById(id)
-  }
-  return null
-}
-
-export async function deleteUser(auth0Sub: string): Promise<boolean> {
-  const deleted = await request.delete(`/api/v1/users/${auth0Sub}`)
-  return deleted.ok
-}
+// export async function deleteUser(auth0Sub: string): Promise<boolean> {
+//   const deleted = await request.delete(`/api/v1/users/${auth0Sub}`)
+//   return deleted.ok
+// }

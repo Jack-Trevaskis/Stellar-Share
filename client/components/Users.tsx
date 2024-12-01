@@ -4,8 +4,8 @@ import { getAllUserInfo } from "../apis/users"
 
 function Users() {
 
-  const { data, isPending, error } = useQuery({
-    queryKey: ['users'],
+  const { data: users, isPending, isError } = useQuery({
+    queryKey: ['allUsers'],
     queryFn: async () => {
       const users = await getAllUserInfo()
       return users
@@ -22,7 +22,7 @@ function Users() {
     return <p>Loading...</p>
   }
 
-  if (error) {
+  if (isError) {
     return <p>No users!</p>
   }
 
@@ -30,9 +30,9 @@ function Users() {
     <>
 
     <ul>
-      {data?.map((user) => (
+      {users?.map((user) => (
         <li key={user.id}>
-          <button onClick={() => handleEventClick(user.id)}>{user.name}</button>
+          <button onClick={() => handleEventClick(Number(user.id))}>{user.name}</button>
         </li>
       ))}
     </ul>

@@ -1,16 +1,24 @@
 import { useParams } from 'react-router-dom'
-import { useAllUsers, useUserById } from '../hooks/useUsers'
+import { getUserInfoById } from '../apis/users'
+import { useQuery } from '@tanstack/react-query'
 
 export function SingleUser() {
   const { id } = useParams()
-  const { data: user, isPending, isError } = useUserById(id)
+
+  const { data: user, isPending, isError } = useQuery({
+    queryKey: ['user'],
+    queryFn: async () => {
+      const users = await getUserInfoById(Number(id))
+      return users
+    }
+  })
 
   if (isPending) return <div>Loading...</div>
   if (isError) return <div>Error loading user</div>
 
   return (
     <div>
-      <h1 className="text-xl font-bold text-center my-4">User's Details</h1>
+      <h1 className="text-xl font-bold text-center my-4">User&apos;s Details</h1>
       <ul className="flex justify-evenly items-center">
         <li className="items-center">
           <p>

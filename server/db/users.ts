@@ -3,11 +3,22 @@ import connection from './connection.ts'
 
 // PUBLIC ROUTES
 
-export async function getAllUserInfo(): Promise<User[]> {
+export async function getAllUserInfo(): Promise<UserData[]> {
   return connection('users').select(
     'id', 
-    'name'
+    'name',
+    'email',
+    'picture'
   )
+}
+
+export async function getUserInfoById(id: number): Promise<User> {
+  return connection('users').where('id', id).select(
+    'id', 
+    'name',
+    'email',
+    'picture'
+  ).first() 
 }
 
 // PROTECTED ROUTES
@@ -34,6 +45,8 @@ export async function addUser(newUser: User): Promise<UserData[]> {
     .returning(['name', 'email'])
 }
 
+// OTHER FUNCTIONS NOT IN USE YET
+
 // Update user info in the database
 // export async function updateUser(
 //   id: string,
@@ -52,6 +65,6 @@ export async function addUser(newUser: User): Promise<UserData[]> {
 // }
 
 // Delete user from the database by their auth0_sub (unique identifier)
-export async function deleteUserById(id: string): Promise<void> {
-  await connection('users').where('auth0_sub', id).delete()
-}
+// export async function deleteUserById(id: string): Promise<void> {
+//   await connection('users').where('auth0_sub', id).delete()
+// }

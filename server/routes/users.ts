@@ -2,6 +2,7 @@ import { Router } from 'express'
 import * as db from '../db/users.ts'
 import checkJwt from '../auth0.ts'
 import { JwtRequest } from '../auth0.js'
+import { UserData } from '../../models/user.ts'
 
 
 const router = Router()
@@ -10,8 +11,19 @@ const router = Router()
 
 router.get('/all', async (req, res) => {
   try {
-    const users = await db.getAllUserInfo()
+    const users: UserData[] = await db.getAllUserInfo()
     res.json(users)
+  } catch (err) {
+    console.error(err)
+    res.status(500).send('Something went wrong')
+  }
+})
+
+router.get('/:id', async (req, res) => {
+  try {
+    const id = +req.params.id
+    const user: UserData = await db.getUserInfoById(id)
+    res.json(user)
   } catch (err) {
     console.error(err)
     res.status(500).send('Something went wrong')
@@ -49,6 +61,8 @@ router.post('/', checkJwt, async (req: JwtRequest, res) => {
 
   }
 })
+
+// OTHER ROUTES NOT IN USE YET
 
 // Update user info
 // router.patch('/:id', async (req, res) => {

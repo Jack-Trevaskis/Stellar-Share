@@ -9,6 +9,11 @@ function Register() {
   const [errorMsg, setErrorMsg] = useState('')
   const { user: userAuth0, getAccessTokenSilently, isAuthenticated } = useAuth0()
   const userFromHook = useUser()
+  const navigate = useNavigate()
+
+  if(!isAuthenticated){
+    navigate('/')
+  }
 
   const handleMutationSuccess = () => {
     setErrorMsg('')
@@ -27,7 +32,7 @@ function Register() {
     onError: handleError,
   }
 
-  const navigate = useNavigate()
+  
   const [form, setForm] = useState({
     name: '',
   })
@@ -96,11 +101,6 @@ function Register() {
               <button disabled={!form.name}>Register</button>
             </div>
           </form>
-        </div>}
-
-
-        {!isAuthenticated && <div>
-          <h1>Please sign in</h1>
         </div>}
       </div>
     </div>
