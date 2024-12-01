@@ -61,8 +61,6 @@ function SingleStuffPage() {
           <strong>Condition:</strong> {stuff.condition}
         </li>
       </ul>
-      <img src={stuff.imageURL} alt="Stuff"></img>
-      <StuffReviews />
       <img
         src={stuff.imageURL}
         alt="Stuff"
@@ -73,6 +71,7 @@ function SingleStuffPage() {
           boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
         }}
       />
+         <StuffReviews />
       <button
         onClick={()=>{handleAddReview()}}
         style={{
