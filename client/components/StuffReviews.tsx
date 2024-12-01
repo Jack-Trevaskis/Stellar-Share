@@ -2,10 +2,11 @@ import { useQuery } from '@tanstack/react-query'
 import { fetchStuffReviews } from '../apis/stuff_reviews'
 import { useParams } from 'react-router-dom'
 
+
 function StuffReviews() {
   
   const { stuffId } = useParams()
-  console.log('stuff id:', stuffId);
+  // console.log('stuff id:', stuffId);
   
   const {
     data: stuffReviews,
@@ -29,13 +30,12 @@ function StuffReviews() {
 
   return (
     <>
-      <ul>
+      <ul className="flex flex-col gap-4 p-0 list-none">
         {stuffReviews?.map((stuffReviews) => (
           <li key={stuffReviews.id}>
-              {stuffReviews.rating}
-              {stuffReviews.description}
+              ⭐ {stuffReviews.rating} <br/>
+              {stuffReviews.description} <br/>
               {stuffReviews.reviewerAuth0Sub}
-              {stuffReviews.stuffId}
           </li>
         ))}
       </ul>
