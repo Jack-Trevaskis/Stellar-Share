@@ -1,36 +1,99 @@
 import { useParams } from "react-router-dom"
-import { getStuffById } from "../apis/stuff"
-import { useQuery } from "@tanstack/react-query"
+import { useStuffById } from "../hooks/useStuff"
+import StuffReviews from "./StuffReviews"
+import { useNavigate} from 'react-router-dom'
+
 
 function SingleStuffPage() {
+  const { stuffId } = useParams();
+  const { data: stuff, error, isPending } = useStuffById(Number(stuffId));
+  const navigate = useNavigate()
 
-  const { stuffId } = useParams()
+  const handleAddReview = () => {
 
-  const { data: stuff, error, isPending } = useQuery({queryKey: ['stuff'], queryFn: () => getStuffById(Number(stuffId))})
+    navigate(`addStuffReview`)
+  }
+
+  // hi
 
   if (isPending) {
-    return <p>Is loading...</p>
+    return <p>Is loading...</p>;
   }
 
   if (error) {
-    return <p>Error.. {error.message}</p>
+    return <p>Error.. {error.message}</p>;
   }
 
-  console.log(SingleStuffPage)
+  console.log(SingleStuffPage);
 
   return (
-    <div className="single-stuff-page">
-      <ul>
-        <li>Item listed by: {stuff.ownerName}</li>
-        <li>Name: {stuff.name}</li>
-        <li>Description: {stuff.description}</li>
-        <li>Price: {stuff.price}</li>
-        <li>Bond: {stuff.bond}</li>
-        <li>Condition: {stuff.condition}</li>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "16px",
+        padding: "16px",
+        backgroundColor: "white",
+        boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+        borderRadius: "8px",
+        transition: "box-shadow 0.2s ease",
+      }}
+      onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "0 6px 10px rgba(0, 0, 0, 0.15)")}
+      onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)")}
+    >
+      <ul style={{ listStyle: "none", padding: "0", margin: "0" }}>
+        <li style={{ fontSize: "16px", color: "#2D3748", marginBottom: "8px" }}>
+          <strong>Item listed by:</strong> {stuff.ownerName}
+        </li>
+        <li style={{ fontSize: "16px", color: "#2D3748", marginBottom: "8px" }}>
+          <strong>Name:</strong> {stuff.name}
+        </li>
+        <li style={{ fontSize: "16px", color: "#2D3748", marginBottom: "8px" }}>
+          <strong>Description:</strong> {stuff.description}
+        </li>
+        <li style={{ fontSize: "16px", color: "#2D3748", marginBottom: "8px" }}>
+          <strong>Price:</strong> ${stuff.price}
+        </li>
+        <li style={{ fontSize: "16px", color: "#2D3748", marginBottom: "8px" }}>
+          <strong>Bond:</strong> ${stuff.bond}
+        </li>
+        <li style={{ fontSize: "16px", color: "#2D3748", marginBottom: "8px" }}>
+          <strong>Condition:</strong> {stuff.condition}
+        </li>
       </ul>
       <img src={stuff.imageURL} alt="Stuff"></img>
+      <StuffReviews />
+      <img
+        src={stuff.imageURL}
+        alt="Stuff"
+        style={{
+          width: "100%",
+          borderRadius: "8px",
+          marginTop: "16px",
+          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+        }}
+      />
+      <button
+        onClick={()=>{handleAddReview()}}
+        style={{
+          marginTop: "16px",
+          padding: "10px 20px",
+          backgroundColor: "#2D3748",
+          color: "#FFF",
+          fontSize: "16px",
+          fontWeight: "bold",
+          border: "none",
+          borderRadius: "8px",
+          cursor: "pointer",
+          transition: "background-color 0.3s ease",
+        }}
+        onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#1A202C")}
+        onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#2D3748")}
+      >
+        Leave Review
+      </button>
     </div>
-  )
+  );
 }
 
-export default SingleStuffPage
+export default SingleStuffPage;

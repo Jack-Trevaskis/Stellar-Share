@@ -1,11 +1,12 @@
 import request from 'superagent'
+import { UserReviews } from '../../models/user_reviews'
 
-const rootUrl = '/api/v1'
+const rootURL = new URL('/api/v1', document.baseURI).toString()
 
-// FRONT END API USER REVIEW FUNCTIONS GO HERE
 
-// export function getFruits(): Promise<string[]> {
-//   return request.get(rootUrl + '/fruits').then((res) => {
-//     return res.body.fruits
-//   })
-// }
+export async function getAllReviewsOnUser(userAuth0Sub: string): Promise<UserReviews>  {
+    const response = await request.get(`${rootURL}/user_reviews/${userAuth0Sub}`)
+    
+    return response.body as UserReviews
+  }
+  

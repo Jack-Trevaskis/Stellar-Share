@@ -11,7 +11,7 @@ export function useAllStuff() {
 
 export function useStuffById(id: number) {
   return useQuery({
-    queryKey: ['stuff'],
+    queryKey: ['stuff', id],
     queryFn: async () => API.getStuffById(id),
   })
 }

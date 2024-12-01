@@ -4,7 +4,7 @@ import { getAllUserInfo } from "../apis/users"
 
 function Users() {
 
-  const { data, isPending, isError } = useQuery({
+  const { data, isPending, error } = useQuery({
     queryKey: ['users'],
     queryFn: async () => {
       const users = await getAllUserInfo()
@@ -15,21 +15,20 @@ function Users() {
   const navigate = useNavigate()
 
   const handleEventClick = (id: number) => {
-    navigate(`/users/${id}`)}
+    navigate(`/users/${id}`)
+  }
 
   if (isPending) {
     return <p>Loading...</p>
   }
 
-  if (isError) {
+  if (error) {
     return <p>No users!</p>
   }
 
-  //  console.log("Rendering users:", data)
-
-
   return (
     <>
+
     <ul>
       {data?.map((user) => (
         <li key={user.id}>
@@ -37,6 +36,7 @@ function Users() {
         </li>
       ))}
     </ul>
+
     </>
   )
 }

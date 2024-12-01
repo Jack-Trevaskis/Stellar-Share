@@ -33,3 +33,25 @@ export async function addUser(newUser: User): Promise<UserData[]> {
     )
     .returning(['name', 'email'])
 }
+
+// Update user info in the database
+// export async function updateUser(
+//   id: string,
+//   updatedUser: Partial<User>,
+// ): Promise<User | null> {
+//   const updated = await connection('users').where('auth0_sub', id).update({
+//     auth0_sub: id,
+//     name: updatedUser.name,
+//     email: updatedUser.email,
+//     picture: updatedUser.picture,
+//   })
+//   if (updated) {
+//     return getUserByAuth0Sub(id)
+//   }
+//   return null
+// }
+
+// Delete user from the database by their auth0_sub (unique identifier)
+export async function deleteUserById(id: string): Promise<void> {
+  await connection('users').where('auth0_sub', id).delete()
+}
