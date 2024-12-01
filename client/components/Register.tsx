@@ -59,6 +59,8 @@ function Register() {
     }
     //
 
+    console.log('GOT HERE')
+
     userFromHook.add.mutate({ newUser: {'name': form.name, 'email': userAuth0.email, 'picture': userAuth0.picture || ''}, token }, mutationOptions)
     navigate('/')
   }
