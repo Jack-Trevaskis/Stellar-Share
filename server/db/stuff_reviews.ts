@@ -2,7 +2,6 @@ import db from './connection.ts'
 import { StuffReviews } from '../../models/stuff_reviews.ts'
 import { StuffReviewsData } from '../../models/stuff_reviews.ts'
 
-
 // All stuff review DB functions go here
 
 export async function getStuffReview(stuffId: number): Promise<StuffReviews[]> {
@@ -19,7 +18,6 @@ export async function getStuffReview(stuffId: number): Promise<StuffReviews[]> {
       'stuff_reviews.description',
       'stuff_reviews.rating',
     )
-    
 }
 
 // export async function getAllFruits(db = connection): Promise<Fruit[]> {
@@ -30,18 +28,34 @@ export async function getStuffReview(stuffId: number): Promise<StuffReviews[]> {
 // All stuff review DB functions go here
 
 export async function createStuffReview(data: StuffReviewsData) {
+  try {
+    console.log(data)
+    const [newStuffReviewId] = await db('stuff_reviews')
+      .insert({
+        reviewer_auth0_sub: data.reviewerAuth0Sub,
+        stuff_id: data.stuffId,
+        description: data.description,
+        rating: data.rating,
+      })
+      .returning('id')
+    return { id: newStuffReviewId, ...data }
+  } catch (error) {
+    console.error('Error creating record:')
+    throw error
     try {
       console.log(data)
-      const [newStuffReviewId] = await db('stuff_review').insert(data).returning('id');
-      return { id: newStuffReviewId, ...data };
+      const [newStuffReviewId] = await db('stuff_review')
+        .insert(data)
+        .returning('id')
+      return { id: newStuffReviewId, ...data }
     } catch (error) {
-      console.error("Error creating record:")
-      throw error;
+      console.error('Error creating record:')
+      throw error
     }
   }
+}
 
 export async function deleteThingReview(id: number) {
   const delThing = await db('stuff_reviews').where('id', id).delete()
   return delThing as number
 }
-

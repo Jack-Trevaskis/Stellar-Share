@@ -1,37 +1,56 @@
-import React, { useState } from 'react';
-import { useCreateStuffReview } from '../hooks/useStuffReviews'; 
-import { StuffReviewsData } from '../../models/stuff_reviews';
-import { createStuffReview } from '../apis/stuff_reviews';
+import React, { useState } from 'react'
+import { useCreateStuffReview } from '../hooks/useStuffReviews'
+import { StuffReviewsData } from '../../models/stuff_reviews'
+import { useParams } from 'react-router-dom'
+import { useAuth0 } from '@auth0/auth0-react'
 
 function AddStuffReviewForm() {
-  const { mutate: createDaily, isPending, isError } = useCreateStuffReview();
-  const [form, setForm] = useState({ reviewerAuth0Sub: '', stuffId: 0, description: '', rating: 0 });
+  const { mutate: createDaily, isPending, isError } = useCreateStuffReview()
+  const { stuffId } = useParams()
+  const { user } = useAuth0()
+  const [form, setForm] = useState({
+    reviewerAuth0Sub: '',
+    stuffId: 0,
+    description: '',
+    rating: 0,
+  })
+
+  if (isPending === true) {
+    return <div>Loading...</div>
+  }
+
+  if (isError === true) {
+    return <div>Error loading page...</div>
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target
     setForm((prevForm) => ({
       ...prevForm,
       [name]: value,
-    }));
-  };
+    }))
+  }
 
   const handleRating = (rating: number) => {
     setForm((prevForm) => ({
       ...prevForm,
-      rating, 
-    }));
+      rating,
+    }))
     console.log(form)
-  };
+  }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    // e.preventDefault();
-    // createStuffReview(form as StuffReviewsData); // Trigger the mutation
-    console.log(form)
-  };
+    e.preventDefault()
+    const submitData = {
+      ...form,
+      reviewerAuth0Sub: user?.sub,
+      stuffId: Number(stuffId as string),
+    }
+    createDaily(submitData as StuffReviewsData) // Trigger the mutation
+    console.log(submitData)
+  }
 
-  const handleCancel = () => {
-    
-  };
+  const handleCancel = () => {}
 
   return (
     <form onSubmit={handleSubmit}>
@@ -72,7 +91,7 @@ function AddStuffReviewForm() {
         </button>
       </div>
     </form>
-  );
+  )
 }
 
-export default AddStuffReviewForm;
+export default AddStuffReviewForm
