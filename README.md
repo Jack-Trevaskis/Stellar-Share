@@ -51,13 +51,18 @@ As we are using **Auth0** for authenticating users, we need to update also our [
   ```
   http://localhost:5173/register,
   http://localhost:5173/,
-  http://stellar-share-mania-roa-24.pushed.nz:5173/register,
-  http://stellar-share-mania-roa-24.pushed.nz:5173/
+  https://stellar-share-mania-roa-24.pushed.nz:5173/register,
+  https://stellar-share-mania-roa-24.pushed.nz:5173/
   ```
 * Same for **Allowed Logout URLs**:
   ```
   http://localhost:5173/,
-  http://stellar-share-mania-roa-24.pushed.nz:5173/
+  https://stellar-share-mania-roa-24.pushed.nz:5173/
+  ```
+* and same for **Allowed Web Origins**
+  ```
+  http://localhost:5173/,
+  https://stellar-share-mania-roa-24.pushed.nz:5173/
   ```
 
 <figure>
