@@ -5,6 +5,7 @@ import { JwtRequest } from '../auth0.js'
 import { UserData } from '../../models/user.ts'
 import { UserReviewWithNames } from '../../models/user_reviews.ts'
 import { StuffReviewWithNames } from '../../models/stuff_reviews.ts'
+import { Stuff } from '../../models/stuff.ts'
 
 
 const router = Router()
@@ -26,6 +27,17 @@ router.get('/:id', async (req, res) => {
     const id = +req.params.id
     const user: UserData = await db.getUserInfoById(id)
     res.json(user)
+  } catch (err) {
+    console.error(err)
+    res.status(500).send('Something went wrong')
+  }
+})
+
+router.get('/:userId/stuff', async (req, res) => {
+  try {
+    const userId = +req.params.userId
+    const stuff: Stuff[] = await db.getAllUserStuff(userId)
+    res.json(stuff)
   } catch (err) {
     console.error(err)
     res.status(500).send('Something went wrong')

@@ -6,6 +6,7 @@ import UserReviewsByUser from './UserReviewsByUser'
 import ReviewsOnUser from './ReviewsOnUser'
 import StuffReviewsByUser from './StuffReviewsByUser'
 import ReviewsOnUserStuff from './ReviewsOnUserStuff'
+import UserStuff from './UserStuff'
 
 export function SingleUser() {
   const { userId } = useParams()
@@ -36,8 +37,18 @@ export function SingleUser() {
             className="rounded-full w-24 h-24 aspect-square object-cover"
           />
         </div>
+
+        {/* USER STUFF LISTINGS */}
+
+        <h2 className="text-2xl font-semibold mb-4 text-center">User Listings</h2> 
+        <div className="flex"> 
+            <UserStuff />
+        </div>
+
+        {/* USER REVIEWS */}
+
         <h2 className="text-2xl font-semibold mb-4 text-center">User Reviews</h2> 
-        <div className="flex flex-row gap-4">
+        <div className="flex flex-row gap-4 ">
           <div>
             <h2 className="text-xl font-semibold mb-4 text-center">Received</h2> 
             <ReviewsOnUser />
@@ -48,6 +59,8 @@ export function SingleUser() {
           </div>
         </div>
         
+        {/* STUFF REVIEWS  */}
+
         <h2 className="text-2xl font-semibold mb-4 text-center">Stuff Reviews</h2> 
         <div className="flex flex-row gap-4">
           <div>

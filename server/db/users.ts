@@ -1,3 +1,4 @@
+import { Stuff } from '../../models/stuff.ts'
 import { StuffReviewWithNames } from '../../models/stuff_reviews.ts'
 import { UserData, User } from '../../models/user.ts'
 import { UserReviewWithNames } from '../../models/user_reviews.ts'
@@ -21,6 +22,21 @@ export async function getUserInfoById(id: number): Promise<User> {
     'email',
     'picture'
   ).first() 
+}
+
+export async function getAllUserStuff(userId: number): Promise<Stuff[]>{
+  return connection('stuff')
+    .where('stuff.owner_id', userId)
+    .select(
+      'id', 
+      'name', 
+      'description', 
+      'owner_id as ownerId', 
+      'price', 
+      'image_url as imageUrl', 
+      'bond', 
+      'condition'
+    )
 }
 
 export async function getAllUserReviewsMadeByUser(id: number): Promise<UserReviewWithNames[]> {
