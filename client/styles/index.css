@@ -83,6 +83,47 @@ a:focus,
     @apply bg-green text-base03;
   }
 
+  /* --- AddStuffForm Component Styles --- */
+  /* Form container: */
+  .add-stuff-form-container {
+    @apply p-6;
+  }
+  /* Form */
+  .add-stuff-form {
+    @apply bg-base02 p-6 rounded-md shadow-md max-w-md mx-auto;
+  }
+  /* Form group */
+  .form-group {
+    @apply mb-4;
+  }
+  /* Form label */
+  .form-label {
+    @apply block text-base1 mb-1;
+  }
+  /* Form input */
+  .form-input {
+    @apply w-full bg-base03 border border-base01 rounded-md p-2 text-base1 placeholder-base00 focus:outline-none focus:ring-2 focus:ring-blue;
+  }
+
+  /* Input fields */
+  input,
+  textarea {
+    @apply w-full bg-base03 border border-base01 rounded-md p-2 text-base1 placeholder-base00 focus:outline-none focus:ring-2 focus:ring-blue;
+  }
+  /* Submit button */
+  .form-submit-button {
+    /* @apply bg-blue text-base3 px-6 py-2 rounded-md text-white transition duration-300; */
+    @apply bg-sky-500 text-base3 px-3 py-1 rounded transition duration-300;
+    &:hover {
+      @apply bg-orange text-base03 shadow-glow-orange;
+    }
+    &:active {
+      @apply bg-red text-base03;
+    }
+    &:focus {
+      @apply outline-none ring-2 ring-yellow;
+    }
+  }
   /* --- Footer Styles --- */
   .footer {
     @apply bg-base03 text-base1 p-4 text-sm text-center;
