@@ -9,12 +9,12 @@ export async function getStuffReview(stuffId: number): Promise<StuffReviews[]> {
   // console.log('db fn hit')
   return await db('stuff_reviews')
     .join('stuff', 'stuff_reviews.stuff_id', 'stuff.id')
-    .join('users', 'stuff_reviews.reviewer_auth0_sub', 'users.auth0_sub')
+    .join('users', 'stuff_reviews.reviewer_id', 'users.id')
     .where('stuff_reviews.stuff_id', stuffId)
     .select(
       'stuff_reviews.id',
       'users.name',
-      'reviewer_auth0_sub as reviewerAuth0Sub',
+      'reviewer_id as reviewerId',
       'stuff_id as stuffId',
       'stuff_reviews.description',
       'stuff_reviews.rating',

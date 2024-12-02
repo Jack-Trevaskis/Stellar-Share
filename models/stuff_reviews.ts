@@ -1,5 +1,5 @@
 export interface StuffReviewsData {
-  reviewerAuth0Sub: string
+  reviewerId: number
   stuffId: number
   description: string
   rating: number

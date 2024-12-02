@@ -23,7 +23,7 @@ interface GetUserFunction {
 
 export async function getUser({
   token,
-}: GetUserFunction): Promise<User | null> {
+}: GetUserFunction): Promise<UserData | null> {
   return await request
     .get(`${rootUrl}/users`)
     .set('Authorization', `Bearer ${token}`)

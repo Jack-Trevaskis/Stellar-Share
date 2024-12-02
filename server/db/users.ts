@@ -26,6 +26,7 @@ export async function getUserInfoById(id: number): Promise<User> {
 export async function getUserByAuth0Sub(auth0Sub: string): Promise<UserData> {
   return connection('users')
     .select(
+      'id',
       'name', 
       'email'
     )
