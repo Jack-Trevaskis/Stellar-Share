@@ -1,16 +1,14 @@
 import React, { useState } from 'react'
 import { useCreateStuffReview } from '../hooks/useStuffReviews'
-import { StuffReviewsData } from '../../models/stuff_reviews'
+import { StuffReviewData } from '../../models/stuff_reviews'
 import { useParams } from 'react-router-dom'
-import { useAuth0 } from '@auth0/auth0-react'
+import { useUser } from '../hooks/useUser'
 
 function AddStuffReviewForm() {
   const { mutate: createDaily, isPending, isError } = useCreateStuffReview()
   const { stuffId } = useParams()
-  const { user } = useAuth0()
+  const userFromHook = useUser()
   const [form, setForm] = useState({
-    reviewerAuth0Sub: '',
-    stuffId: 0,
     description: '',
     rating: 0,
   })
@@ -41,12 +39,18 @@ function AddStuffReviewForm() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+
+    // This should exist, just doing this to make typescript happy
+    if(!userFromHook.data){
+      return <>Failed to fetch currently logged in user data</>
+    }
+
     const submitData = {
       ...form,
-      reviewerAuth0Sub: user?.sub,
-      stuffId: Number(stuffId as string),
+      reviewerId: Number(userFromHook.data.id),
+      stuffId: Number(stuffId),
     }
-    createDaily(submitData as StuffReviewsData) // Trigger the mutation
+    createDaily(submitData as StuffReviewData) // Trigger the mutation
     console.log(submitData)
   }
 

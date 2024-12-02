@@ -1,25 +1,25 @@
 // ReviewsOnUser .tsx
 import { useParams } from 'react-router-dom'
-import { UserReviews } from '../../models/user_reviews'
+import { UserReviewWithNames } from '../../models/user_reviews'
 import { useReviewsOnUser } from '../hooks/useUserReviews'
 
 
 export default function ReviewsOnUser() {
 
-    const id  = Number(useParams().id)
+    const id  = Number(useParams().userId)
     const { data: reviewsOnUser, isLoading, isError } = useReviewsOnUser(id)
-
 
 
     if(isLoading) return "Loading..."
     if (!reviewsOnUser) return <h2>No reviews found for this user</h2>
     if(isError) return <h2>An error has occurred loading profile reviews.</h2>
     
-    const reviews: UserReviews = reviewsOnUser
+    const reviews: UserReviewWithNames[] = reviewsOnUser
+
 
     return (
       <div className="p-4">
-        <h2 className="text-2xl font-semibold mb-4 text-center">Reviews</h2>
+        {/* <h2 className="text-2xl font-semibold mb-4 text-center">Reviews</h2> */}
         <ul className="space-y-4">
           {reviews?.map((review) => (
             <li 

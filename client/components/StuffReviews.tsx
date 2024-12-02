@@ -35,7 +35,7 @@ function StuffReviews() {
           <li key={stuffReviews.id}>
               ⭐ {stuffReviews.rating} <br/>
               {stuffReviews.description} <br/>
-              {stuffReviews.reviewerAuth0Sub}
+              {stuffReviews.reviewerId}
           </li>
         ))}
       </ul>

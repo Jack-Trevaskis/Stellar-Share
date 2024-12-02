@@ -1,5 +1,5 @@
 import connection from './connection.ts'
-import { UserReview, UserReviewData } from '../../models/user_reviews.ts'
+import { UserReview, UserReviewData, UserReviewWithNames } from '../../models/user_reviews.ts'
 
 
 export async function getAllUserReviews(): Promise<UserReview> {
@@ -16,7 +16,7 @@ export async function getAllUserReviews(): Promise<UserReview> {
 //this is the main function to be used on the front-end - get all the reviews for a specific user
 export async function getAllReviewsOnUser(
   userId: number,
-): Promise<UserReview> {
+): Promise<UserReviewWithNames> {
   return await connection('user_reviews as ur')
     .join('users as reviewers', 'ur.reviewer_id', 'reviewers.id')
     .where('user_id', userId)

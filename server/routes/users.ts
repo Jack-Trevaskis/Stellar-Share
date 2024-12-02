@@ -3,6 +3,8 @@ import * as db from '../db/users.ts'
 import checkJwt from '../auth0.ts'
 import { JwtRequest } from '../auth0.js'
 import { UserData } from '../../models/user.ts'
+import { UserReviewWithNames } from '../../models/user_reviews.ts'
+import { StuffReviewWithNames } from '../../models/stuff_reviews.ts'
 
 
 const router = Router()
@@ -24,6 +26,28 @@ router.get('/:id', async (req, res) => {
     const id = +req.params.id
     const user: UserData = await db.getUserInfoById(id)
     res.json(user)
+  } catch (err) {
+    console.error(err)
+    res.status(500).send('Something went wrong')
+  }
+})
+
+router.get('/user_reviews/:id', async (req, res) => {
+  try {
+    const id = +req.params.id
+    const userReviews: UserReviewWithNames[] = await db.getAllUserReviewsMadeByUser(id)
+    res.json(userReviews)
+  } catch (err) {
+    console.error(err)
+    res.status(500).send('Something went wrong')
+  }
+})
+
+router.get('/stuff_reviews/:id', async (req, res) => {
+  try {
+    const id = +req.params.id
+    const stuffReviews: StuffReviewWithNames[] = await db.getAllStuffReviewsMadeByUser(id)
+    res.json(stuffReviews)
   } catch (err) {
     console.error(err)
     res.status(500).send('Something went wrong')
