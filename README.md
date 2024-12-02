@@ -46,23 +46,23 @@ and then make sure the config is reloaded, either by opening a new terminal or b
 
 Now you can follow the [Deploying a full-stack web app with a database](https://student-handbook.devacademy.life/guides/deploying/4-deploying-a-fullstack-web-app-with-a-database) guide to deploy!
 
-As we are using **Auth0** for authenticating users, we need to update also our [Application URIs](https://manage.auth0.com/dashboard/au/mania-chc-24-daniel/applications/jF4daF0zuwiJKvVe07bZmGdUkZrntP0X/settings)
+As we are using **Auth0** for authenticating users, we need to update also our [Application URIs](https://manage.auth0.com/dashboard/au/mania-chc-24-daniel/applications/jF4daF0zuwiJKvVe07bZmGdUkZrntP0X/settings), to include publicly accessible host via http**s** protocol and by removing the port numbers from the URLs.
 * Update **Allowed Callback URLs** on the Auth0 App like this:
   ```
   http://localhost:5173/register,
   http://localhost:5173/,
-  https://stellar-share-mania-roa-24.pushed.nz:5173/register,
-  https://stellar-share-mania-roa-24.pushed.nz:5173/
+  https://stellar-share-mania-roa-24.pushed.nz/register,
+  https://stellar-share-mania-roa-24.pushed.nz
   ```
 * Same for **Allowed Logout URLs**:
   ```
   http://localhost:5173/,
-  https://stellar-share-mania-roa-24.pushed.nz:5173/
+  https://stellar-share-mania-roa-24.pushed.nz
   ```
 * and same for **Allowed Web Origins**
   ```
   http://localhost:5173/,
-  https://stellar-share-mania-roa-24.pushed.nz:5173/
+  https://stellar-share-mania-roa-24.pushed.nz
   ```
 
 <figure>
