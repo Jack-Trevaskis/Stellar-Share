@@ -1,12 +1,20 @@
-import { useNavigate } from 'react-router-dom'
-import { useAllUsers } from '../hooks/useUsers'
+import { useQuery } from "@tanstack/react-query"
+import { useNavigate } from "react-router-dom"
+import { getAllUserInfo } from "../apis/users"
 
 function Users() {
-  const { data: users, isPending, isError } = useAllUsers()
+
+  const { data: users, isPending, isError } = useQuery({
+    queryKey: ['allUsers'],
+    queryFn: async () => {
+      const users = await getAllUserInfo()
+      return users
+    }
+  })
 
   const navigate = useNavigate()
 
-  const handleEventClick = (id: string) => {
+  const handleEventClick = (id: number) => {
     navigate(`/users/${id}`)
   }
 
@@ -20,15 +28,15 @@ function Users() {
 
   return (
     <>
-      <ul>
-        {users?.map((user) => (
-          <li key={user.auth0Sub}>
-            <button onClick={() => handleEventClick(user.auth0Sub)}>
-              {user.name}
-            </button>
-          </li>
-        ))}
-      </ul>
+
+    <ul>
+      {users?.map((user) => (
+        <li key={user.id}>
+          <button onClick={() => handleEventClick(Number(user.id))}>{user.name}</button>
+        </li>
+      ))}
+    </ul>
+
     </>
   )
 }

@@ -1,6 +1,7 @@
 import connection from './connection.ts'
 import { UserReview, UserReviewData } from '../../models/user_reviews.ts'
 
+
 export async function getAllUserReviews(): Promise<UserReview> {
   //not really a useful function, but I'll add it anyway - for science!
   return await connection('user_reviews').select(

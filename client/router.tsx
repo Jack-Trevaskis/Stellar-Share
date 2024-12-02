@@ -11,11 +11,13 @@ import Users from './components/Users'
 import { Profile } from './components/Profile'
 import { AllStuff } from './components/AllStuff'
 import AddStuffForm from './components/AddStuffForm'
+import Register from './components/Register'
 import AddStuffReviewForm from './components/AddStuffReviewForm'
 import { SingleUser } from './components/SingleUser'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
+    <>
     <Route path="/" element={<App />}>
       <Route path="/" element={<Home />} />
       <Route path="stuff" element={<AllStuff />} />
@@ -28,7 +30,10 @@ const router = createBrowserRouter(
       <Route path="/users/:id" element={<SingleUser />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/addStuff" element={<AddStuffForm />} />
-    </Route>,
+    </Route>
+
+    <Route path="/register" element={<Register />} />
+    </>
   ),
 )
 

@@ -12,8 +12,8 @@ const root = createRoot(document.getElementById('app') as HTMLElement)
 document.addEventListener('DOMContentLoaded', () => {
   root.render(
     <Auth0Provider
-      domain="mania-chc-24-daniel.au.auth0.com"
-      clientId="jF4daF0zuwiJKvVe07bZmGdUkZrntP0X"
+      domain="roa-2024-tyaan.au.auth0.com"
+      clientId="Efd3Wi7d3nlgIM8M3RhVqswecuAPOus7"
       authorizationParams={{
         redirect_uri: window.location.origin,
         audience: 'https://stuff/api',

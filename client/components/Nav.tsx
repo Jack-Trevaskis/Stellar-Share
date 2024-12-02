@@ -4,10 +4,13 @@ import { useEffect } from 'react'
 import { LoginButton } from './LoginButton'
 import { LogoutButton } from './LogoutButton'
 import { Link } from 'react-router-dom'
+import { useUser } from '../hooks/useUser'
 
 export function Nav() {
-  const { user, logout, loginWithRedirect, isAuthenticated, isLoading } =
+  const { user, isAuthenticated, isLoading } =
     useAuth0()
+
+  const userFromHook = useUser()
 
   useEffect(() => {
     if (!isLoading) {
@@ -65,6 +68,7 @@ export function Nav() {
           <li>
             <LogoutButton />
           </li>
+          {userFromHook.data && <li>Signed in as: {userFromHook.data.name}</li>}
         </ul>
       </IfAuthenticated>
       <IfNotAuthenticated>

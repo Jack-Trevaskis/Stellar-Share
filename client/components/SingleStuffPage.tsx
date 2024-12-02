@@ -2,11 +2,13 @@ import { useParams } from "react-router-dom"
 import { useStuffById } from "../hooks/useStuff"
 import StuffReviews from "./StuffReviews"
 import { useNavigate} from 'react-router-dom'
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 function SingleStuffPage() {
   const { stuffId } = useParams();
   const { data: stuff, error, isPending } = useStuffById(Number(stuffId));
+  const { isAuthenticated } = useAuth0()
   const navigate = useNavigate()
 
   const handleAddReview = () => {
@@ -71,8 +73,9 @@ function SingleStuffPage() {
           boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
         }}
       />
-         <StuffReviews />
-      <button
+      <StuffReviews />
+
+      { isAuthenticated && <button
         onClick={()=>{handleAddReview()}}
         style={{
           marginTop: "16px",
@@ -90,7 +93,7 @@ function SingleStuffPage() {
         onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#2D3748")}
       >
         Leave Review
-      </button>
+      </button>}
     </div>
   );
 }

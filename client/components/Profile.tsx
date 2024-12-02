@@ -1,16 +1,18 @@
 import { useAuth0 } from '@auth0/auth0-react'
+import { useUser } from '../hooks/useUser'
 
 export function Profile() {
-  const { user, isAuthenticated, isLoading, isEror: isError } = useAuth0()
 
-  if (isLoading && !user) {
-    return <div>Loading...</div>
-  }
-  if (isError) {
-    return <div>An error occurred: {isError.message}</div>
-  }
+  const { isAuthenticated } = useAuth0()
+
+  const userFromHook = useUser()
+
   if (!isAuthenticated) {
     return <div>Please sign in to view your profile.</div>
+  }
+
+  if(!userFromHook.data){
+    return <div>Failed to fetch your data from the database.</div>
   }
 
   return (
@@ -20,13 +22,13 @@ export function Profile() {
       </h1>
       <ul className="flex justify-evenly items-center">
         <li className="items-center">
-          <p>Welcome, {user?.name}!</p>
-          <p>Email: {user?.email}</p>
+          <p>Welcome, {userFromHook.data.name}!</p>
+          <p>Email: {userFromHook.data.email}</p>
         </li>
         <li className="items-center">
           <img
-            src={user?.picture}
-            alt={user?.nickname}
+            src={userFromHook.data.picture}
+            alt={userFromHook.data.picture}
             className="rounded-full w-24 h-24 aspect-square object-cover"
           />
         </li>
