@@ -3,11 +3,11 @@ import * as API from '../apis/user_reviews.ts'
 
 
 //use reviews On user, as opposed to use reviews made BY a user - important difference
-export function useReviewsOnUser(userAuth0Sub: string | undefined) {
+export function useReviewsOnUser(userID: number | undefined) {
   const query = useQuery({
-    enabled: Boolean(userAuth0Sub),
-    queryKey: ['user_reviews', userAuth0Sub],
-    queryFn: () => API.getAllReviewsOnUser(userAuth0Sub!),
+    enabled: Boolean(userID),
+    queryKey: ['user_reviews', userID],
+    queryFn: () => API.getAllReviewsOnUser(userID!),
   })
 
   return {

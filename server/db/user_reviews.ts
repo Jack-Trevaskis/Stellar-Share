@@ -17,16 +17,19 @@ export async function getAllUserReviews(): Promise<UserReview> {
 export async function getAllReviewsOnUser(
   userId: number,
 ): Promise<UserReview> {
-  return await connection('user_reviews')
+  return await connection('user_reviews as ur')
+    .join('users as reviewers', 'ur.reviewer_id', 'reviewers.id')
     .where('user_id', userId)
     .select(
-      'id',
-      'reviewer_id' as 'reviewerId',
-      'user_id' as 'userId',
+      'ur.id',
+      'user_id as userId',
+      'reviewers.name as reviewerName',
+      'reviewers.id as reviewerId',
       'description',
       'rating',
     )
 }
+
 
 //ToDo: add a function that gets all reviews that a user has written
 

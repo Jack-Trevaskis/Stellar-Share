@@ -5,8 +5,14 @@ export interface UserReviewData {
   rating: number
 }
 
-export interface UserReview extends UserReviewData{
+export interface UserReview {
   id: number
+  userID: string
+  reviewerName: string
+  reviewerId: number
+  description: string
+  rating: number
 }
 
 export type UserReviews = UserReview[]
+

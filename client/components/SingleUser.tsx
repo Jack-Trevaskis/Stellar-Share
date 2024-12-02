@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom'
 import { getUserInfoById } from '../apis/users'
 import { useQuery } from '@tanstack/react-query'
+import ReviewsOnUser from './ReviewsOnUser'
 
 export function SingleUser() {
   const { id } = useParams()
@@ -17,23 +18,23 @@ export function SingleUser() {
   if (isError) return <div>Error loading user</div>
 
   return (
-    <div>
-      <h1 className="text-xl font-bold text-center my-4">User&apos;s Details</h1>
-      <ul className="flex justify-evenly items-center">
-        <li className="items-center">
+    <div className="flex flex-col items-center">
+      <h1 className="text-xl font-bold text-center my-4">{user?.name}</h1>
+      <ul className="flex flex-col items-center space-y-4">
+        <li className="flex flex-col items-center">
           <p>
-            Name: <span className="font-bold">{user?.name}</span>
-          </p>
-          <p>
-            Email: <span className="font-bold">{user?.email}</span>
+            Contact: <span className="font-bold">{user?.email}</span>
           </p>
         </li>
-        <li className="items-center">
+        <li className="flex flex-col items-center">
           <img
             src={user?.picture}
-            alt=""
+            alt="user avatar"
             className="rounded-full w-24 h-24 aspect-square object-cover"
           />
+        </li>
+        <li className="flex flex-col items-center">
+          <ReviewsOnUser />
         </li>
       </ul>
     </div>
