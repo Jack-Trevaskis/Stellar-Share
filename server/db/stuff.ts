@@ -14,7 +14,7 @@ export async function addStuff(stuffData: StuffData): Promise<Stuff> {
     {
       "name": stuffData.name,
       "description": stuffData.description, 
-      "owner_auth0_sub": stuffData.ownerAuth0Sub, 
+      "owner_id": stuffData.ownerId, 
       "price": stuffData.price, 
       "image_url": stuffData.imageURL, 
       "bond": stuffData.bond, 
@@ -29,13 +29,13 @@ export async function getStuffById(
   stuffId: number,
 ): Promise<StuffWithOwnerName> {
   return connection('stuff')
-    .leftJoin('users', 'users.auth0_sub', 'stuff.owner_auth0_sub')
+    .leftJoin('users', 'users.id', 'stuff.owner_id')
     .where({ 'stuff.id': stuffId })
     .select(
       'stuff.id as id',
       'stuff.name as name',
       'stuff.description as description',
-      'stuff.owner_auth0_sub as ownerAuth0Sub',
+      'stuff.owner_id as ownerId',
       'stuff.price as price',
       'stuff.image_url as imageUrl',
       'stuff.bond as bond',

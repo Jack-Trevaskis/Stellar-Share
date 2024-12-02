@@ -1,7 +1,7 @@
 export interface StuffData {
   name: string
   description: string
-  ownerAuth0Sub: string
+  ownerId: number
   price: number
   imageURL?: string
   bond?: number

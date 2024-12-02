@@ -1,13 +1,14 @@
 import { addStuff } from "../apis/stuff"
 import { ChangeEvent, FormEvent, useEffect, useState } from "react"
-import { useAuth0 } from "@auth0/auth0-react"
 import { useNavigate } from "react-router-dom"
+import { useUser } from "../hooks/useUser"
+import { useAuth0 } from "@auth0/auth0-react"
 
 function AddStuffForm() {
 
-  const { user, isAuthenticated } = useAuth0()
+  const userFromHook = useUser()
 
-  console.log(user)
+  const { isAuthenticated } = useAuth0()
 
   const navigate = useNavigate()
 
@@ -20,7 +21,7 @@ function AddStuffForm() {
   const [formState, setFormState] = useState({
     name: '',
     description: '',
-    ownerAuth0Sub: '',
+    ownerId: '',
     price: 0,
     imageURL: '',
     bond: 0,
@@ -49,17 +50,17 @@ function AddStuffForm() {
     }
 
     // These will always exist at this point, just doing this so typescript is happy
-    if(!user){
+    if(!userFromHook.data){
       return
     }
-    if(!user.sub){
+    if(!userFromHook.data.id){
       return
     }
 
     const newStuff = await addStuff({
       name: formState.name, 
       description: formState.description, 
-      ownerAuth0Sub: user.sub, 
+      ownerId: userFromHook.data.id,
       price: formState.price, 
       imageURL: formState.imageURL, 
       bond: formState.bond, 

@@ -1,6 +1,6 @@
 export interface UserReviewData {
-  reviewerAuth0Sub: string
-  userAuth0Sub: string
+  reviewerId: number
+  userId: number
   description: string
   rating: number
 }
