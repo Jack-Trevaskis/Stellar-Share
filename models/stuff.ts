@@ -3,7 +3,7 @@ export interface StuffData {
   description: string
   ownerId: number
   price: number
-  imageURL?: string
+  imageUrl?: string
   bond?: number
   condition?: string
 }

@@ -64,10 +64,10 @@ function SingleStuffPage() {
         </li>
       </ul>
       <img
-        src={stuff.imageURL}
+        src={stuff.imageUrl}
         alt="Stuff"
         style={{
-          width: "100%",
+          width: "50%",
           borderRadius: "8px",
           marginTop: "16px",
           boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",

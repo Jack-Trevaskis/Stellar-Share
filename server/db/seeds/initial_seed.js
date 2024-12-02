@@ -1,6 +1,6 @@
 /**
  * @param { import("knex").Knex } knex
- * @returns { Promise<void> } 
+ * @returns { Promise<void> }
  */
 export async function seed(knex) {
   await knex('users').del()
@@ -14,71 +14,71 @@ export async function seed(knex) {
       auth0_sub: 'auth0|neo123456',
       name: 'NeoByte_42',
       email: 'neo42@example.com',
-      picture: 'https://example.com/images/neobyte.png'
+      picture: '/images/avatars/abe.webp',
     },
     {
       id: 2,
       auth0_sub: 'auth0|stellar987654',
       name: 'StellarNomad',
       email: 'stellar.nomad@example.com',
-      picture: 'https://example.com/images/stellarnomad.png'
+      picture: '/images/avatars/ex-machina.jpg',
     },
     {
       id: 3,
       auth0_sub: 'auth0|quantum0001',
       name: 'QuantumRanger',
       email: 'quantum.ranger@example.com',
-      picture: 'https://example.com/images/quantumranger.png'
+      picture: '/images/avatars/gpt1.webp',
     },
     {
       id: 4,
       auth0_sub: 'auth0|galactic2222',
       name: 'GalacticSurge',
       email: 'galactic.surge@example.com',
-      picture: 'https://example.com/images/galacticsurge.png'
+      picture: '/images/avatars/gpt2.webp',
     },
     {
       id: 5,
       auth0_sub: 'auth0|cryo3333',
       name: 'CryoBlaze',
       email: 'cryo.blaze@example.com',
-      picture: 'https://example.com/images/cryoblaze.png'
+      picture: '/images/avatars/Han.jpg',
     },
     {
       id: 6,
       auth0_sub: 'auth0|plasma4444',
       name: 'PlasmaWave',
       email: 'plasma.wave@example.com',
-      picture: 'https://example.com/images/plasmawave.png'
+      picture: '/images/avatars/spaceguy.jpg',
     },
     {
       id: 7,
       auth0_sub: 'auth0|nova5555',
       name: 'NovaDiver',
       email: 'nova.diver@example.com',
-      picture: 'https://example.com/images/novadiver.png'
+      picture: '/images/avatars/pan.webp',
     },
     {
       id: 8,
       auth0_sub: 'auth0|aether6666',
       name: 'AetherBlade',
       email: 'aether.blade@example.com',
-      picture: 'https://example.com/images/aetherblade.png'
+      picture: '/images/avatars/romulus.avif',
     },
     {
       id: 9,
       auth0_sub: 'auth0|orbit7777',
       name: 'OrbitClasher',
       email: 'orbit.clasher@example.com',
-      picture: 'https://example.com/images/orbitclasher.png'
+      picture: '/images/avatars/Xb-FQGGMSouNCMy3ZAO03A.webp',
     },
     {
       id: 10,
       auth0_sub: 'auth0|void8888',
       name: 'VoidVoyager',
       email: 'void.voyager@example.com',
-      picture: 'https://example.com/images/voidvoyager.png'
-    }
+      picture: '/images/avatars/alien2.webp',
+    },
   ])
 
   await knex('stuff').insert([
@@ -88,7 +88,7 @@ export async function seed(knex) {
       description: 'Was playing around with this thing and accidentally cut my arms off, don’t really have much use for it now...',
       owner_id: 1,
       price: 10,
-      image_url: 'https://example.com/images/lightsaber.png',
+      image_url: '/public/images/stuff/lightsaber2.jpg',
       bond: 10,
       condition: 'great',
     },
@@ -98,7 +98,7 @@ export async function seed(knex) {
       description: 'Rock in way? Rock go boom.',
       owner_id: 1,
       price: 20,
-      image_url: 'https://example.com/images/comet_laser.png',
+      image_url: '/public/images/stuff/Luke_gunner_01.webp',
       bond: 20,
       condition: 'great',
     },
@@ -108,7 +108,7 @@ export async function seed(knex) {
       description: "Turns back time like a charm, but only works for an hour. Use it wisely; don't mess up timelines!",
       owner_id: 2,
       price: 50,
-      image_url: 'https://example.com/images/time_turner.png',
+      image_url: '/public/images/stuff/StrangeChangeTimeMachine.jpg',
       bond: 40,
       condition: 'mint',
     },
@@ -118,7 +118,7 @@ export async function seed(knex) {
       description: "Fits literally everything you own. Don't put snacks in it unless you want an ant infestation.",
       owner_id: 3,
       price: 20,
-      image_url: 'https://example.com/images/bag_of_holding.png',
+      image_url: '/public/images/stuff/Bag-of-Holding-140-Polyhedral-Dice-in-20.webp',
       bond: 15,
       condition: 'used',
     },
@@ -155,7 +155,7 @@ export async function seed(knex) {
     },
   ])
 
-  await knex('stuff_reviews').insert([
+ await knex('stuff_reviews').insert([
     {
       id: 1,
       reviewer_id: 1,
@@ -186,3 +186,4 @@ export async function seed(knex) {
     },
   ])
 }
+
