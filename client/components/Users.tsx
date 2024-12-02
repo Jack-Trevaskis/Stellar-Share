@@ -31,6 +31,7 @@ function Users() {
 
   return (
     <div className="users-container">
+      <h1 className="text-2xl font-bold text-center">All Our Members</h1>
       <ul className="users-list">
         {users?.map((user) => (
           <li key={user.id} className="user-item">
