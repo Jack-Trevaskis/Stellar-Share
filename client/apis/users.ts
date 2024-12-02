@@ -2,16 +2,15 @@ import request from 'superagent'
 import { User, UserData } from '../../models/user'
 
 const rootUrl = '/api/v1'
-
-// PUBLIC 
+// PUBLIC
 
 export async function getAllUserInfo(): Promise<UserData[] | null> {
-  const res =  await request.get(`${rootUrl}/users/all`) 
+  const res = await request.get(`${rootUrl}/users/all`)
   return res.body as UserData[]
 }
 
 export async function getUserInfoById(id: number): Promise<UserData | null> {
-  const res = await request.get(`${rootUrl}/users/${id}`) 
+  const res = await request.get(`${rootUrl}/users/${id}`)
   return res.body as UserData
 }
 
@@ -47,7 +46,6 @@ export async function addUser({
     .then((res) => res.body)
     .catch((err) => console.log(err))
 }
-
 
 // OTHER FUNCTIONS NOT IN USE RIGHT NOW
 
