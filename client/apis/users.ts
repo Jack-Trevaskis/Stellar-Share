@@ -1,5 +1,8 @@
 import request from 'superagent'
 import { User, UserData } from '../../models/user'
+import { UserReviewWithNames } from '../../models/user_reviews'
+import { StuffReviewWithNames } from '../../models/stuff_reviews'
+import { Stuff } from '../../models/stuff'
 
 const rootUrl = '/api/v1'
 // PUBLIC
@@ -9,9 +12,30 @@ export async function getAllUserInfo(): Promise<UserData[] | null> {
   return res.body as UserData[]
 }
 
-export async function getUserInfoById(id: number): Promise<UserData | null> {
-  const res = await request.get(`${rootUrl}/users/${id}`)
+export async function getUserInfoById(
+  userId: number,
+): Promise<UserData | null> {
+  const res = await request.get(`${rootUrl}/users/${userId}`)
   return res.body as UserData
+}
+
+export async function getAllUserStuff(userId: number): Promise<Stuff[]> {
+  const res = await request.get(`${rootUrl}/users/${userId}/stuff`)
+  return res.body as Stuff[]
+}
+
+export async function getAllUserReviewsMadeByUser(
+  userId: number,
+): Promise<UserReviewWithNames[] | null> {
+  const res = await request.get(`${rootUrl}/users/user_reviews/${userId}`)
+  return res.body as UserReviewWithNames[]
+}
+
+export async function getAllStuffReviewsMadeByUser(
+  userId: number,
+): Promise<StuffReviewWithNames[] | null> {
+  const res = await request.get(`${rootUrl}/users/stuff_reviews/${userId}`)
+  return res.body as StuffReviewWithNames[]
 }
 
 // PROTECTED

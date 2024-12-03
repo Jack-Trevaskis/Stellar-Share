@@ -27,7 +27,7 @@ const router = createBrowserRouter(
           element={<AddStuffReviewForm />}
         />
         <Route path="/users" element={<Users />} />
-        <Route path="/users/:id" element={<SingleUser />} />
+        <Route path="/users/:userId" element={<SingleUser />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/addStuff" element={<AddStuffForm />} />
       </Route>

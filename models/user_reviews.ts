@@ -7,12 +7,15 @@ export interface UserReviewData {
 
 export interface UserReview {
   id: number
-  userID: string
-  reviewerName: string
+  userId: string
   reviewerId: number
   description: string
   rating: number
 }
 
-export type UserReviews = UserReview[]
+export interface UserReviewWithNames extends UserReview {
+  reviewerName: string
+  userName?: string
+}
 
+export type UserReviews = UserReview[]
