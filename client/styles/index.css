@@ -194,7 +194,6 @@ a:focus,
   }
   /* Submit button */
   .form-submit-button {
-    /* @apply bg-blue text-base3 px-6 py-2 rounded-md text-white transition duration-300; */
     @apply bg-sky-500 text-base3 px-3 py-1 rounded transition duration-300;
     &:hover {
       @apply bg-orange text-base03 shadow-glow-orange;
@@ -206,6 +205,39 @@ a:focus,
       @apply outline-none ring-2 ring-yellow;
     }
   }
+
+  /* --- Register Component Styles --- */
+  .register-container {
+    @apply p-6;
+  }
+  .register-content {
+    @apply bg-base02 p-6 rounded-md shadow-md max-w-md mx-auto text-center;
+  }
+  .register-title {
+    @apply text-xl font-semibold mb-4 text-base1;
+  }
+  .register-subtitle {
+    @apply text-lg mb-6 text-base1;
+  }
+  .register-error {
+    @apply bg-rose-600 text-base3 p-4 rounded mb-6;
+  }
+
+  /* TO DELETE */
+  .form-submit-button:hover:enabled {
+    @apply bg-green;
+  }
+
+  /* TO DELETE */
+  .form-submit-button:active:enabled {
+    @apply bg-orange;
+  }
+
+  /* --- Login Component Styles --- */
+  .login-container {
+    @apply p-6;
+  }
+
   /* --- Footer Styles --- */
   .footer {
     @apply bg-base03 text-base1 p-4 text-sm text-center;

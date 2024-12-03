@@ -7,11 +7,15 @@ import { useUser } from '../hooks/useUser.ts'
 
 function Register() {
   const [errorMsg, setErrorMsg] = useState('')
-  const { user: userAuth0, getAccessTokenSilently, isAuthenticated } = useAuth0()
+  const {
+    user: userAuth0,
+    getAccessTokenSilently,
+    isAuthenticated,
+  } = useAuth0()
   const userFromHook = useUser()
   const navigate = useNavigate()
 
-  if(!isAuthenticated){
+  if (!isAuthenticated) {
     navigate('/')
   }
 
@@ -32,7 +36,6 @@ function Register() {
     onError: handleError,
   }
 
-  
   const [form, setForm] = useState({
     name: '',
   })
@@ -52,13 +55,12 @@ function Register() {
     const token = await getAccessTokenSilently()
     evt.preventDefault()
 
-
     // Both of these should exist at this point, I'm just doing this to keep typescript happy
-    if(!userAuth0){
+    if (!userAuth0) {
       console.log('Could not find current auth0 user')
       return
     }
-    if(!userAuth0.email){
+    if (!userAuth0.email) {
       console.log('Could not get current auth0 user email')
       return
     }
@@ -66,7 +68,17 @@ function Register() {
 
     console.log('GOT HERE')
 
-    userFromHook.add.mutate({ newUser: {'name': form.name, 'email': userAuth0.email, 'picture': userAuth0.picture || ''}, token }, mutationOptions)
+    userFromHook.add.mutate(
+      {
+        newUser: {
+          name: form.name,
+          email: userAuth0.email,
+          picture: userAuth0.picture || '',
+        },
+        token,
+      },
+      mutationOptions,
+    )
     navigate('/')
   }
 
@@ -75,34 +87,43 @@ function Register() {
   }
 
   return (
-    <div>
-      <div>
-        {isAuthenticated && <div>
-          <h1>You don&apos;t have an account yet!</h1>
-          <h2>Pick a user name to sign up</h2>
+    <div className="register-container">
+      {isAuthenticated && (
+        <div className="register-content">
+          <h1 className="register-title">
+            You don&apos;t have an account yet!
+          </h1>
+          <h2 className="register-subtitle">Pick a user name to sign up</h2>
           {errorMsg && (
-            <div>
+            <div className="register-error">
               Error: {errorMsg}
-              <button onClick={hideError}>Okay</button>
+              <button onClick={hideError} className="button">
+                Okay
+              </button>
             </div>
           )}
-          <form onSubmit={handleSubmit}>
-            <div>
-              <label htmlFor="name">Name: </label>
+          <form onSubmit={handleSubmit} className="register-form">
+            <div className="form-group">
+              <label htmlFor="name" className="form-label">
+                Name:{' '}
+              </label>
               <input
                 type="text"
                 id="name"
                 name="name"
                 value={form.name}
                 onChange={handleChange}
+                className="form-input"
               />
             </div>
-            <div>
-              <button disabled={!form.name}>Register</button>
+            <div className="form-group">
+              <button disabled={!form.name} className="form-submit-button">
+                Register
+              </button>
             </div>
           </form>
-        </div>}
-      </div>
+        </div>
+      )}
     </div>
   )
 }
