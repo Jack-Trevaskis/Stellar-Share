@@ -11,12 +11,16 @@ import UserStuff from './UserStuff'
 export function SingleUser() {
   const { userId } = useParams()
 
-  const { data: user, isPending, isError } = useQuery({
+  const {
+    data: user,
+    isPending,
+    isError,
+  } = useQuery({
     queryKey: ['user'],
     queryFn: async () => {
       const users = await getUserInfoById(Number(userId))
       return users
-    }
+    },
   })
 
   if (isPending) return <div>Loading...</div>
@@ -25,53 +29,53 @@ export function SingleUser() {
   return (
     <div className="flex flex-col items-center">
       <h1 className="text-xl font-bold text-center my-4">{user?.name}</h1>
-        <div className="flex flex-col items-center">
-          <p>
-            Contact: <span className="font-bold">{user?.email}</span>
-          </p>
-        </div>
-        <div className="flex flex-col items-center">
-          <img
-            src={user?.picture}
-            alt="user avatar"
-            className="rounded-full w-24 h-24 aspect-square object-cover"
-          />
-        </div>
+      <div className="flex flex-col items-center">
+        <p>
+          Contact: <span className="font-bold">{user?.email} </span>
+        </p>
+      </div>
+      <div className="flex flex-col items-center">
+        <img
+          src={user?.picture}
+          alt="user avatar"
+          className="rounded-full w-24 h-24 aspect-square object-cover"
+        />
+      </div>
 
-        {/* USER STUFF LISTINGS */}
+      {/* USER STUFF LISTINGS */}
 
-        <h2 className="text-2xl font-semibold mb-4 text-center">User Listings</h2> 
-        <div className="flex"> 
-            <UserStuff />
+      <h2 className="text-2xl font-semibold mb-4 text-center">User Listings</h2>
+      <div className="flex">
+        <UserStuff />
+      </div>
+
+      {/* USER REVIEWS */}
+
+      <h2 className="text-2xl font-semibold mb-4 text-center">User Reviews</h2>
+      <div className="flex flex-row gap-4 ">
+        <div>
+          <h2 className="text-xl font-semibold mb-4 text-center">Received</h2>
+          <ReviewsOnUser />
         </div>
-
-        {/* USER REVIEWS */}
-
-        <h2 className="text-2xl font-semibold mb-4 text-center">User Reviews</h2> 
-        <div className="flex flex-row gap-4 ">
-          <div>
-            <h2 className="text-xl font-semibold mb-4 text-center">Received</h2> 
-            <ReviewsOnUser />
-          </div>
-          <div>
-            <h2 className="text-xl font-semibold mb-4 text-center">Given</h2> 
-            <UserReviewsByUser />
-          </div>
+        <div>
+          <h2 className="text-xl font-semibold mb-4 text-center">Given</h2>
+          <UserReviewsByUser />
         </div>
-        
-        {/* STUFF REVIEWS  */}
+      </div>
 
-        <h2 className="text-2xl font-semibold mb-4 text-center">Stuff Reviews</h2> 
-        <div className="flex flex-row gap-4">
-          <div>
-            <h2 className="text-xl font-semibold mb-4 text-center">Received</h2> 
-            <ReviewsOnUserStuff />
-          </div>
-          <div>
-            <h2 className="text-xl font-semibold mb-4 text-center">Given</h2> 
-            <StuffReviewsByUser />
-          </div>
+      {/* STUFF REVIEWS  */}
+
+      <h2 className="text-2xl font-semibold mb-4 text-center">Stuff Reviews</h2>
+      <div className="flex flex-row gap-4">
+        <div>
+          <h2 className="text-xl font-semibold mb-4 text-center">Received</h2>
+          <ReviewsOnUserStuff />
         </div>
+        <div>
+          <h2 className="text-xl font-semibold mb-4 text-center">Given</h2>
+          <StuffReviewsByUser />
+        </div>
+      </div>
     </div>
   )
 }

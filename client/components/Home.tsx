@@ -37,7 +37,7 @@ function Home() {
           See all our good (and not-so-good) space-cadets here
         </Link>
         <IfAuthenticated>
-          <Link to="/addStuff" className="text-blue-500 hover:underline">
+          <Link to="/addStuff" className="button text-blue-500 hover:underline">
             Add your own items here
           </Link>
         </IfAuthenticated>
