@@ -68,8 +68,9 @@ a:focus,
   }
 }
 
-/* --- Users Component Styles --- */
+/* --- ALL CUSTOM TW CLASSES --- */
 @layer components {
+  /* --- Users Component Styles --- */
   .users-container {
     @apply p-4;
   }
@@ -105,9 +106,39 @@ a:focus,
     @apply w-full bg-base03 border border-base01 rounded-md p-2 text-base1 placeholder-base00 focus:outline-none focus:ring-2 focus:ring-blue;
   }
 
+  /* All Stuffs Component Styles*/
+  .all-stuff-container {
+    @apply flex flex-col gap-4 p-4;
+  }
+  .stuff-card {
+    @apply flex flex-col bg-base02 p-4 gap-4 rounded-lg shadow-md transition duration-100 cursor-pointer;
+  }
+  .stuff-card:hover {
+    @apply shadow-lg bg-green text-base03;
+  }
+  .stuff-card:focus {
+    @apply outline-none ring-2 ring-yellow;
+  }
+  .stuff-title {
+    @apply text-lg md:text-xl font-semibold text-base1;
+  }
+  h1.stuff-title:hover {
+    @apply text-lime-950 text-shadow-glow-yellow;
+  }
+  .stuff-details {
+    @apply flex flex-wrap items-center text-sm text-base1 mb-4;
+  }
+  .detail-label {
+    @apply font-medium text-base1;
+  }
+  .stuff-description {
+    @apply text-base0;
+  }
   /* --- ReviewOnUser --- */
 
   /* AllStuff Component --- */
+
+  /* HOME PAGE ---*/
 
   /* Input fields */
   input,
@@ -132,4 +163,31 @@ a:focus,
   .footer {
     @apply bg-base03 text-base1 p-4 text-sm text-center;
   }
+
+  /* -----------Review-------------*/
+  .reviews-container {
+    @apply p-4;
+  }
+
+  .reviews-title {
+    @apply text-2xl font-semibold mb-4 text-center;
+  }
+
+  .reviews-list {
+    @apply space-y-4;
+  }
+
+  .review-item {
+    @apply border border-gray-300 p-6 rounded-lg shadow-md bg-white hover:shadow-lg transition-shadow duration-300;
+  }
+
+  .review-rating,
+  .review-description {
+    @apply mb-2;
+  }
+
+  .review-link {
+    @apply text-sky-500 hover:underline;
+  }
+  /* End of Reviews section */
 }
