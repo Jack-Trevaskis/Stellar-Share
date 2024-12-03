@@ -2,7 +2,6 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { useUser } from '../hooks/useUser'
 
 export function Profile() {
-
   const { isAuthenticated } = useAuth0()
 
   const userFromHook = useUser()
@@ -11,7 +10,7 @@ export function Profile() {
     return <div>Please sign in to view your profile.</div>
   }
 
-  if(!userFromHook.data){
+  if (!userFromHook.data) {
     return <div>Failed to fetch your data from the database.</div>
   }
 

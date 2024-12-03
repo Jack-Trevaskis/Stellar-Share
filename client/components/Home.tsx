@@ -12,7 +12,7 @@ function Home() {
         <img src="/images/Homepage/TrolleGuy.png" alt="Trolley" />
       </div>
 
-      <p className="text-lg text-end mb-6">
+      <p className="text-lg text-center mb-6">
         Here at Stellar Share, we pride ourselves on delivering the finest
         products throughout the galaxy. But we don`t stop there—our innovative
         marketplace also allows you to rent and share items with other users
@@ -37,7 +37,7 @@ function Home() {
           See all our good (and not-so-good) space-cadets here
         </Link>
         <IfAuthenticated>
-          <Link to="/addStuff" className="text-blue-500 hover:underline">
+          <Link to="/addStuff" className="button text-blue-500 hover:underline">
             Add your own items here
           </Link>
         </IfAuthenticated>
