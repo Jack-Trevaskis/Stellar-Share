@@ -10,10 +10,11 @@ import AddUserReviewForm from './AddUserReviewForm'
 import { IfAuthenticated } from './Authenticated'
 
 const customHideEmail = (email: string | undefined) => {
-  if (!email) return ''
-  const [domain] = email.split('@')
-  return `******@${domain}`
+  if (!email || !email.includes('@')) return 'N/A'
+  const [local, domain] = email.split('@')
+  return `${'*'.repeat(local.length)}@${domain}`
 }
+
 export function SingleUser() {
   const { userId } = useParams()
 

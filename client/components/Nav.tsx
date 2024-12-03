@@ -22,7 +22,7 @@ export function Nav() {
 
   return (
     <nav className="w-full bg-base02">
-      <img src="/images/Homepage/Banner.png" alt="Banner" />
+      <img className="w-full" src="/images/Homepage/Banner.png" alt="Banner" />
       <IfAuthenticated>
         <ul className="flex justify-evenly items-center w-full">
           <li>
