@@ -7,8 +7,7 @@ import { Link } from 'react-router-dom'
 import { useUser } from '../hooks/useUser'
 
 export function Nav() {
-  const { user, isAuthenticated, isLoading } =
-    useAuth0()
+  const { user, isAuthenticated, isLoading } = useAuth0()
 
   const userFromHook = useUser()
 
@@ -23,6 +22,7 @@ export function Nav() {
 
   return (
     <nav className="w-full bg-base02">
+      <img src="/images/Homepage/Banner.png" alt="Banner" />
       <IfAuthenticated>
         <ul className="flex justify-evenly items-center w-full">
           <li>

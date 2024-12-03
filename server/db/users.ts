@@ -81,7 +81,8 @@ export async function getUserByAuth0Sub(auth0Sub: string): Promise<UserData> {
     .select(
       'id',
       'name', 
-      'email'
+      'email',
+      'picture'
     )
     .where('auth0_sub', auth0Sub)
     .first()

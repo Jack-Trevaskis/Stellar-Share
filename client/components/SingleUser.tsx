@@ -7,6 +7,8 @@ import ReviewsOnUser from './ReviewsOnUser'
 import StuffReviewsByUser from './StuffReviewsByUser'
 import ReviewsOnUserStuff from './ReviewsOnUserStuff'
 import UserStuff from './UserStuff'
+import AddUserReviewForm from './AddUserReviewForm'
+import { IfAuthenticated } from './Authenticated'
 
 export function SingleUser() {
   const { userId } = useParams()
@@ -37,6 +39,15 @@ export function SingleUser() {
             className="rounded-full w-24 h-24 aspect-square object-cover"
           />
         </div>
+
+        {/* ADD A REVIEW FOR THIS USER */}
+
+        <IfAuthenticated>
+          <h2 className="text-2xl font-semibold mb-4 text-center">Add a review for this user</h2> 
+          <div>
+            <AddUserReviewForm />
+          </div>
+        </IfAuthenticated>
 
         {/* USER STUFF LISTINGS */}
 
@@ -72,6 +83,7 @@ export function SingleUser() {
             <StuffReviewsByUser />
           </div>
         </div>
+        
     </div>
   )
 }

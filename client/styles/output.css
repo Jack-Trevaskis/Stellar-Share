@@ -513,20 +513,6 @@ video {
   gap: 0.75rem;
   padding: 0px;
 }
-.user-item{
-  display: flex;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 300ms;
-}
-.user-item:hover .user-name{
-  --tw-bg-opacity: 1;
-  background-color: rgb(133 153 0 / var(--tw-bg-opacity, 1));
-  --tw-text-opacity: 1;
-  color: rgb(0 43 54 / var(--tw-text-opacity, 1));
-}
 /* --- AddStuffForm Component Styles --- */
 /* Form container: */
 .add-stuff-form-container{
@@ -834,9 +820,6 @@ input:focus,
 .w-full{
   width: 100%;
 }
-.cursor-pointer{
-  cursor: pointer;
-}
 .flex-row{
   flex-direction: row;
 }
@@ -889,6 +872,9 @@ input:focus,
 }
 .text-center{
   text-align: center;
+}
+.text-end{
+  text-align: end;
 }
 .text-2xl{
   font-size: 1.5rem;

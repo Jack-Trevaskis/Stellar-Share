@@ -1,16 +1,13 @@
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useStuffById } from '../hooks/useStuff'
-import StuffReviews from './StuffReviews'
 import { useAuth0 } from '@auth0/auth0-react'
+import StuffReviews from './StuffReviews'
 import AddStuffReviewForm from './AddStuffReviewForm'
 
 function SingleStuffPage() {
   const { stuffId } = useParams()
   const { data: stuff, error, isPending } = useStuffById(Number(stuffId))
   const { isAuthenticated } = useAuth0()
-
-  // hi
-  // hi! Hows your day going so far?
 
   if (isPending) {
     return <p>Is loading...</p>
@@ -20,14 +17,13 @@ function SingleStuffPage() {
     return <p>Error.. {error.message}</p>
   }
 
-  console.log(SingleStuffPage)
-
   return (
     <div className="single-stuff-page">
       <div className="stuff-details-card">
         <ul className="stuff-details-list">
           <li className="stuff-details-item">
-            <strong>Item listed by:</strong> {stuff.ownerName}
+            <strong>Item listed by:</strong>{' '}
+            <Link to={`/users/${stuff.ownerId}`}>{stuff.ownerName}</Link>
           </li>
           <li className="stuff-details-item">
             <strong>Name:</strong> {stuff.name}
