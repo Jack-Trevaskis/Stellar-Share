@@ -1,5 +1,6 @@
 import { useAllStuff } from '../hooks/useStuff'
 import { Link, useNavigate } from 'react-router-dom'
+import { IfAuthenticated } from './Authenticated'
 
 export function AllStuff() {
   const { isPending, isError, data } = useAllStuff()
@@ -11,14 +12,13 @@ export function AllStuff() {
 
   return (
     <div className="all-stuff-container">
-      <div className='flex flex-col items-center space-y-4'>
-      <Link
-              to="/addStuff"
-              className="text-2xl text-base1 hover:text-yellow transition duration-300"
-            >
-              Add Stuff
-            </Link>
-      </div>
+      <IfAuthenticated >
+        <Link to="/addStuff" className="text-2xl text-base1 hover:text-yellow transition duration-300">
+        <div className='flex flex-col items-center space-y-4 button add-stuff-button'>
+          List your own stuff!
+        </div>
+        </Link>
+      </IfAuthenticated>
       {data.map((stuff) => (
         <div
           tabIndex={0}
