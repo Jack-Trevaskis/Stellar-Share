@@ -12,7 +12,6 @@ import { Profile } from './components/Profile'
 import { AllStuff } from './components/AllStuff'
 import AddStuffForm from './components/AddStuffForm'
 import Register from './components/Register'
-import AddStuffReviewForm from './components/AddStuffReviewForm'
 import { SingleUser } from './components/SingleUser'
 
 const router = createBrowserRouter(
@@ -22,10 +21,6 @@ const router = createBrowserRouter(
         <Route path="/" element={<Home />} />
         <Route path="stuff" element={<AllStuff />} />
         <Route path="/stuff/:stuffId" element={<SingleStuffPage />} />
-        <Route
-          path="/stuff/:stuffId/addStuffReview"
-          element={<AddStuffReviewForm />}
-        />
         <Route path="/users" element={<Users />} />
         <Route path="/users/:userId" element={<SingleUser />} />
         <Route path="/profile" element={<Profile />} />

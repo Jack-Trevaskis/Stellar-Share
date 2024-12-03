@@ -14,7 +14,7 @@ export function useCreateStuffReview() {
     },
     onSuccess: () => {
       // Invalidate the 'daily' query to refetch updated data
-      queryClient.invalidateQueries({ queryKey: ['create_stuff_review'] })
+      queryClient.invalidateQueries({ queryKey: ['stuff_reviews'] })
     },
     onError: (error) => {
       // Handle errors here (e.g., show toast notifications)
