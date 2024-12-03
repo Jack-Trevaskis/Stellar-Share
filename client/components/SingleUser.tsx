@@ -1,12 +1,13 @@
 import { useParams } from 'react-router-dom'
 import { getUserInfoById } from '../apis/users'
 import { useQuery } from '@tanstack/react-query'
-
 import UserReviewsByUser from './UserReviewsByUser'
 import ReviewsOnUser from './ReviewsOnUser'
 import StuffReviewsByUser from './StuffReviewsByUser'
 import ReviewsOnUserStuff from './ReviewsOnUserStuff'
 import UserStuff from './UserStuff'
+import AddUserReviewForm from './AddUserReviewForm'
+import { IfAuthenticated } from './Authenticated'
 
 const customHideEmail = (email: string | undefined) => {
   if (!email) return ''
@@ -47,6 +48,17 @@ export function SingleUser() {
           className="rounded-full w-24 h-24 aspect-square object-cover"
         />
       </div>
+
+      {/* ADD A REVIEW FOR THIS USER */}
+
+      <IfAuthenticated>
+        <h2 className="text-2xl font-semibold mb-4 text-center">
+          Add a review for this user
+        </h2>
+        <div>
+          <AddUserReviewForm />
+        </div>
+      </IfAuthenticated>
 
       {/* USER STUFF LISTINGS */}
 

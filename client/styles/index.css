@@ -138,6 +138,49 @@ a:focus,
   .stuff-description {
     @apply text-base0;
   }
+
+  /* --- SingleStuffPage Component Styles --- */
+  .single-stuff-page {
+    @apply p-4;
+  }
+
+  .stuff-details-card {
+    @apply flex flex-col gap-4 p-4 bg-base02 rounded-lg shadow-md transition duration-300  /* cursor-pointer */;
+  }
+  .stuff-details-card:hover {
+    @apply shadow-lg bg-green text-base03;
+  }
+  /* Ensure all text inside .stuff-details-card becomes dark on hover */
+  .stuff-details-card:hover * {
+    @apply text-base03;
+  }
+  .stuff-details-card:focus {
+    @apply outline-none ring-2 ring-yellow;
+  }
+
+  .stuff-details-list {
+    @apply list-none p-0 m-0;
+  }
+  .stuff-details-item {
+    @apply text-base1 mb-2;
+  }
+  .stuff-details-item strong {
+    @apply font-semibold text-base1;
+  }
+
+  /* Glowing effect on hover for significant elements */
+  .stuff-details-item:hover strong {
+    /* @apply text-yellow text-shadow-glow-yellow; */
+    @apply text-rose-900 text-shadow-glow-orange;
+  }
+
+  .stuff-image {
+    @apply w-1/2 rounded-lg mt-4 shadow-md transition-transform duration-300;
+  }
+
+  .stuff-image:hover {
+    @apply shadow-lg scale-105;
+  }
   /* --- ReviewOnUser --- */
 
   /* AllStuff Component --- */

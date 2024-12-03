@@ -41,14 +41,14 @@ export function Nav() {
               Users
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link
               to="/addStuff"
               className="text-2xl text-base1 hover:text-yellow transition duration-300"
             >
               Add Stuff
             </Link>
-          </li>
+          </li> */}
           <li>
             <Link
               to="/stuff"

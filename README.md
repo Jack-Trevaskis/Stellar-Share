@@ -72,3 +72,17 @@ As we are using **Auth0** for authenticating users, we need to update also our [
 
 ---
 [Provide feedback on this repo](https://docs.google.com/forms/d/e/1FAIpQLSfw4FGdWkLwMLlUaNQ8FtP2CTJdGDUv6Xoxrh19zIrJSkvT4Q/viewform?usp=pp_url&entry.1958421517=boilerplate-fullstack)
+
+
+
+---
+For updating the deployed app...
+- make sure you do the zsh thing above (changing that one line from devacademy.nz to pushed.nz)
+- in your terminal run this:   git remote add dokku dokku@pushed.nz:stellar-share-mania-roa-24
+- if we have made structural changes to the DB (changed the migrations file), it'll need to be rolled-back, so run:
+   dokku run npm run knex migrate:rollback
+- dokku run npm run knex migrate:latest
+- dokku run npm run knex seed:run
+
+Then finally, update the deployed app with the latest code:
+git push dokku main

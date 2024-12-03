@@ -1,7 +1,7 @@
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useStuffById } from '../hooks/useStuff'
-import StuffReviews from './StuffReviews'
 import { useAuth0 } from '@auth0/auth0-react'
+import StuffReviews from './StuffReviews'
 import AddStuffReviewForm from './AddStuffReviewForm'
 
 function SingleStuffPage() {
@@ -9,19 +9,13 @@ function SingleStuffPage() {
   const { data: stuff, error, isPending } = useStuffById(Number(stuffId))
   const { isAuthenticated } = useAuth0()
 
-  // hi
-  // hi! Hows your day going so far?
-  // 8====D~
-
   if (isPending) {
-    return <p>Is loading...</p>
+    return <p>Loading...</p>
   }
 
   if (error) {
-    return <p>Error.. {error.message}</p>
+    return <p>Error: {error.message}</p>
   }
-
-  console.log(SingleStuffPage)
 
   return (
     <div className="single-stuff-page">
@@ -48,7 +42,8 @@ function SingleStuffPage() {
           <li
             style={{ fontSize: '16px', color: '#2D3748', marginBottom: '8px' }}
           >
-            <strong>Item listed by:</strong> {stuff.ownerName}
+            <strong>Item listed by:</strong>{' '}
+            <Link to={`/users/${stuff.ownerId}`}>{stuff.ownerName}</Link>
           </li>
           <li
             style={{ fontSize: '16px', color: '#2D3748', marginBottom: '8px' }}
