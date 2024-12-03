@@ -34,25 +34,25 @@ function SingleStuffPage() {
 
   return (
     <div className="single-stuff-page">
-      <div className="stuff-details-card">
-        <ul className="stuff-details-list">
-          <li className="stuff-details-item">
+      <div className="flex flex-row border border-gray-300 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+        <ul>
+          <li>
             <strong>Item listed by:</strong>{' '}
             <Link to={`/users/${stuff.ownerId}`}>{stuff.ownerName}</Link>
           </li>
-          <li className="stuff-details-item">
+          <li>
             <strong>Name:</strong> {stuff.name}
           </li>
-          <li className="stuff-details-item">
+          <li>
             <strong>Description:</strong> {stuff.description}
           </li>
-          <li className="stuff-details-item">
+          <li>
             <strong>Price:</strong> ${stuff.price}
           </li>
-          <li className="stuff-details-item">
+          <li>
             <strong>Bond:</strong> ${stuff.bond}
           </li>
-          <li className="stuff-details-item">
+          <li>
             <strong>Condition:</strong> {stuff.condition}
           </li>
         </ul>
