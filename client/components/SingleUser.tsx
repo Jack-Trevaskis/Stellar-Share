@@ -49,33 +49,22 @@ export function SingleUser() {
         />
       </div>
 
-      {/* ADD A REVIEW FOR THIS USER */}
-
-      <IfAuthenticated>
-        <h2 className="text-2xl font-semibold mb-4 text-center">
-          Add a review for this user
-        </h2>
-        <div>
-          <AddUserReviewForm />
-        </div>
-      </IfAuthenticated>
-
       {/* USER STUFF LISTINGS */}
 
       <h2 className="text-2xl font-semibold mb-4 text-center">User Listings</h2>
-      <div className="flex">
+      <div className="w-full">
         <UserStuff />
       </div>
 
       {/* USER REVIEWS */}
 
       <h2 className="text-2xl font-semibold mb-4 text-center">User Reviews</h2>
-      <div className="flex flex-row gap-4 ">
-        <div>
+      <div className="flex flex-row gap-4 w-full">
+        <div className="w-full">
           <h2 className="text-xl font-semibold mb-4 text-center">Received</h2>
           <ReviewsOnUser />
         </div>
-        <div>
+        <div className="w-full">
           <h2 className="text-xl font-semibold mb-4 text-center">Given</h2>
           <UserReviewsByUser />
         </div>
@@ -84,16 +73,28 @@ export function SingleUser() {
       {/* STUFF REVIEWS  */}
 
       <h2 className="text-2xl font-semibold mb-4 text-center">Stuff Reviews</h2>
-      <div className="flex flex-row gap-4">
-        <div>
+      <div className="flex flex-row gap-4 w-full">
+        <div className="w-full">
           <h2 className="text-xl font-semibold mb-4 text-center">Received</h2>
           <ReviewsOnUserStuff />
         </div>
-        <div>
+        <div className="w-full">
           <h2 className="text-xl font-semibold mb-4 text-center">Given</h2>
           <StuffReviewsByUser />
         </div>
       </div>
+
+      {/* ADD A REVIEW FOR THIS USER */}
+
+      <IfAuthenticated>
+        <h2 className="text-2xl font-semibold mb-4 text-center">
+          Add a review for this user
+        </h2>
+        <div className="w-full">
+          <AddUserReviewForm />
+        </div>
+      </IfAuthenticated>
+
     </div>
   )
 }

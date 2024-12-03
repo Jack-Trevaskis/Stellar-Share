@@ -16,8 +16,13 @@ export default function ReviewsOnUser() {
   return (
     <div className="p-4">
       {/* <h2 className="text-2xl font-semibold mb-4 text-center">Reviews</h2> */}
-      <ul className="space-y-4">
-        {reviews?.map((review) => (
+      <ul className="space-y-4 rounded-lg"
+        style={{
+          maxHeight: "300px",
+          overflow: "scroll"
+        }}
+      >
+        {reviews?.slice().reverse().map((review) => (
           <li
             key={review.id}
             className="border border-gray-300 p-6 rounded-lg shadow-md bg-white hover:shadow-lg transition-shadow duration-300"

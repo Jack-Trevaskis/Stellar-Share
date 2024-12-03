@@ -29,7 +29,12 @@ function StuffReviewsByUser() {
 
   return (
     <div className="p-4">
-      <ul className="space-y-4">
+      <ul className="space-y-4 rounded-lg"
+        style={{
+          maxHeight: "300px",
+          overflow: "scroll"
+        }}
+      >
         {stuffReviews?.map((review) => (
           <li 
             key={review.id} 

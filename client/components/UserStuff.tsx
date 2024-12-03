@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { getAllUserStuff } from '../apis/users'
 
 
@@ -31,17 +31,19 @@ function UserStuff() {
     <div className="p-4">
       <ul className="space-y-4">
         {stuff?.map((thing) => (
-          <li 
-            key={thing.id} 
-            className="border border-gray-300 p-6 rounded-lg shadow-md bg-white hover:shadow-lg transition-shadow duration-300"
-          >
-            <p className="mb-2">
-              <b>Name: </b> 
-              <a href={`/stuff/${thing.id}`} className="text-blue-500 hover:underline">
-                {thing.name}
-              </a>
-            </p>
-            <p className="mb-2"><b>Description:</b> {thing.description}</p>
+          <li key={thing.id} className="stuff-card border border-gray-300 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+            <Link to={`/stuff/${thing.id}`} className="flex flex-row">
+              <div>
+                <img src={thing.imageUrl} alt="thing" className="size-14 rounded-full"/>
+              </div>
+              <div>
+                <p className="mb-2">
+                  <b>Name: </b> 
+                  {thing.name}
+                </p>
+                <p className="mb-2"><b>Description:</b> {thing.description}</p>
+              </div>
+            </Link>
           </li>
         ))}
       </ul>
