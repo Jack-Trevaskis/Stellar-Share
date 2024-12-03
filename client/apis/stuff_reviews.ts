@@ -2,17 +2,14 @@ import request from 'superagent'
 
 import { StuffReviewData, StuffReviewWithNames } from '../../models/stuff_reviews'
 
-import { StuffReview } from '../../models/stuff_reviews'
 
 const rootUrl = '/api/v1/stuff_reviews'
 
 // FRONT END API STUFF REVIEW FUNCTIONS GO HERE
 
-export async function fetchStuffReviews(stuffId: number) {
-  const result = await request.get(`${rootUrl}/${stuffId}/reviews`)
-  console.log('fetched reviews', result.body)
-
-  return result.body as StuffReview[]
+export async function getStuffReviewsByStuffId(stuffId: number): Promise<StuffReviewWithNames[]> {
+  const result = await request.get(`${rootUrl}/${stuffId}`)
+  return result.body as StuffReviewWithNames[]
 }
 
 export async function createStuffReview(stuffReviewData: StuffReviewData) {

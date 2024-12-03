@@ -1,22 +1,17 @@
 import { useParams } from "react-router-dom"
 import { useStuffById } from "../hooks/useStuff"
 import StuffReviews from "./StuffReviews"
-import { useNavigate} from 'react-router-dom'
 import { useAuth0 } from "@auth0/auth0-react";
+import AddStuffReviewForm from "./AddStuffReviewForm";
 
 
 function SingleStuffPage() {
   const { stuffId } = useParams();
   const { data: stuff, error, isPending } = useStuffById(Number(stuffId));
   const { isAuthenticated } = useAuth0()
-  const navigate = useNavigate()
 
-  const handleAddReview = () => {
-
-    navigate(`addStuffReview`)
-  }
-
-  // hi
+  // hi 
+  // hi! Hows your day going so far? 
 
   if (isPending) {
     return <p>Is loading...</p>;
@@ -29,6 +24,7 @@ function SingleStuffPage() {
   console.log(SingleStuffPage);
 
   return (
+    <div className="single-stuff-page">
     <div
       style={{
         display: "flex",
@@ -39,6 +35,7 @@ function SingleStuffPage() {
         boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
         borderRadius: "8px",
         transition: "box-shadow 0.2s ease",
+        margin: "10px"
       }}
       onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "0 6px 10px rgba(0, 0, 0, 0.15)")}
       onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)")}
@@ -73,27 +70,9 @@ function SingleStuffPage() {
           boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
         }}
       />
-      <StuffReviews />
-
-      { isAuthenticated && <button
-        onClick={()=>{handleAddReview()}}
-        style={{
-          marginTop: "16px",
-          padding: "10px 20px",
-          backgroundColor: "#2D3748",
-          color: "#FFF",
-          fontSize: "16px",
-          fontWeight: "bold",
-          border: "none",
-          borderRadius: "8px",
-          cursor: "pointer",
-          transition: "background-color 0.3s ease",
-        }}
-        onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#1A202C")}
-        onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#2D3748")}
-      >
-        Leave Review
-      </button>}
+    </div>
+    <StuffReviews />
+    { isAuthenticated && <AddStuffReviewForm />}
     </div>
   );
 }

@@ -12,7 +12,7 @@ function ReviewsOnUserStuff() {
     isPending,
     isError,
   } = useQuery({
-    queryKey: ['stuff_reviews', userId],
+    queryKey: ['user_stuff_reviews', userId],
     queryFn: async () => {
       const reviews = await getAllReviewsOnUserStuff(Number(userId))
       return reviews

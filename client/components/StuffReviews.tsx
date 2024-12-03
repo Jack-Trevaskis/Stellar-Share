@@ -1,21 +1,20 @@
 import { useQuery } from '@tanstack/react-query'
-import { fetchStuffReviews } from '../apis/stuff_reviews'
+import { getStuffReviewsByStuffId } from '../apis/stuff_reviews'
 import { useParams } from 'react-router-dom'
 
 
 function StuffReviews() {
   
   const { stuffId } = useParams()
-  // console.log('stuff id:', stuffId);
   
   const {
     data: stuffReviews,
     isPending,
     isError,
   } = useQuery({
-    queryKey: ['stuff reviews', stuffId],
+    queryKey: ['stuff_reviews', stuffId],
     queryFn: async () => {
-      const reviews = await fetchStuffReviews(Number(stuffId))
+      const reviews = await getStuffReviewsByStuffId(Number(stuffId))
       return reviews
     },
   })
@@ -29,18 +28,34 @@ function StuffReviews() {
   }
 
   return (
-    <>
-      <ul className="flex flex-col gap-4 p-0 list-none">
-        {stuffReviews?.map((stuffReviews) => (
-          <li key={stuffReviews.id}>
-              ⭐ {stuffReviews.rating} <br/>
-              {stuffReviews.description} <br/>
-              {stuffReviews.reviewerId}
-          </li>
+    <div className="p-4">
+        {stuffReviews?.map((review) => (
+          <div 
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "16px",
+              padding: "16px",
+              backgroundColor: "white",
+              boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+              borderRadius: "8px",
+              margin: "10px"
+            }}
+            key={review.id} 
+            className="border border-gray-300 p-6 rounded-lg shadow-md bg-white hover:shadow-lg transition-shadow duration-300"
+          >
+            <p className="mb-2"> <b>Rating: </b> {Array(review.rating).fill('⭐').join('')}</p>
+            <p className="mb-2">
+              <b>Reviewed By: </b> 
+              <a href={`/users/${review.reviewerId}`} className="text-blue-500 hover:underline">
+                {review.reviewerName}
+              </a>
+            </p>
+            <p className="mb-2"><b>Description:</b> {review.description}</p>
+          </div>
         ))}
-      </ul>
-    </>
-  )
+    </div>
+  )   
 }
 
 export default StuffReviews

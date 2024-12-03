@@ -1,22 +1,23 @@
 import db from './connection.ts'
-import { StuffReview, StuffReviewWithNames } from '../../models/stuff_reviews.ts'
+import { StuffReviewWithNames } from '../../models/stuff_reviews.ts'
 import { StuffReviewData } from '../../models/stuff_reviews.ts'
 
 // All stuff review DB functions go here
 
-export async function getStuffReview(stuffId: number): Promise<StuffReview[]> {
+export async function getReviewsByStuffId(stuffId: number): Promise<StuffReviewWithNames[]> {
   // console.log('db fn hit')
   return await db('stuff_reviews')
     .join('stuff', 'stuff_reviews.stuff_id', 'stuff.id')
-    .join('users', 'stuff_reviews.reviewer_id', 'users.id')
+    .join('users as reviewers', 'stuff_reviews.reviewer_id', 'reviewers.id')
     .where('stuff_reviews.stuff_id', stuffId)
     .select(
-      'stuff_reviews.id',
-      'users.name',
+      'stuff_reviews.id as id',
+      'stuff.id as stuffId',
+      'stuff.name as stuffName',
       'reviewer_id as reviewerId',
-      'stuff_id as stuffId',
-      'stuff_reviews.description',
-      'stuff_reviews.rating',
+      'reviewers.name as reviewerName',
+      'stuff_reviews.description as description',
+      'stuff_reviews.rating as rating',
     )
 }
 

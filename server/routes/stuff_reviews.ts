@@ -6,12 +6,12 @@ const router = Router()
 
 // Routes for stuff reviews go here
 
-router.get('/:stuffId/reviews', async (req, res) => {
+router.get('/:stuffId', async (req, res) => {
 
   const stuffId = Number(req.params.stuffId)
 
   try {
-    const stuffReviews = await db.getStuffReview(stuffId)
+    const stuffReviews = await db.getReviewsByStuffId(stuffId)
     res.json(stuffReviews)
   } catch (err) {
     console.error('Error fetching reviews:', err)
