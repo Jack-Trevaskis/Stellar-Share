@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom'
-import { IfAuthenticated } from './Authenticated'
+import { Link } from "react-router-dom"
+import { IfAuthenticated } from "./Authenticated"
 
 function Home() {
   return (
@@ -41,7 +41,8 @@ function Home() {
             Add your own items here
           </Link>
         </IfAuthenticated>
-      </div>
+   
+              </div>
     </>
   )
 }
