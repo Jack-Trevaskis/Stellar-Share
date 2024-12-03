@@ -29,10 +29,14 @@ function Users() {
       <ul className="users-list">
         {users?.map((user) => (
           <Link to={`/users/${user.id}`} key={user.id}>
-          <li className="stuff-card flex-row">
-            <img className="icon rounded-full" src={user.picture} alt="profile pic"/>
-            <span className="stuff-title">{user.name}</span>
-          </li>
+            <li className="stuff-card flex-row">
+              <img
+                className="size-14 rounded-full"
+                src={user.picture}
+                alt="profile pic"
+              />
+              <span className="stuff-title">{user.name}</span>
+            </li>
           </Link>
         ))}
       </ul>
