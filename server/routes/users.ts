@@ -66,7 +66,47 @@ router.get('/stuff_reviews/:id', async (req, res) => {
   }
 })
 
-// PROTECTED ROUTES
+// Update user info
+router.patch('/:id', async (req, res) => {
+  try {
+    const userId = Number(req.params.id)
+    const updatedUser = await db.updateUser(userId, req.body)
+    if (!updatedUser) {
+      return res.status(404).json('User not found - update fail')
+    }
+    res.status(200).json(updatedUser)
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error('Server error, could not update user')
+      res.sendStatus(500)
+    }
+  }
+})
+
+// Delete user
+router.delete('/:id', async (req, res) => {
+  try {
+    const userId = Number(req.params.id)
+    await db.deleteUser(userId)
+    res.status(200).json('User deleted: ' + userId)
+  } catch (error) {
+    if (error instanceof Error) {
+      if (error.message === 'User not found') {
+        res.sendStatus(404)
+      } else {
+        console.error('Could not delete user.', error);
+        res.sendStatus(500)
+      }
+    }
+    else {
+      console.error('Unexpected error, could not delete user', error)
+      res.sendStatus(500)
+    }
+  }
+})
+
+
+//---- PROTECTED ROUTES ----
 
 router.get('/', checkJwt, async (req: JwtRequest, res) => {
   try {
@@ -97,38 +137,5 @@ router.post('/', checkJwt, async (req: JwtRequest, res) => {
 
   }
 })
-
-// OTHER ROUTES NOT IN USE YET
-
-// Update user info
-// router.patch('/:id', async (req, res) => {
-//   try {
-//     const userId = req.params.id
-//     const updatedUser = await db.updateUser(userId, req.body)
-//     if (!updatedUser) {
-//       return res.sendStatus(404)
-//     }
-//     res.json(updatedUser)
-//   } catch (error) {
-//     if (error instanceof Error) {
-//       console.error('Could not update user!')
-//       res.sendStatus(500)
-//     }
-//   }
-// })
-
-// Delete user
-// router.delete('/:id', async (req, res) => {
-//   try {
-//     const userId = req.params.id
-//     await db.deleteUserById(userId)
-//     res.sendStatus(204)
-//   } catch (error) {
-//     if (error instanceof Error) {
-//       console.error('Could not delete user!')
-//       res.sendStatus(500)
-//     }
-//   }
-// })
 
 export default router

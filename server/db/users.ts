@@ -74,6 +74,40 @@ export async function getAllStuffReviewsMadeByUser(id: number): Promise<StuffRev
     );
 }
 
+// Update user info in the database - possibly should be protected
+export async function updateUser(
+  id: number,
+  updatedUser: Partial<User>,
+): Promise<User | null> {
+  const updatedCount = await connection('users')
+    .where('id', id)
+    .update({
+      name: updatedUser.name,
+      email: updatedUser.email,
+      picture: updatedUser.picture,
+    })
+  if (updatedCount) {
+    return getUserInfoById(id)
+  }
+  return null
+}
+
+// Delete user from the database by their id
+export async function deleteUser(id: number): Promise<void> {
+  const userExists = await connection('users')
+    .where('id', id)
+    .first()
+
+  if (!userExists) {
+    throw new Error('User  not found')
+  }
+
+  await connection('users')
+    .where('id', id)
+    .delete()
+}
+
+
 // PROTECTED ROUTES
 
 export async function getUserByAuth0Sub(auth0Sub: string): Promise<UserData> {
@@ -99,27 +133,3 @@ export async function addUser(newUser: User): Promise<UserData[]> {
     )
     .returning(['name', 'email'])
 }
-
-// OTHER FUNCTIONS NOT IN USE YET
-
-// Update user info in the database
-// export async function updateUser(
-//   id: string,
-//   updatedUser: Partial<User>,
-// ): Promise<User | null> {
-//   const updated = await connection('users').where('auth0_sub', id).update({
-//     auth0_sub: id,
-//     name: updatedUser.name,
-//     email: updatedUser.email,
-//     picture: updatedUser.picture,
-//   })
-//   if (updated) {
-//     return getUserByAuth0Sub(id)
-//   }
-//   return null
-// }
-
-// Delete user from the database by their auth0_sub (unique identifier)
-// export async function deleteUserById(id: string): Promise<void> {
-//   await connection('users').where('auth0_sub', id).delete()
-// }
