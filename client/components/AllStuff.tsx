@@ -21,12 +21,13 @@ export function AllStuff() {
       </IfAuthenticated>
       {data.map((stuff) => (
         <div
-          tabIndex={0}
+          tabIndex={0} role="button" aria-pressed="false"
           onClick={() => {
             navigate(`/stuff/${stuff.id}`)
           }}
           key={stuff.id}
           className="stuff-card"
+          onKeyPress={(e) => { if (e.key === 'Enter' || e.key === ' ') { navigate(`/stuff/${stuff.id}`); } }}
           onMouseEnter={(e) =>
             (e.currentTarget.style.boxShadow = '0 6px 10px rgba(0, 0, 0, 0.15)')
           }
