@@ -555,6 +555,13 @@ video {
   gap: 1rem;
   padding: 1rem;
 }
+.icon{
+  height: 50px;
+  width: 50px;
+}
+
+/* STUFF CARD ALSO FOR USER CARD IN USER LIST */
+
 .stuff-card{
   display: flex;
   cursor: pointer;
