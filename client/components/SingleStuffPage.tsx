@@ -1,80 +1,56 @@
-import { useParams } from "react-router-dom"
-import { useStuffById } from "../hooks/useStuff"
-import StuffReviews from "./StuffReviews"
-import { useAuth0 } from "@auth0/auth0-react";
-import AddStuffReviewForm from "./AddStuffReviewForm";
-
+import { useParams } from 'react-router-dom'
+import { useStuffById } from '../hooks/useStuff'
+import StuffReviews from './StuffReviews'
+import { useAuth0 } from '@auth0/auth0-react'
+import AddStuffReviewForm from './AddStuffReviewForm'
 
 function SingleStuffPage() {
-  const { stuffId } = useParams();
-  const { data: stuff, error, isPending } = useStuffById(Number(stuffId));
+  const { stuffId } = useParams()
+  const { data: stuff, error, isPending } = useStuffById(Number(stuffId))
   const { isAuthenticated } = useAuth0()
 
-  // hi 
-  // hi! Hows your day going so far? 
+  // hi
+  // hi! Hows your day going so far?
 
   if (isPending) {
-    return <p>Is loading...</p>;
+    return <p>Is loading...</p>
   }
 
   if (error) {
-    return <p>Error.. {error.message}</p>;
+    return <p>Error.. {error.message}</p>
   }
 
-  console.log(SingleStuffPage);
+  console.log(SingleStuffPage)
 
   return (
     <div className="single-stuff-page">
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "16px",
-        padding: "16px",
-        backgroundColor: "white",
-        boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-        borderRadius: "8px",
-        transition: "box-shadow 0.2s ease",
-        margin: "10px"
-      }}
-      onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "0 6px 10px rgba(0, 0, 0, 0.15)")}
-      onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)")}
-    >
-      <ul style={{ listStyle: "none", padding: "0", margin: "0" }}>
-        <li style={{ fontSize: "16px", color: "#2D3748", marginBottom: "8px" }}>
-          <strong>Item listed by:</strong> {stuff.ownerName}
-        </li>
-        <li style={{ fontSize: "16px", color: "#2D3748", marginBottom: "8px" }}>
-          <strong>Name:</strong> {stuff.name}
-        </li>
-        <li style={{ fontSize: "16px", color: "#2D3748", marginBottom: "8px" }}>
-          <strong>Description:</strong> {stuff.description}
-        </li>
-        <li style={{ fontSize: "16px", color: "#2D3748", marginBottom: "8px" }}>
-          <strong>Price:</strong> ${stuff.price}
-        </li>
-        <li style={{ fontSize: "16px", color: "#2D3748", marginBottom: "8px" }}>
-          <strong>Bond:</strong> ${stuff.bond}
-        </li>
-        <li style={{ fontSize: "16px", color: "#2D3748", marginBottom: "8px" }}>
-          <strong>Condition:</strong> {stuff.condition}
-        </li>
-      </ul>
-      <img
-        src={stuff.imageUrl}
-        alt="Stuff"
-        style={{
-          width: "50%",
-          borderRadius: "8px",
-          marginTop: "16px",
-          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-        }}
-      />
+      <div className="stuff-details-card">
+        <ul className="stuff-details-list">
+          <li className="stuff-details-item">
+            <strong>Item listed by:</strong> {stuff.ownerName}
+          </li>
+          <li className="stuff-details-item">
+            <strong>Name:</strong> {stuff.name}
+          </li>
+          <li className="stuff-details-item">
+            <strong>Description:</strong> {stuff.description}
+          </li>
+          <li className="stuff-details-item">
+            <strong>Price:</strong> ${stuff.price}
+          </li>
+          <li className="stuff-details-item">
+            <strong>Bond:</strong> ${stuff.bond}
+          </li>
+          <li className="stuff-details-item">
+            <strong>Condition:</strong> {stuff.condition}
+          </li>
+        </ul>
+        <img src={stuff.imageUrl} alt="Stuff" className="stuff-image" />
+      </div>
+      <StuffReviews />
+      {isAuthenticated && <AddStuffReviewForm />}
     </div>
-    <StuffReviews />
-    { isAuthenticated && <AddStuffReviewForm />}
-    </div>
-  );
+  )
 }
 
-export default SingleStuffPage;
+export default SingleStuffPage

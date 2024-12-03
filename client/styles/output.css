@@ -752,9 +752,6 @@ input:focus,
 .cursor-pointer{
   cursor: pointer;
 }
-.list-none{
-  list-style-type: none;
-}
 .flex-row{
   flex-direction: row;
 }
@@ -798,9 +795,6 @@ input:focus,
 }
 .object-cover{
   object-fit: cover;
-}
-.p-0{
-  padding: 0px;
 }
 .p-4{
   padding: 1rem;
@@ -962,16 +956,13 @@ a:focus,
 }
 
 /* --- ALL CUSTOM TW CLASSES --- */
-
 .hover\:text-yellow:hover{
   --tw-text-opacity: 1;
   color: rgb(181 137 0 / var(--tw-text-opacity, 1));
 }
-
 .hover\:underline:hover{
   text-decoration-line: underline;
 }
-
 .hover\:shadow-lg:hover{
   --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
