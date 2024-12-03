@@ -1,6 +1,7 @@
 import { Router } from 'express'
 
 import * as db from '../db/user_reviews.ts'
+import { updateUserReview } from '../db/user_reviews.ts'
 
 const router = Router()
 
@@ -33,7 +34,7 @@ router.get('/', async (req, res) => {
     }
 })
   
-//GET /api/v1/user_reviews/:auth0Sub
+//GET /api/v1/user_reviews/:userid
 router.get('/:userId', async (req, res) => {
   const userId = +req.params.userId
   try {
@@ -63,3 +64,23 @@ router.delete('/:id', async (req, res) => {
       res.sendStatus(500)
     }
   })
+
+// PATCH /api/v1/user_reviews/:id
+router.patch('/:id', async (req, res) => {
+  try {
+    const id = +req.params.id
+    const { rating, description } = req.body
+    const updatedReview = await updateUserReview({ 
+      id, rating, description })
+
+    if (updatedReview) {
+      res.status(200).json(updatedReview)
+    } else {
+      res.status(404).json({ message: 'Review not found' })
+    }
+  } catch (error) {
+    console.error('Error updating review:', error)
+    res.status(500).json({ message: 'Internal server error' })
+  }
+})
+
