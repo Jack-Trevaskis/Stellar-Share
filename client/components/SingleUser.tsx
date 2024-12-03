@@ -8,6 +8,7 @@ import ReviewsOnUserStuff from './ReviewsOnUserStuff'
 import UserStuff from './UserStuff'
 import AddUserReviewForm from './AddUserReviewForm'
 import { IfAuthenticated } from './Authenticated'
+import { useUser } from '../hooks/useUser'
 
 const customHideEmail = (email: string | undefined) => {
   if (!email || !email.includes('@')) return 'N/A'
@@ -17,6 +18,8 @@ const customHideEmail = (email: string | undefined) => {
 
 export function SingleUser() {
   const { userId } = useParams()
+
+  const userFromHook = useUser()
 
   const {
     data: user,
@@ -32,6 +35,16 @@ export function SingleUser() {
 
   if (isPending) return <div>Loading...</div>
   if (isError) return <div>Error loading user</div>
+
+  // Check if this is the page of the currently logged in user and stop them from leaving a review on themself
+  let myPage = false
+  if(!userFromHook.data){
+    console.log('Couldn\'t get info on currently logged in user')
+  }else{
+    if(userFromHook.data.id == userId){
+      myPage = true
+    }
+  }
 
   return (
     <div className="flex flex-col items-center">
@@ -86,15 +99,15 @@ export function SingleUser() {
       </div>
 
       {/* ADD A REVIEW FOR THIS USER */}
-
-      <IfAuthenticated>
+      
+      {!myPage && <IfAuthenticated>
         <h2 className="text-2xl font-semibold mb-4 text-center">
           Add a review for this user
         </h2>
         <div className="w-full">
           <AddUserReviewForm />
         </div>
-      </IfAuthenticated>
+      </IfAuthenticated>}
 
     </div>
   )
