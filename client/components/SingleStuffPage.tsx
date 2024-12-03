@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { useStuffById } from "../hooks/useStuff"
 import StuffReviews from "./StuffReviews"
 import { useAuth0 } from "@auth0/auth0-react";
@@ -42,7 +42,7 @@ function SingleStuffPage() {
     >
       <ul style={{ listStyle: "none", padding: "0", margin: "0" }}>
         <li style={{ fontSize: "16px", color: "#2D3748", marginBottom: "8px" }}>
-          <strong>Item listed by:</strong> {stuff.ownerName}
+          <strong>Item listed by:</strong> <Link to={`/users/${stuff.ownerId}`}>{stuff.ownerName}</Link>
         </li>
         <li style={{ fontSize: "16px", color: "#2D3748", marginBottom: "8px" }}>
           <strong>Name:</strong> {stuff.name}
