@@ -1,20 +1,20 @@
 import { useQuery } from '@tanstack/react-query'
-import { getStuffReviewsByStuffId } from '../apis/stuff_reviews'
 import { useParams } from 'react-router-dom'
+import { getAllStuffReviewsMadeByUser } from '../apis/users'
 
 
-function StuffReviews() {
+function StuffReviewsByUser() {
   
-  const { stuffId } = useParams()
+  const { userId } = useParams()
   
   const {
     data: stuffReviews,
     isPending,
     isError,
   } = useQuery({
-    queryKey: ['stuff_reviews', stuffId],
+    queryKey: ['stuff_reviews_by_user', userId],
     queryFn: async () => {
-      const reviews = await getStuffReviewsByStuffId(Number(stuffId))
+      const reviews = await getAllStuffReviewsMadeByUser(Number(userId))
       return reviews
     },
   })
@@ -29,33 +29,31 @@ function StuffReviews() {
 
   return (
     <div className="p-4">
+      <ul className="space-y-4">
         {stuffReviews?.map((review) => (
-          <div 
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "16px",
-              padding: "16px",
-              backgroundColor: "white",
-              boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-              borderRadius: "8px",
-              margin: "10px"
-            }}
+          <li 
             key={review.id} 
             className="border border-gray-300 p-6 rounded-lg shadow-md bg-white hover:shadow-lg transition-shadow duration-300"
           >
             <p className="mb-2"> <b>Rating: </b> {Array(review.rating).fill('⭐').join('')}</p>
             <p className="mb-2">
-              <b>Reviewed By: </b> 
-              <a href={`/users/${review.reviewerId}`} className="text-blue-500 hover:underline">
-                {review.reviewerName}
+              <b>Stuff: </b> 
+              <a href={`/stuff/${review.stuffId}`} className="text-blue-500 hover:underline">
+                {review.stuffName}
+              </a>
+            </p>
+            <p className="mb-2">
+              <b>Listed By: </b> 
+              <a href={`/users/${review.ownerId}`} className="text-blue-500 hover:underline">
+                {review.ownerName}
               </a>
             </p>
             <p className="mb-2"><b>Description:</b> {review.description}</p>
-          </div>
+          </li>
         ))}
+      </ul>
     </div>
   )   
-}
+}   
 
-export default StuffReviews
+export default StuffReviewsByUser

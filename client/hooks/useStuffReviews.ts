@@ -1,13 +1,13 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 // import request from 'superagent'
 import * as API from '../apis/stuff_reviews'
-import { StuffReviewsData } from '../../models/stuff_reviews'
+import { StuffReviewData } from '../../models/stuff_reviews'
 
 export function useCreateStuffReview() {
   const queryClient = useQueryClient() // Used to invalidate or update cached queries after mutation
 
   return useMutation({
-    mutationFn: async (stuffReviewData: StuffReviewsData) => {
+    mutationFn: async (stuffReviewData: StuffReviewData) => {
       // Calls your `createDaily` API function
       console.log(stuffReviewData)
       return await API.createStuffReview(stuffReviewData)
