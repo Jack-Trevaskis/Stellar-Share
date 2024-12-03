@@ -16,7 +16,7 @@ export async function addStuff(stuffData: StuffData): Promise<Stuff> {
       "description": stuffData.description, 
       "owner_id": stuffData.ownerId, 
       "price": stuffData.price, 
-      "image_url": stuffData.imageURL, 
+      "image_url": stuffData.imageUrl, 
       "bond": stuffData.bond, 
       "condition": stuffData.condition
     }, ['*']
@@ -54,4 +54,24 @@ export async function getAllStuff() {
 export async function deleteStuffById(id: number) {
   const delStuff = await connection('stuff').where('id', id).delete()
   return delStuff as number
+}
+
+
+export async function updateStuff(item:Partial<Stuff>): Promise<Stuff | null> {
+  if (item.id === undefined) {
+     throw new Error('Item ID is required') }
+  const updatedCount = await connection('stuff')
+    .where('id', item.id)
+    .update({
+      name: item.name,
+      description: item.description,
+      price: item.price,
+      image_url: item.imageUrl,
+      bond: item.bond,
+      condition: item.condition
+    })
+  if (!updatedCount) {
+    throw new Error(`Failed to update item with ID ${item.id}`)
+  }
+  return await getStuffById(item.id);
 }

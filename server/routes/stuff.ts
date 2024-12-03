@@ -43,6 +43,7 @@ router.patch('/', async (req, res) => {
     res.status(500).send('Something went wrong')
   }
 })
+
 router.delete('/:id', async (req, res) => {
   try {
     const { id } = req.params
@@ -57,4 +58,25 @@ router.delete('/:id', async (req, res) => {
     res.sendStatus(500)
   }
 })
+
+router.patch('/:id', async (req,res)=> {
+  try {
+    const id = +req.params.id
+    const {
+      name, description, price, imageUrl, bond, condition
+    } = req.body
+
+    const updatedStuff: Stuff|null = await db.updateStuff({
+      id, name, description, price, imageUrl, bond, condition})
+
+    if (updatedStuff) {
+        res.status(200).json(updatedStuff)
+    } else {
+      res.status(404).json({ message: 'Item not found' })
+    }
+  } catch (error) {
+    console.error('Error updating item:', error)
+     res.status(500).json({ message: 'Internal server error' }); }
+})
+
 export default router
