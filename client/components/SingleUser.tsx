@@ -8,6 +8,11 @@ import StuffReviewsByUser from './StuffReviewsByUser'
 import ReviewsOnUserStuff from './ReviewsOnUserStuff'
 import UserStuff from './UserStuff'
 
+const customHideEmail = (email: string | undefined) => {
+  if (!email) return ''
+  const [domain] = email.split('@')
+  return `*****@${domain}`
+}
 export function SingleUser() {
   const { userId } = useParams()
 
@@ -31,7 +36,8 @@ export function SingleUser() {
       <h1 className="text-xl font-bold text-center my-4">{user?.name}</h1>
       <div className="flex flex-col items-center">
         <p>
-          Contact: <span className="font-bold">{user?.email} </span>
+          Contact:{' '}
+          <span className="font-bold">{customHideEmail(user?.email)}</span>
         </p>
       </div>
       <div className="flex flex-col items-center">
