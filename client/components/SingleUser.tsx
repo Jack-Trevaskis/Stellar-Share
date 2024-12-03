@@ -12,7 +12,7 @@ import { IfAuthenticated } from './Authenticated'
 const customHideEmail = (email: string | undefined) => {
   if (!email) return ''
   const [domain] = email.split('@')
-  return `*****@${domain}`
+  return `******@${domain}`
 }
 export function SingleUser() {
   const { userId } = useParams()
