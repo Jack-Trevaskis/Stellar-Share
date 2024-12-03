@@ -116,6 +116,10 @@ a:focus,
   .stuff-card:hover {
     @apply shadow-lg bg-green text-base03;
   }
+  /* Ensure all text inside .stuff-card changes to a dark color on hover */
+  .stuff-card:hover * {
+    @apply text-base03;
+  }
   .stuff-card:focus {
     @apply outline-none ring-2 ring-yellow;
   }
@@ -123,7 +127,7 @@ a:focus,
     @apply text-lg md:text-xl font-semibold text-base1;
   }
   h1.stuff-title:hover {
-    @apply text-lime-950 text-shadow-glow-yellow;
+    @apply text-rose-900 text-shadow-glow-yellow;
   }
   .stuff-details {
     @apply flex flex-wrap items-center text-sm text-base1 mb-4;

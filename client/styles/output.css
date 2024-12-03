@@ -574,13 +574,18 @@ video {
   transition-duration: 100ms;
 }
 .stuff-card:hover{
-  --tw-bg-opacity: 1 !important;
-  background-color: rgb(133 153 0 / var(--tw-bg-opacity, 1)) !important;
-  --tw-text-opacity: 1 !important;
-  color: rgb(0 43 54 / var(--tw-text-opacity, 1)) !important;
-  --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1) !important;
-  --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color) !important;
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important;
+  --tw-bg-opacity: 1;
+  background-color: rgb(133 153 0 / var(--tw-bg-opacity, 1));
+  --tw-text-opacity: 1;
+  color: rgb(0 43 54 / var(--tw-text-opacity, 1));
+  --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+/* Ensure all text inside .stuff-card changes to a dark color on hover */
+.stuff-card:hover *{
+  --tw-text-opacity: 1;
+  color: rgb(0 43 54 / var(--tw-text-opacity, 1));
 }
 .stuff-card:focus{
   outline: 2px solid transparent;
@@ -607,7 +612,7 @@ video {
 }
 h1.stuff-title:hover{
   --tw-text-opacity: 1;
-  color: rgb(26 46 5 / var(--tw-text-opacity, 1));
+  color: rgb(136 19 55 / var(--tw-text-opacity, 1));
     text-shadow: 0 0 10px rgba(181, 137, 0, 0.7);
 }
 .stuff-details{
