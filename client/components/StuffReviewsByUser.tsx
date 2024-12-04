@@ -1,12 +1,10 @@
 import { useQuery } from '@tanstack/react-query'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { getAllStuffReviewsMadeByUser } from '../apis/users'
 
-
 function StuffReviewsByUser() {
-  
   const { userId } = useParams()
-  
+
   const {
     data: stuffReviews,
     isPending,
@@ -29,36 +27,48 @@ function StuffReviewsByUser() {
 
   return (
     <div className="p-4">
-      <ul className="space-y-4 rounded-lg"
+      <ul
+        className="space-y-4 rounded-lg"
         style={{
-          maxHeight: "300px",
-          overflow: "scroll"
+          maxHeight: '300px',
+          overflow: 'scroll',
         }}
       >
         {stuffReviews?.map((review) => (
-          <li 
-            key={review.id} 
+          <li
+            key={review.id}
             className="border border-gray-300 p-6 rounded-lg shadow-md bg-white hover:shadow-lg transition-shadow duration-300"
           >
-            <p className="mb-2"> <b>Rating: </b> {Array(review.rating).fill('⭐').join('')}</p>
             <p className="mb-2">
-              <b>Stuff: </b> 
-              <a href={`/stuff/${review.stuffId}`} className="text-blue-500 hover:underline">
+              {' '}
+              <b>Rating: </b> {Array(review.rating).fill('⭐').join('')}
+            </p>
+            <p className="mb-2">
+              <b>Stuff: </b>
+              <Link
+                to={`/stuff/${review.stuffId}`}
+                className="text-blue-500 hover:underline"
+              >
                 {review.stuffName}
-              </a>
+              </Link>
             </p>
             <p className="mb-2">
-              <b>Listed By: </b> 
-              <a href={`/users/${review.ownerId}`} className="text-blue-500 hover:underline">
+              <b>Listed By: </b>
+              <Link
+                to={`/users/${review.ownerId}`}
+                className="text-blue-500 hover:underline"
+              >
                 {review.ownerName}
-              </a>
+              </Link>
             </p>
-            <p className="mb-2"><b>Description:</b> {review.description}</p>
+            <p className="mb-2">
+              <b>Description:</b> {review.description}
+            </p>
           </li>
         ))}
       </ul>
     </div>
-  )   
-}   
+  )
+}
 
 export default StuffReviewsByUser

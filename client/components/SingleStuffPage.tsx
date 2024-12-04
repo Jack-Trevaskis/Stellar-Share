@@ -11,9 +11,6 @@ function SingleStuffPage() {
   const { isAuthenticated } = useAuth0()
   const userFromHook = useUser()
 
-  // hi
-  // hi! Hows your day going so far?
-
   if (isPending) {
     return <p>Is loading...</p>
   }
@@ -24,18 +21,17 @@ function SingleStuffPage() {
 
   // Check if this thing is listed by the currently logged in user and stop them from leaving a review on their own thing
   let myPage = false
-  if(!userFromHook.data){
-    console.log('Couldn\'t get info on currently logged in user')
-  }else{
-    if(userFromHook.data.id == stuff.ownerId){
-      myPage = true
-    }
+  if (!userFromHook.data) {
+    console.log("Couldn't get info on currently logged in user")
+  } else if (userFromHook.data.id == stuff.ownerId) {
+    myPage = true
   }
+  console.log(SingleStuffPage)
 
   return (
     <div className="single-stuff-page">
-      <div className="flex flex-row border border-gray-300 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-        <ul>
+      <div className="stuff-details-card">
+        <ul className="stuff-details-list">
           <li>
             <strong>Item listed by:</strong>{' '}
             <Link to={`/users/${stuff.ownerId}`}>{stuff.ownerName}</Link>
@@ -59,7 +55,7 @@ function SingleStuffPage() {
         <img src={stuff.imageUrl} alt="Stuff" className="stuff-image" />
       </div>
       <StuffReviews />
-      {(isAuthenticated && !myPage) && <AddStuffReviewForm />}
+      {isAuthenticated && !myPage && <AddStuffReviewForm />}
     </div>
   )
 }

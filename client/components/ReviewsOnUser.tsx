@@ -1,5 +1,5 @@
 // ReviewsOnUser .tsx
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { UserReviewWithNames } from '../../models/user_reviews'
 import { useReviewsOnUser } from '../hooks/useUserReviews'
 
@@ -16,35 +16,39 @@ export default function ReviewsOnUser() {
   return (
     <div className="p-4">
       {/* <h2 className="text-2xl font-semibold mb-4 text-center">Reviews</h2> */}
-      <ul className="space-y-4 rounded-lg"
+      <ul
+        className="space-y-4 rounded-lg"
         style={{
-          maxHeight: "300px",
-          overflow: "scroll"
+          maxHeight: '300px',
+          overflow: 'scroll',
         }}
       >
-        {reviews?.slice().reverse().map((review) => (
-          <li
-            key={review.id}
-            className="border border-gray-300 p-6 rounded-lg shadow-md bg-white hover:shadow-lg transition-shadow duration-300"
-          >
-            <p className="mb-2">
-              {' '}
-              <b>Rating:</b> {Array(review.rating).fill('⭐').join('')}
-            </p>
-            <p className="mb-2">
-              <b>Reviewer: </b>
-              <a
-                href={`/users/${review.reviewerId}`}
-                className="text-blue-500 hover:underline"
-              >
-                {review.reviewerName}
-              </a>
-            </p>
-            <p className="mb-2">
-              <b>Description:</b> {review.description}
-            </p>
-          </li>
-        ))}
+        {reviews
+          ?.slice()
+          .reverse()
+          .map((review) => (
+            <li
+              key={review.id}
+              className="border border-gray-300 p-6 rounded-lg shadow-md bg-white hover:shadow-lg transition-shadow duration-300"
+            >
+              <p className="mb-2">
+                {' '}
+                <b>Rating:</b> {Array(review.rating).fill('⭐').join('')}
+              </p>
+              <p className="mb-2">
+                <b>Reviewer: </b>
+                <Link
+                  to={`/users/${review.reviewerId}`}
+                  className="text-blue-500 hover:underline"
+                >
+                  {review.reviewerName}
+                </Link>
+              </p>
+              <p className="mb-2">
+                <b>Description:</b> {review.description}
+              </p>
+            </li>
+          ))}
       </ul>
     </div>
   )
