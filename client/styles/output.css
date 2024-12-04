@@ -568,7 +568,7 @@ video {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(38 139 210 / var(--tw-ring-opacity, 1));
 }
-/* All Stuffs Component Styles*/
+/* All Stuff Component Styles */
 .all-stuff-container{
   display: flex;
   flex-direction: column;
@@ -576,10 +576,7 @@ video {
   padding: 1rem;
 }
 .stuff-card{
-  display: flex;
   cursor: pointer;
-  flex-direction: column;
-  gap: 1rem;
   border-radius: 0.5rem;
   --tw-bg-opacity: 1;
   background-color: rgb(7 54 66 / var(--tw-bg-opacity, 1));
@@ -616,6 +613,18 @@ video {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(181 137 0 / var(--tw-ring-opacity, 1));
 }
+.stuff-card-content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+@media (min-width: 768px){
+
+  .stuff-card-content{
+    flex-direction: row;
+  }
+}
 .stuff-title{
   font-size: 1.125rem;
   line-height: 1.75rem;
@@ -635,6 +644,15 @@ h1.stuff-title:hover{
   color: rgb(136 19 55 / var(--tw-text-opacity, 1));
     text-shadow: 0 0 10px rgba(181, 137, 0, 0.7);
 }
+.stuff-details{
+  display: flex;
+  flex-direction: column;
+}
+.stuff-details-list{
+  margin: 0px;
+  list-style-type: none;
+  padding: 0px;
+}
 .detail-label{
   font-weight: 500;
   --tw-text-opacity: 1;
@@ -643,6 +661,81 @@ h1.stuff-title:hover{
 .stuff-description{
   --tw-text-opacity: 1;
   color: rgb(131 148 150 / var(--tw-text-opacity, 1));
+}
+.add-stuff-link{
+  font-size: 1.5rem;
+  line-height: 2rem;
+  --tw-text-opacity: 1;
+  color: rgb(147 161 161 / var(--tw-text-opacity, 1));
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+.add-stuff-link:hover{
+  --tw-text-opacity: 1;
+  color: rgb(181 137 0 / var(--tw-text-opacity, 1));
+}
+.add-stuff-button{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.add-stuff-button > :not([hidden]) ~ :not([hidden]){
+  --tw-space-y-reverse: 0;
+  margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1rem * var(--tw-space-y-reverse));
+}
+.add-stuff-button{
+  border-radius: 0.25rem;
+  background-color: rgb(14 165 233 / 1);
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  --tw-text-opacity: 1;
+  color: rgb(253 246 227 / var(--tw-text-opacity, 1));
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+.add-stuff-button:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(203 75 22 / var(--tw-bg-opacity, 1));
+  --tw-text-opacity: 1;
+  color: rgb(0 43 54 / var(--tw-text-opacity, 1));
+  --tw-shadow: 0 0 10px rgba(203, 75, 22, 0.7);
+  --tw-shadow-colored: 0 0 10px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+.add-stuff-button:active{
+  --tw-bg-opacity: 1;
+  background-color: rgb(220 50 47 / var(--tw-bg-opacity, 1));
+  --tw-text-opacity: 1;
+  color: rgb(0 43 54 / var(--tw-text-opacity, 1));
+}
+.add-stuff-button:focus{
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(181 137 0 / var(--tw-ring-opacity, 1));
+}
+@media (min-width: 768px) {
+  .add-stuff-button{
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+}
+.stuff-rating{
+  margin-bottom: 0.5rem;
 }
 /* --- SingleStuffPage Component Styles --- */
 .single-stuff-page{
@@ -669,10 +762,22 @@ h1.stuff-title:hover{
   --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
-.stuff-details-list{
-  margin: 0px;
-  list-style-type: none;
-  padding: 0px;
+.stuff-image-thumbnail{
+  margin-top: 0.5rem;
+  height: 7rem;
+  width: 10rem;
+  align-self: center;
+  border-radius: 1.5rem;
+  object-fit: cover;
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+@media (min-width: 768px){
+
+  .stuff-image-thumbnail{
+    align-self: flex-start;
+  }
 }
 .stuff-image{
   margin-top: 1rem;
@@ -686,7 +791,8 @@ h1.stuff-title:hover{
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 300ms;
 }
-.stuff-image:hover{
+.stuff-image,
+  .stuff-image-thumbnail:hover{
   --tw-scale-x: 1.05;
   --tw-scale-y: 1.05;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -741,13 +847,7 @@ h1.stuff-title:hover{
   --tw-text-opacity: 1;
   color: rgb(147 161 161 / var(--tw-text-opacity, 1));
 }
-/* Glowing effect on hover for bold labels */
-/* .stuff-review-card:hover strong {
-    @apply text-rose-950 text-shadow-glow-orange;
-  } */
-/* --- ReviewOnUser --- */
-/* AllStuff Component --- */
-/* HOME PAGE ---*/
+/* HOME PAGE --- */
 /* Input fields */
 input,
   textarea{
@@ -869,19 +969,9 @@ input:focus,
   --tw-text-opacity: 1;
   color: rgb(253 246 227 / var(--tw-text-opacity, 1));
 }
-/* TO DELETE */
-.form-submit-button:hover:enabled{
-  --tw-bg-opacity: 1;
-  background-color: rgb(133 153 0 / var(--tw-bg-opacity, 1));
-}
-/* TO DELETE */
-.form-submit-button:active:enabled{
-  --tw-bg-opacity: 1;
-  background-color: rgb(203 75 22 / var(--tw-bg-opacity, 1));
-}
 /* --- Login Component Styles --- */
 /* --- Footer Styles --- */
-/* -----------Review-------------*/
+/* --- Review Section --- */
 /* Container */
 .add-user-review-form-container{
   padding: 1.5rem;
@@ -922,7 +1012,7 @@ input:focus,
   --tw-text-opacity: 1;
   color: rgb(181 137 0 / var(--tw-text-opacity, 1));
 }
-/* End of Reviews section */
+/* End of Review Section */
 .my-4{
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -1159,13 +1249,16 @@ a:focus,
 }
 
 /* --- ALL CUSTOM TW CLASSES --- */
+
 .hover\:text-yellow:hover{
   --tw-text-opacity: 1;
   color: rgb(181 137 0 / var(--tw-text-opacity, 1));
 }
+
 .hover\:underline:hover{
   text-decoration-line: underline;
 }
+
 .hover\:shadow-lg:hover{
   --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);

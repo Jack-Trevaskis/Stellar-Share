@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { getAllUserStuff } from '../apis/users'
 
 function UserStuff() {
@@ -9,6 +9,7 @@ function UserStuff() {
     data: stuff,
     isPending,
     isError,
+    error,
   } = useQuery({
     queryKey: ['user_stuff', userId],
     queryFn: async () => {
@@ -17,43 +18,58 @@ function UserStuff() {
     },
   })
 
-  if (isPending) {
-    return <p>Loading...</p>
-  }
+  const navigate = useNavigate()
 
-  if (isError) {
-    return <p>No reviews!</p>
-  }
+  if (isPending) return <p>Loading...</p>
+  if (isError) return <p>Error loading user stuff: {error.message}</p>
+  if (!stuff || stuff.length === 0) return <p>No stuff found.</p>
 
   return (
-    <div className="p-4">
-      <ul className="space-y-4">
-        {stuff?.map((thing) => (
-          <li
-            key={thing.id}
-            className="stuff-card border border-gray-300 bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
-          >
-            <Link to={`/stuff/${thing.id}`} className="flex flex-row">
-              <div>
-                <img
-                  src={thing.imageUrl}
-                  alt="thing"
-                  className="size-14 rounded-full"
-                />
+    <div className="all-stuff-container">
+      {stuff?.map((thing) => (
+        <div
+          tabIndex={0}
+          role="button"
+          aria-pressed="false"
+          onClick={() => {
+            navigate(`/stuff/${thing.id}`)
+          }}
+          key={thing.id}
+          className="stuff-card border"
+          onKeyPress={(e) => {
+            if (e.key === 'Enter' || e.key === '') {
+              navigate(`/stuff/${thing.id}`)
+            }
+          }}
+        >
+          <div className="stuff-card-content">
+            <img
+              className="stuff-image-thumbnail"
+              src={thing.imageUrl}
+              alt={thing.name}
+            />
+            <div className="stuff-details">
+              <h1 className="stuff-title">{thing.name}</h1>
+              <div className="stuff-details-list">
+                {/* If you have price and condition, include them here */}
+                {thing.price && (
+                  <p>
+                    <span className="detail-label">Price:</span> ${thing.price}
+                  </p>
+                )}
+                {thing.condition && (
+                  <p>
+                    <span className="detail-label">Condition:</span>{' '}
+                    {thing.condition}
+                  </p>
+                )}
               </div>
-              <div>
-                <p className="mb-2">
-                  <b>Name: </b>
-                  {thing.name}
-                </p>
-                <p className="mb-2">
-                  <b>Description:</b> {thing.description}
-                </p>
-              </div>
-            </Link>
-          </li>
-        ))}
-      </ul>
+              <p className="stuff-description">{thing.description}</p>
+              {/* Include rating if available */}
+            </div>
+          </div>
+        </div>
+      ))}
     </div>
   )
 }
