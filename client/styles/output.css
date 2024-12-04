@@ -635,16 +635,6 @@ h1.stuff-title:hover{
   color: rgb(136 19 55 / var(--tw-text-opacity, 1));
     text-shadow: 0 0 10px rgba(181, 137, 0, 0.7);
 }
-.stuff-details{
-  margin-bottom: 1rem;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  --tw-text-opacity: 1;
-  color: rgb(147 161 161 / var(--tw-text-opacity, 1));
-}
 .detail-label{
   font-weight: 500;
   --tw-text-opacity: 1;
@@ -909,6 +899,29 @@ input:focus,
   --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
+/* Rating star button */
+.rating-star{
+  cursor: pointer;
+  border-style: none;
+  background-image: none;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  --tw-text-opacity: 1;
+  color: rgb(156 163 175 / var(--tw-text-opacity, 1));
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+.rating-star:focus{
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+.rating-star:hover{
+  --tw-text-opacity: 1;
+  color: rgb(181 137 0 / var(--tw-text-opacity, 1));
+}
 /* End of Reviews section */
 .my-4{
   margin-top: 1rem;
@@ -1146,16 +1159,13 @@ a:focus,
 }
 
 /* --- ALL CUSTOM TW CLASSES --- */
-
 .hover\:text-yellow:hover{
   --tw-text-opacity: 1;
   color: rgb(181 137 0 / var(--tw-text-opacity, 1));
 }
-
 .hover\:underline:hover{
   text-decoration-line: underline;
 }
-
 .hover\:shadow-lg:hover{
   --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);

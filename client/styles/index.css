@@ -298,7 +298,7 @@ a:focus,
   }
 
   .rating-star:hover {
-    @apply text-yellow-300;
+    @apply text-yellow;
   }
   /* End of Reviews section */
 }
