@@ -40,13 +40,13 @@ function AddUserReviewForm() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    if(form.rating == 0){
+    if (form.rating == 0) {
       alert('You must select a rating!')
       return
     }
 
     // This should exist, just doing this to make typescript happy
-    if(!userFromHook.data){
+    if (!userFromHook.data) {
       return <>Failed to fetch currently logged in user data</>
     }
 
@@ -60,20 +60,12 @@ function AddUserReviewForm() {
   }
 
   return (
-    <div
-    style={{
-      display: "flex",
-      flexDirection: "column",
-      gap: "16px",
-      padding: "16px",
-      backgroundColor: "white",
-      boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-      borderRadius: "8px",
-      margin: "10px"
-    }}>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="description">Add a comment: </label>
+    <div className="add-user-review-form-container">
+      <form onSubmit={handleSubmit} className="add-user-review-form">
+        <div className="from-group">
+          <label htmlFor="description" className="form-label">
+            Add a comment:{' '}
+          </label>
           <br />
           <input
             id="description"
@@ -81,34 +73,33 @@ function AddUserReviewForm() {
             name="description"
             value={form.description}
             onChange={handleChange}
-            className="text-input"
-            style={{
-              border: "1px solid blue",
-              borderRadius: "5px",
-              width: "100%"
-            }}
+            className="form-input"
           />
         </div>
-        <div style={{ display: 'flex', gap: '5px', margin: '10px 0' }}>
-          {[1, 2, 3, 4, 5].map((star) => (
-            <button
-              type="button"
-              key={star}
-              onClick={() => handleRating(star)}
-              style={{
-                background: 'none',
-                border: 'none',
-                cursor: 'pointer',
-                fontSize: '24px',
-                color: star <= form.rating ? '#FFD700' : '#ccc', // Yellow for selected, grey otherwise
-              }}
-            >
-              ★
-            </button>
-          ))}
+        <div className="form-group">
+          <label htmlFor="rating" className="form-label">
+            Rating:
+          </label>
+          <div className="rating-buttons">
+            {[1, 2, 3, 4, 5].map((star) => (
+              <button
+                type="button"
+                key={star}
+                onClick={() => handleRating(star)}
+                className="rating-star"
+                style={{
+                  color: star <= form.rating ? '#FFD700' : '#ccc',
+                }}
+              >
+                ★
+              </button>
+            ))}
+          </div>
         </div>
-        <div>
-          <button className="button" type="submit">Add Review</button>
+        <div className="form-group">
+          <button className="form-submit-button" type="submit">
+            Add Review
+          </button>
         </div>
       </form>
     </div>

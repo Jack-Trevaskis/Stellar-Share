@@ -257,6 +257,16 @@ a:focus,
   }
 
   /* -----------Review-------------*/
+  /* Container */
+  .add-user-review-form-container {
+    @apply p-6;
+  }
+
+  /* Form */
+  .add-user-review-form {
+    @apply bg-base02 p-6 rounded-md shadow-md max-w-md mx-auto;
+  }
+
   .reviews-container {
     @apply p-4;
   }
@@ -280,6 +290,15 @@ a:focus,
 
   .review-link {
     @apply text-sky-500 hover:underline;
+  }
+
+  /* Rating star button */
+  .rating-star {
+    @apply bg-none border-none cursor-pointer text-2xl text-gray-400 transition duration-300 focus:outline-none;
+  }
+
+  .rating-star:hover {
+    @apply text-yellow-300;
   }
   /* End of Reviews section */
 }
