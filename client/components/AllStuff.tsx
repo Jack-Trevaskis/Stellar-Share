@@ -37,6 +37,8 @@ export function AllStuff() {
   if (isReviewStatsError) {
     return <p>Error loading review stats: {reviewStatsError.message}</p>;
   }
+
+  console.log(reviewStatsData)
   return (
     <div className="all-stuff-container">
       <IfAuthenticated >
@@ -77,17 +79,30 @@ export function AllStuff() {
           </div>
           <p className="stuff-description">{stuff.description}</p>
           <p className="mb-2">
-                {' '}
-                <b>Rating: {reviewStatsData.stuffReceived.
-                    find(stuffStats => stuffStats.stuff_id === stuff.id)
-                    .recieved_avg_stuff_rating.toFixed(1)}</b>
-                
-                  {Array(Math.round(reviewStatsData.stuffReceived.
-                    find(stuffStats => stuffStats.stuff_id === stuff.id)
-                    .recieved_avg_stuff_rating))
-                    .fill('⭐')
-                    .join('')}
-              </p>
+            {reviewStatsData.stuffReceived.find(
+                (stuffStats) => stuffStats.stuff_id === stuff.id
+              ) ? (
+              <>
+                <b>
+                  Rating:{' '}
+                  {reviewStatsData.stuffReceived
+                    .find((stuffStats) => stuffStats.stuff_id === stuff.id)
+                    .recieved_avg_stuff_rating.toFixed(1)}
+                </b>
+                {Array(
+                  Math.round(
+                    reviewStatsData.stuffReceived.find(
+                      (stuffStats) => stuffStats.stuff_id === stuff.id
+                    ).recieved_avg_stuff_rating
+                  )
+                )
+                  .fill('⭐')
+                  .join('')}
+              </>
+            ) : (
+              <span>No rating available</span>
+            )}
+          </p>
         </div>
       ))}
     </div>
