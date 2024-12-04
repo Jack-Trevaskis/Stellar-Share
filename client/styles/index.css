@@ -200,7 +200,7 @@ a:focus,
     @apply w-1/3 rounded-lg mt-4 shadow-md ml-auto transition-transform duration-300;
   }
 
-  .stuff-image,
+  .stuff-image:hover,
   .stuff-image-thumbnail:hover {
     @apply shadow-lg scale-105;
   }

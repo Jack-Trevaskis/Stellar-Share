@@ -792,7 +792,7 @@ h1.stuff-title:hover{
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 300ms;
 }
-.stuff-image,
+.stuff-image:hover,
   .stuff-image-thumbnail:hover{
   --tw-scale-x: 1.05;
   --tw-scale-y: 1.05;
