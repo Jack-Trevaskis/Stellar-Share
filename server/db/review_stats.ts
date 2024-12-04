@@ -29,4 +29,4 @@ import connection from './connection.ts'
   .groupBy('user_id')
   }
 
-console.log({ userReviewStats, stuffReviewStats, stuffAverageReview, userAverageReview });
+// console.log({ userReviewStats, stuffReviewStats, stuffAverageReview, userAverageReview });

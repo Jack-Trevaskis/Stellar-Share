@@ -4,7 +4,7 @@ import * as API from '../apis/review_stats'
 
 export function useReviewStats() {
     return useQuery({
-      queryKey: ['review_stats'],
+      queryKey: ['user_reviews'],
       queryFn: async () => API.fetchAllReviewStats(),
     })
   }

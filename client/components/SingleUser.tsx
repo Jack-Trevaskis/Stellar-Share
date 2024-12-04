@@ -9,6 +9,7 @@ import UserStuff from './UserStuff'
 import AddUserReviewForm from './AddUserReviewForm'
 import { IfAuthenticated } from './Authenticated'
 import { useUser } from '../hooks/useUser'
+import { useReviewStats } from '../hooks/useReviewStats'
 
 const customHideEmail = (email: string | undefined) => {
   if (!email || !email.includes('@')) return 'N/A'
@@ -16,10 +17,24 @@ const customHideEmail = (email: string | undefined) => {
   return `${'*'.repeat(local.length)}@${domain}`
 }
 
+
+
 export function SingleUser() {
   const { userId } = useParams()
-
   const userFromHook = useUser()
+
+
+  //---mean rating---- toDo: create models for stats
+  const { data,
+    // statsPending, isStatsError, statsError
+  } = useReviewStats()
+  interface UserReviewStat {
+    user_id: string
+    recieved_avg_user_rating: number
+  }
+  const userRatingData = data?.userReceived.find((stat:UserReviewStat) => stat.user_id === userId)
+  const meanRating = userRatingData ? userRatingData.recieved_avg_user_rating.toFixed(1) :null
+
 
   const {
     data: user,
@@ -39,7 +54,7 @@ export function SingleUser() {
   // Check if this is the page of the currently logged in user and stop them from leaving a review on themself
   let myPage = false
   if(!userFromHook.data){
-    console.log('Couldn\'t get info on currently logged in user')
+    console.log('Could not get info on currently logged in user')
   }else{
     if(userFromHook.data.id == userId){
       myPage = true
@@ -50,18 +65,17 @@ export function SingleUser() {
     <div className="flex flex-col items-center">
       <h1 className="text-xl font-bold text-center my-4">{user?.name}</h1>
       <div className="flex flex-col items-center">
-        <p>
-          Contact:{' '}
-          <span className="font-bold">{customHideEmail(user?.email)}</span>
-        </p>
-      </div>
-      <div className="flex flex-col items-center">
         <img
           src={user?.picture}
           alt="user avatar"
           className="rounded-full w-24 h-24 aspect-square object-cover"
         />
       </div>
+      <h2 className="text-x1 font-bold text-center"> {meanRating}{Array(Math.round(meanRating)).fill('⭐').join('')}</h2>
+      <div className="flex flex-col items-center">
+      <p className="text-x2 font-bold text-center mb-4">{customHideEmail(user?.email)} </p>
+      </div>
+      
 
       {/* USER STUFF LISTINGS */}
 

@@ -25,7 +25,7 @@ export async function fetchAllReviewStats() {
       userReceived: userAverageReviewResponse.body,   
     };
 
-    console.log('Fetched all review stats:', result);
+    // console.log('Fetched all review stats:', result);
     return result;
   } catch (error) {
     console.error('Error fetching all review stats:', {
