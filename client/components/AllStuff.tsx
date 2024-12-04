@@ -36,7 +36,7 @@ export function AllStuff() {
           }
         >
           <h1 className="stuff-title">{stuff.name}</h1>
-          <div className="stuff-details">
+          <div className="stuff-details-list">
             <p>
               <span className="detail-label">Price:</span> ${stuff.price}
             </p>
