@@ -79,11 +79,11 @@ export function AllStuff() {
                 {' '}
                 <b>Rating: {reviewStatsData.stuffReceived.
                     find(stuffStats => stuffStats.stuff_id === stuff.id)
-                    .recieved_avg_stuff_rating}</b>
+                    .recieved_avg_stuff_rating.toFixed(1)}</b>
                 
-                  {Array(reviewStatsData.stuffReceived.
+                  {Array(Math.round(reviewStatsData.stuffReceived.
                     find(stuffStats => stuffStats.stuff_id === stuff.id)
-                    .recieved_avg_stuff_rating)
+                    .recieved_avg_stuff_rating))
                     .fill('⭐')
                     .join('')}
               </p>
