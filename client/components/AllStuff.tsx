@@ -1,15 +1,42 @@
 import { useAllStuff } from '../hooks/useStuff'
 import { Link, useNavigate } from 'react-router-dom'
 import { IfAuthenticated } from './Authenticated'
+import { useReviewStats } from '../hooks/useReviewStats';
+
+interface StuffStats {
+  stuff_id: number,
+  recieved_avg_stuff_rating: number
+}
 
 export function AllStuff() {
-  const { isPending, isError, data } = useAllStuff()
+  const {
+    data: allStuffData,
+    isPending: isAllStuffPending,
+    isError: isAllStuffError,
+    error: allStuffError,
+  } = useAllStuff();
 
-  const navigate = useNavigate()
+  const {
+    data: reviewStatsData,
+    isPending: isReviewStatsPending,
+    isError: isReviewStatsError,
+    error: reviewStatsError,
+  } = useReviewStats();
 
-  if (isPending) return <div>Loading...</div>
-  if (isError) return <div>Error loading stuff</div>
+  const navigate = useNavigate();
 
+  // Handle loading state if either hook is still loading
+  if (isAllStuffPending || isReviewStatsPending) {
+    return <p>Loading...</p>;
+  }
+
+  // Handle errors if either hook has an error
+  if (isAllStuffError) {
+    return <p>Error loading stuff: {allStuffError.message}</p>;
+  }
+  if (isReviewStatsError) {
+    return <p>Error loading review stats: {reviewStatsError.message}</p>;
+  }
   return (
     <div className="all-stuff-container">
       <IfAuthenticated >
@@ -19,7 +46,7 @@ export function AllStuff() {
         </div>
         </Link>
       </IfAuthenticated>
-      {data.map((stuff) => (
+      {allStuffData.map((stuff) => (
         <div
           tabIndex={0} role="button" aria-pressed="false"
           onClick={() => {
@@ -48,6 +75,18 @@ export function AllStuff() {
             </p>
           </div>
           <p className="stuff-description">{stuff.description}</p>
+          <p className="mb-2">
+                {' '}
+                <b>Rating: {reviewStatsData.stuffReceived.
+                    find(stuffStats => stuffStats.stuff_id === stuff.id)
+                    .recieved_avg_stuff_rating.toFixed(1)}</b>
+                
+                  {Array(Math.round(reviewStatsData.stuffReceived.
+                    find(stuffStats => stuffStats.stuff_id === stuff.id)
+                    .recieved_avg_stuff_rating))
+                    .fill('⭐')
+                    .join('')}
+              </p>
         </div>
       ))}
     </div>
