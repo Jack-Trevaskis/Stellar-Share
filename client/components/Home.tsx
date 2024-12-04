@@ -1,6 +1,3 @@
-import { Link } from "react-router-dom"
-import { IfAuthenticated } from "./Authenticated"
-
 function Home() {
   return (
     <>
@@ -28,21 +25,6 @@ function Home() {
         connected galaxy, one exchange at a time. Use, trade, rent, and
         explore—all with the freedom to shape your journey, your way.
       </p>
-
-      <div className="flex flex-col items-center space-y-4">
-        <Link to="/stuff" className="button bg-white hover:underline">
-          Find astro equipment here
-        </Link>
-        <Link to="/users" className="button text-blue-500 hover:underline">
-          See all our good (and not-so-good) space-cadets here
-        </Link>
-        <IfAuthenticated>
-          <Link to="/addStuff" className="button text-blue-500 hover:underline">
-            Add your own items here
-          </Link>
-        </IfAuthenticated>
-   
-              </div>
     </>
   )
 }

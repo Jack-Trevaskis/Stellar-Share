@@ -83,6 +83,14 @@ export function Nav() {
           </li>
           <li>
             <Link
+              to="/users"
+              className="text-2xl text-base1 hover:text-yellow transition duration-300"
+            >
+              Users
+            </Link>
+          </li>
+          <li>
+            <Link
               to="/stuff"
               className="text-2xl text-base1 hover:text-yellow transition duration-300"
             >
