@@ -62,14 +62,15 @@ export function AllStuff() {
             (e.currentTarget.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)')
           }
         >
+          <img className="size-14 rounded-full" src={stuff.imageUrl} alt="stuff pic" />
           <h1 className="stuff-title">{stuff.name}</h1>
           <div className="stuff-details-list">
             <p>
               <span className="detail-label">Price:</span> ${stuff.price}
             </p>
-            <p>
+            {/* <p>
               <span className="detail-label">Bond:</span> ${stuff.bond}
-            </p>
+            </p> */}
             <p>
               <span className="detail-label">Condition:</span> {stuff.condition}
             </p>

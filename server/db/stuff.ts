@@ -46,7 +46,16 @@ export async function getStuffById(
 }
 
 export async function getAllStuff() {
-  const allStuff = await connection('stuff').select()
+  const allStuff = await connection('stuff').select(
+    'id',
+    'name',
+    'description',
+    'owner_id as ownerId',
+    'price',
+    'image_url as imageUrl',
+    'bond',
+    'condition',
+  )
   return allStuff as Stuff[]
 }
 
