@@ -65,16 +65,29 @@ function SingleStuffPage() {
             <strong>Condition:</strong> {stuff.condition}
           </li>
           <li className="mb-2">
-            {' '}
-            <b>Rating: {reviewStatsData.stuffReceived.
-                find(stuffStats => stuffStats.stuff_id === stuff.id)
-                .recieved_avg_stuff_rating.toFixed(1)}</b>
-            
-              {Array(Math.round(reviewStatsData.stuffReceived.
-                find(stuffStats => stuffStats.stuff_id === stuff.id)
-                .recieved_avg_stuff_rating))
-                .fill('⭐')
-                .join('')}
+          {reviewStatsData.stuffReceived.find(
+                (stuffStats) => stuffStats.stuff_id === stuff.id
+              ) ? (
+              <>
+                <b>
+                  Rating:{' '}
+                  {reviewStatsData.stuffReceived
+                    .find((stuffStats) => stuffStats.stuff_id === stuff.id)
+                    .recieved_avg_stuff_rating.toFixed(1)}
+                </b>
+                {Array(
+                  Math.round(
+                    reviewStatsData.stuffReceived.find(
+                      (stuffStats) => stuffStats.stuff_id === stuff.id
+                    ).recieved_avg_stuff_rating
+                  )
+                )
+                  .fill('⭐')
+                  .join('')} 
+              </>
+            ) : (
+              <span>No rating available</span>
+            )}
           </li>
         </ul>
         <img src={stuff.imageUrl} alt="Stuff" className="stuff-image" />
