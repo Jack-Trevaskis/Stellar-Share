@@ -4,6 +4,7 @@ import StuffReviews from './StuffReviews'
 import { useAuth0 } from '@auth0/auth0-react'
 import AddStuffReviewForm from './AddStuffReviewForm'
 import { useUser } from '../hooks/useUser'
+import { useReviewStats } from '../hooks/useReviewStats'
 
 function SingleStuffPage() {
   const { stuffId } = useParams()
@@ -11,12 +12,24 @@ function SingleStuffPage() {
   const { isAuthenticated } = useAuth0()
   const userFromHook = useUser()
 
-  if (isPending) {
+  const {
+    data: reviewStatsData,
+    isPending: isReviewStatsPending,
+    isError: isReviewStatsError,
+    error: reviewStatsError,
+  } = useReviewStats();
+
+
+  if (isPending || isReviewStatsPending) {
     return <p>Is loading...</p>
   }
 
   if (error) {
     return <p>Error.. {error.message}</p>
+  }
+
+  if (isReviewStatsError) {
+    return <p>Error loading review stats: {reviewStatsError.message}</p>;
   }
 
   // Check if this thing is listed by the currently logged in user and stop them from leaving a review on their own thing
@@ -50,6 +63,18 @@ function SingleStuffPage() {
           </li>
           <li>
             <strong>Condition:</strong> {stuff.condition}
+          </li>
+          <li className="mb-2">
+            {' '}
+            <b>Rating: {reviewStatsData.stuffReceived.
+                find(stuffStats => stuffStats.stuff_id === stuff.id)
+                .recieved_avg_stuff_rating.toFixed(1)}</b>
+            
+              {Array(Math.round(reviewStatsData.stuffReceived.
+                find(stuffStats => stuffStats.stuff_id === stuff.id)
+                .recieved_avg_stuff_rating))
+                .fill('⭐')
+                .join('')}
           </li>
         </ul>
         <img src={stuff.imageUrl} alt="Stuff" className="stuff-image" />
