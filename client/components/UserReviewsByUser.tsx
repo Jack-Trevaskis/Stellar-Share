@@ -22,38 +22,27 @@ function UserReviewsByUser() {
   }
 
   if (isError) {
-    return <p>No reviews!</p>
+    return <p className="warning-text">No reviews!</p>
   }
 
   return (
-    <div className="p-4">
-      <ul
-        className="space-y-4 rounded-lg"
-        style={{
-          maxHeight: '300px',
-          overflow: 'scroll',
-        }}
-      >
+    <div className="reviews-container">
+      <ul className="reviews-list reviews-scroll-list">
         {userReviews?.map((review) => (
-          <li
-            key={review.id}
-            className="border border-gray-300 p-6 rounded-lg shadow-md bg-white hover:shadow-lg transition-shadow duration-300"
-          >
-            <p className="mb-2">
+          <li key={review.id} className="review-item">
+            <p className="review-rating">
               {' '}
-              <b>Rating: </b> {Array(review.rating).fill('⭐').join('')}
+              <strong>Rating: </strong>{' '}
+              {Array(review.rating).fill('⭐').join('')}
             </p>
-            <p className="mb-2">
-              <b>User: </b>
-              <Link
-                to={`/users/${review.userId}`}
-                className="text-blue-500 hover:underline"
-              >
+            <p className="review-description">
+              <strong>User: </strong>
+              <Link to={`/users/${review.userId}`} className="review-link">
                 {review.userName}
               </Link>
             </p>
-            <p className="mb-2">
-              <b>Description:</b> {review.description}
+            <p className="review-description">
+              <strong>Description:</strong> {review.description}
             </p>
           </li>
         ))}

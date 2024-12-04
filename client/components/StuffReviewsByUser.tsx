@@ -21,29 +21,20 @@ function StuffReviewsByUser() {
     return <p>Loading...</p>
   }
 
-  if (isError) {
-    return <p>No reviews!</p>
+  if (isError || !stuffReviews) {
+    return <p className="warning-text">No reviews!</p>
   }
 
   return (
-    <div className="p-4">
-      <ul
-        className="space-y-4 rounded-lg"
-        style={{
-          maxHeight: '300px',
-          overflow: 'scroll',
-        }}
-      >
+    <div className="reviews-container">
+      <ul className="reviews-list reviews-scroll-list">
         {stuffReviews?.map((review) => (
-          <li
-            key={review.id}
-            className="border border-gray-300 p-6 rounded-lg shadow-md bg-white hover:shadow-lg transition-shadow duration-300"
-          >
-            <p className="mb-2">
+          <li key={review.id} className="review-item">
+            <p className="review-rating">
               {' '}
               <b>Rating: </b> {Array(review.rating).fill('⭐').join('')}
             </p>
-            <p className="mb-2">
+            <p className="review-description">
               <b>Stuff: </b>
               <Link
                 to={`/stuff/${review.stuffId}`}
@@ -52,7 +43,7 @@ function StuffReviewsByUser() {
                 {review.stuffName}
               </Link>
             </p>
-            <p className="mb-2">
+            <p className="review-description">
               <b>Listed By: </b>
               <Link
                 to={`/users/${review.ownerId}`}
@@ -61,7 +52,7 @@ function StuffReviewsByUser() {
                 {review.ownerName}
               </Link>
             </p>
-            <p className="mb-2">
+            <p className="review-description">
               <b>Description:</b> {review.description}
             </p>
           </li>

@@ -32,6 +32,11 @@ export default {
         'glow-yellow': '0 0 10px rgba(181, 137, 0, 0.7)', // yellow glow
         'glow-orange': '0 0 10px rgba(203, 75, 22, 0.7)', // orange glow
       },
+      scale: {
+        101: '1.01',
+        102: '1.02',
+        103: '1.03',
+      },
     },
   },
   plugins: [],

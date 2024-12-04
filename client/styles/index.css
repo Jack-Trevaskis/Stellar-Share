@@ -4,11 +4,30 @@
 @tailwind components;
 @tailwind utilities;
 
+#root {
+  --background-opacity: 0.05;
+  position: relative;
+  z-index: 0;
+}
+
 /* Global dark theme styles */
 html,
 body {
   @apply bg-base03 text-base1;
   font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  opacity: var(--background-opacity);
+}
+/* Add the background image using a pseudo-element */
+body::before {
+  content: '';
+  @apply fixed top-0 left-0 w-full h-full bg-cover bg-center bg-no-repeat;
+  background-image: url('/images/Homepage/StelarShare.webp');
+  background-attachment: fixed;
+  opacity: 0.05; /* Adjust this value for desired transparency */
+  z-index: -1;
 }
 
 /* Custom text shadow utilities */
@@ -70,6 +89,12 @@ a:focus,
 
 /* --- ALL CUSTOM TW CLASSES --- */
 @layer components {
+  /* --- APP Component Styles --- */
+  .app-background {
+    background: url('/images/Homepage/StelarShare.webp') no-repeat center center
+      fixed;
+    background-size: cover;
+  }
   /* --- Users Component Styles --- */
   .users-container {
     @apply p-4;
@@ -276,8 +301,15 @@ a:focus,
     @apply space-y-4;
   }
 
+  .reviews-scroll-list {
+    @apply max-h-80 overflow-y-scroll;
+  }
+
   .review-item {
-    @apply border border-gray-300 p-6 rounded-lg shadow-md bg-white hover:shadow-lg transition-shadow duration-300;
+    @apply flex flex-col border border-base01 gap-4 p-4 bg-base02 rounded-lg shadow-md transition-colors duration-300 transform;
+  }
+  .review-item:hover {
+    @apply border border-base01 bg-base01/30  rounded-lg shadow-md;
   }
 
   .review-rating,
@@ -286,7 +318,7 @@ a:focus,
   }
 
   .review-link {
-    @apply text-sky-500 hover:underline;
+    @apply text-blue transition duration-300 hover:text-orange hover:text-shadow-glow-orange;
   }
 
   /* Rating star button */
@@ -298,4 +330,9 @@ a:focus,
     @apply text-yellow;
   }
   /* End of Review Section */
+
+  /* --- RANDOM Stuff--- */
+  .warning-text {
+    @apply text-orange text-sm font-semibold text-center mb-4;
+  }
 }

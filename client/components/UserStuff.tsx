@@ -22,7 +22,8 @@ function UserStuff() {
 
   if (isPending) return <p>Loading...</p>
   if (isError) return <p>Error loading user stuff: {error.message}</p>
-  if (!stuff || stuff.length === 0) return <p>No stuff found.</p>
+  if (!stuff || stuff.length === 0)
+    return <p className="warning-text">No stuff found.</p>
 
   return (
     <div className="all-stuff-container">
