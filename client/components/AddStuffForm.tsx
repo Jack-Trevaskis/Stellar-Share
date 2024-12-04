@@ -63,7 +63,7 @@ function AddStuffForm() {
       description: formState.description,
       ownerId: userFromHook.data.id,
       price: formState.price,
-      imageURL: formState.imageURL,
+      imageUrl: formState.imageURL,
       bond: formState.bond,
       condition: formState.condition,
     })
